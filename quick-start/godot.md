@@ -486,8 +486,7 @@ func _on_remove_chunk(chunk_id):
 
 <summary>Full root.gd script code (commented)</summary>
 
-```gdscript
-# root.gd script
+<pre class="language-gdscript"><code class="lang-gdscript"># root.gd script
 
 # extend the functionality of your root node (here Node3D)
 extends Node3D
@@ -531,7 +530,13 @@ func _ready():
 
 # create a new player instance, and add it as a child node
 func _on_new_player_entity(entity_id, state):
-	print("MAKING PLAYER")
+<strong>	#check if the player instance already exists, and exit function if so  
+</strong> 	for instance in get_children():
+		var pp_entity = instance.get_node_or_null('PPEntityNode')
+		if pp_entity and "entity_id" in pp_entity:
+			if pp_entity.entity_id == entity_id:
+                		return
+
 	# create the player instance
 	var player_instance = player_scene.instantiate()
 
@@ -633,7 +638,7 @@ func _on_remove_chunk(chunk_id):
 	print('Chunk ' + chunk_id + ' not found to remove')
 	
 
-```
+</code></pre>
 
 </details>
 
@@ -672,8 +677,13 @@ var scene_map = {
 	pp_root_node.authenticate_player("", "")
 	print("authenticated and starting")
 
-func _on_new_player_entity(entity_id, state):
-	print("MAKING PLAYER")
+func _on_new_player_entity(entity_id, state):	
+ 	for instance in get_children():
+		var pp_entity = instance.get_node_or_null('PPEntityNode')
+		if pp_entity and "entity_id" in pp_entity:
+			if pp_entity.entity_id == entity_id:
+                		return
+        
 	var player_instance = player_scene.instantiate()
 
 	var pp_entity_node = player_instance.get_node_or_null("PPEntityNode")
@@ -780,8 +790,13 @@ func _ready():
 	pp_root_node.authenticate_player("", "")
 	print("authenticated and starting")
 
-func _on_new_player_entity(entity_id, state):
-	print("MAKING PLAYER")
+func _on_new_player_entity(entity_id, state): 
+ 	for instance in get_children():
+		var pp_entity = instance.get_node_or_null('PPEntityNode')
+		if pp_entity and "entity_id" in pp_entity:
+			if pp_entity.entity_id == entity_id:
+                		return
+        
 	var player_instance = player_scene.instantiate()
 
 	var pp_entity_node = player_instance.get_node_or_null("PPEntityNode")
