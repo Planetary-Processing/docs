@@ -59,13 +59,13 @@ x[#x+1] = 42 -- this will fail, instead you should use api.table.Append
 
 ## Utils
 
-We provide utilities through the `api.utils` section of the API, currently this is limited to:
+We provide utilities through the `api.util` section of the API, currently this is limited to:
 
 ```lua
 api.util.Time() -- returns the unix timestamp in seconds
 ```
 
-## HTTP
+## HTTP \[BETA]
 
 We provide a simple HTTP API (for premium games only) through the `api.http` section of the API. This is rate limited to a maximum of 5 HTTP calls per tick. The API is as follows:
 
