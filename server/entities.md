@@ -71,15 +71,16 @@ end
 
 ### Message
 
-This is called when another entity sends a message to this entity (note that the entity sending the message might not be in the same chunk). The message is of type message (see types below).
+This function runs when another entity sends a message to this entity.&#x20;
 
-On the player entity this function also acts as the handler for messages received from a game client, which follow the same format.
+All messages sent from the game client are sent to player entity, and received by the message function in `player.lua`. If a message is sent from the client, it's message's `Client` field will be true.
 
 ```lua
 local function message(self, msg)
+end
 ```
 
-The msg argument supplied to this function is defined as follows:
+The `msg` argument supplied to this function is defined as follows:
 
 | Field  | Type  | Description                                                                                       |
 | ------ | ----- | ------------------------------------------------------------------------------------------------- |
@@ -95,11 +96,24 @@ A number of API calls are available for certain entity-related actions such as s
 | Create  | <p><code>type: string</code><br><code>x: float</code><br><code>y: float</code><br><code>z: float</code><br><code>data: table</code></p> | `Entity`     | Creates a new entity in the current dimension and returns it. This function will automatically call the `init` function for the specified entity type. It fails if there is no entity type that matches the provided `type`. |
 | Message | <p><code>entityid: string</code><br><code>message: table</code></p>                                                                     | None         | Sends a message to the entity with UUID `entityid` if it exists, this entity can be anywhere in the world.                                                                                                                   |
 
+## Entity Messaging
+
+Message are sent using either [`api.entity.message()`](entities.md#entity-api) or by the [Client](entities.md#message). They are received by an entity's [`message()`](entities.md#message) function.
+
 For example, sending a message to a particular entity each tick would look like:
 
 ```lua
 local function update(self, dt)
   api.entity.Message(receiverid, {message="hello there", from=self.ID})
+end
+```
+
+And be received like this:
+
+```lua
+local function message(self, msg)
+  print("The id of the sender is: ", msg.Data.from) -- prints self.ID
+  print("The message is: ", msg.Data.message) -- print "hello there"
 end
 ```
 
