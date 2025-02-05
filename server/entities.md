@@ -34,6 +34,7 @@ Each of these methods takes the entity object `self` as its first parameter. Hen
 Entities are divided into types, each of which have their own behaviour. This behaviour is determined by a script in the `entity` folder; to create a new entity type, simply create a new file in this folder, call the file `entitytypename.lua` and add the stub code shown below:
 
 ```lua
+-- entitytypename.lua file
 local function init(self)
 end
 
@@ -50,7 +51,7 @@ These three functions, `init`, `update` and `message` are explained in detail la
 
 These three functions, `init`, `update` and `message`, govern the behaviour of all entities of this type.
 
-**Init**
+### Init
 
 This is called when the entity is created and should be used to set initial state (for example, setting the Chunkloader or Data fields).
 
@@ -59,7 +60,7 @@ local function init(self)
 end
 ```
 
-**Update**
+### Update
 
 This is called each tick to update the entity, dt is the time since the last update in seconds.
 
@@ -68,7 +69,7 @@ local function update(self, dt)
 end
 ```
 
-**Message**
+### Message
 
 This is called when another entity sends a message to this entity (note that the entity sending the message might not be in the same chunk). The message is of type message (see types below).
 
