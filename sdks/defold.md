@@ -4,9 +4,9 @@
 
 The Defold SDK can be installed by navigating to your `game.project` file, then in the 'Project' tab (in the Editor window) you will see the 'Dependencies' list.
 
-You need to add the following two dependencies:
+You need to add the following dependencies:
 
-* The Planetary Processing SDK: `https://github.com/Planetary-Processing/defold-sdk/archive/master.zip`
+* [The Planetary Processing SDK](https://github.com/Planetary-Processing/defold-sdk): `https://github.com/Planetary-Processing/defold-sdk/archive/master.zip`
 * [Defold Websocket](https://github.com/defold/extension-websocket), which we depend on: `https://github.com/defold/extension-websocket/archive/master.zip`
 * [Defold Protobuf](https://github.com/Melsoft-Games/defold-protobuf), which we depend on: `https://github.com/Melsoft-Games/defold-protobuf/archive/master.zip`
 
@@ -54,7 +54,7 @@ Messages can be sent to and from your game server along a connection,. Messages 
 
 ### [pp\_init ](defold.md#message-directory)-  (Establish a connection)
 
-The first thing you need to do when your game starts is initialise the SDK, to do this you send the [Master Component ](defold.md#master-component)(or its whole GameObject) a message with ID `hash("`[`pp_init`](defold.md#message-directory)`")`. The sender url of this message will be allocated as the '**listener**' and will be sent all updates in future.&#x20;
+The first thing you need to do when your game starts is initialise the SDK, to do this you send the [Master Component ](defold.md#master-component)(or its whole GameObject) a message with ID `hash("pp_init")`. The sender url of this message will be allocated as the '**listener**' and will be sent all updates in future.&#x20;
 
 ```lua
 msg.post("/go_with_master_component", hash("pp_init"), {})
@@ -71,7 +71,7 @@ If you are using authentication, you should supply username and password in a ta
 
 ### [pp\_join ](defold.md#message-directory)- (Join with a player)
 
-By default, the player will not have joined the world, in order to do this, you should send an empty message with ID `hash("`[`pp_join`](defold.md#message-directory)`")` to the master component (or its GameObject).
+By default, the player will not have joined the world, in order to do this, you should send an empty message with ID `hash("pp_join")` to the master component (or its GameObject).
 
 ```lua
 msg.post("/go_with_master_component", hash("pp_join"))
@@ -96,7 +96,7 @@ end
 
 ### [pp\_update ](defold.md#message-directory)- (Receive server messages)
 
-The PP SDK sends and receives several different messages and accepts several too. Each time an entity updates its position or data, a message with ID `hash("`[`pp_update`](defold.md#message-directory)`")` is sent to that entity's GameObject and the listener.
+The PP SDK sends and receives several different messages and accepts several too. Each time an entity updates its position or data, a message with ID `hash("pp_update")` is sent to that entity's GameObject and the listener.
 
 This message is of the following format: \
 (the same format is also used for [`pp_spawn` ](defold.md#message-directory)and [`pp_delete` ](defold.md#message-directory)messages)
@@ -124,7 +124,7 @@ end
 
 ### [pp\_message ](defold.md#message-directory)- (Send messages to the server)
 
-If you wish to send a message to the server, it must be sent to the [Master Component ](defold.md#master-component)(or its whole GameObject). It will be received by the player entity (player.lua) on the server. All messages are handled by the player entity's [message ](../server/entities.md#message)function on the server side API. Messages from the client can be identified by the [Client field](../server/entities.md#message). To use, send a message with ID `hash("`[`pp_message`](defold.md#message-directory)`")` to the [Master Component ](defold.md#master-component)where the [message content](../server/entities.md#message) is the Lua table to be sent as a message.
+If you wish to send a message to the server, it must be sent to the [Master Component ](defold.md#master-component)(or its whole GameObject). It will be received by the player entity (player.lua) on the server. All messages are handled by the player entity's [message ](../server/entities.md#message)function on the server side API. Messages from the client can be identified by the [Client field](../server/entities.md#message). To use, send a message with ID `hash("pp_message")` to the [Master Component ](defold.md#master-component)where the [message content](../server/entities.md#message) is the Lua table to be sent as a message.
 
 ```lua
 msg.post("go_with_master_component", hash("pp_message"), {test=123})
