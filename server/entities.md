@@ -6,7 +6,7 @@ Your game is made up of entities each of which have an associated UUID, position
 
 This section details the fields and methods available on each entity object.
 
-**Fields**
+### **Entity Fields**
 
 | Field       | Type   | Description                                                                                                                                        |
 | ----------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -16,7 +16,9 @@ This section details the fields and methods available on each entity object.
 | Chunkloader | bool   | If true, the chunk containing this entity will remain loaded even if no players are present. Note that chunkloader entities are a premium feature. |
 | Transient   | bool   | If true, when the chunk containing this entity is unloaded, it will not be persisted.                                                              |
 
-**Methods**
+
+
+### **Entity Methods**
 
 Each of these methods takes the entity object `self` as its first parameter. Hence you may use `self:Move(dx, dy, dz)` instead of `self.Move(self, dx, dy, dz)`.
 
