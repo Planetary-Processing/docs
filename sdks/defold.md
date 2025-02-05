@@ -50,7 +50,9 @@ Within the Master Component you will need to set the URL of the local player Gam
 
 ## Messages
 
-Messages can be sent to and from your game server along a connection,. Messages to the server are sent to the [Master Component](defold.md#master-component). Messages from the server are sent to each entity, and the **listener** (the script which sent the [`pp_init`](defold.md#pp_init-establishes-a-connection) message). Each of these message use a message\_id, such as [`pp_init`](defold.md#pp_init-establishes-a-connection), [`pp_join`](defold.md#pp_join-joins-with-a-player), [`pp_update`](defold.md#pp_update-receives-server-messages), or [`pp_message`](defold.md#pp_message-sends-messages-to-the-server).
+Messages can be sent to and from your game server along a connection,. Messages to the server are sent to the [Master Component](defold.md#master-component). Messages from the server are sent to each entity, and the **listener** (the script which sent the [`pp_init`](defold.md#pp_init-establish-a-connection) message). Each of these message use a message\_id, such as [`pp_init`](defold.md#pp_init-establish-a-connection), [`pp_join`](defold.md#pp_join-join-with-a-player), [`pp_update`](defold.md#pp_update-receive-server-messages), or [`pp_message`](defold.md#pp_message-send-messages-to-the-server).
+
+
 
 ### [pp\_init ](defold.md#message-directory)-  (Establish a connection)
 
@@ -68,6 +70,8 @@ If you are using authentication, you should supply username and password in a ta
     password="P455W0RD"
 }
 ```
+
+
 
 ### [pp\_join ](defold.md#message-directory)- (Join with a player)
 
@@ -93,6 +97,8 @@ function on_message(self, message_id, message, sender)
 	end
 end
 </code></pre>
+
+
 
 ### [pp\_update ](defold.md#message-directory)- (Receive server messages)
 
@@ -122,6 +128,8 @@ function on_message(self, message_id, message, sender)
 end
 ```
 
+
+
 ### [pp\_message ](defold.md#message-directory)- (Send messages to the server)
 
 If you wish to send a message to the server, it must be sent to the [Master Component ](defold.md#master-component)(or its whole GameObject). It will be received by the player entity (player.lua) on the server. All messages are handled by the player entity's [message ](../server/entities.md#message)function on the server side API. Messages from the client can be identified by the [Client field](../server/entities.md#message). To use, send a message with ID `hash("pp_message")` to the [Master Component ](defold.md#master-component)where the [message content](../server/entities.md#message) is the Lua table to be sent as a message.
@@ -129,6 +137,8 @@ If you wish to send a message to the server, it must be sent to the [Master Comp
 ```lua
 msg.post("go_with_master_component", hash("pp_message"), {test=123})
 ```
+
+
 
 ## Message Directory
 
