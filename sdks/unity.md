@@ -14,33 +14,45 @@ And click 'Add' to add the package.
 
 ## Components
 
-The Unity SDK provides three new components which can be added to GameObjects. These are PPMaster, PPEntity and PPChunk. These can be accessed in the 'Add Component' menu of any Gameobject under the PP heading.
+The Unity SDK provides three new components which can be added to GameObjects. These are the [Master](unity.md#master-component), [Entity](unity.md#entity-component), and [Chunk](unity.md#chunk-component) components. These can be accessed in the 'Add Component' menu of any GameObject under the 'PP' heading.
 
 ![Unity component](../.gitbook/assets/Untitled.png)
 
-PPMaster represents the main connection point to PP's servers and performs the heavy lifting and orchestration of the SDK. You must have a GameObject in your game which has the master component.
+### Master Component
 
-PPEntity represents a server-side entity in the game world. You are required to, for every type of entity you wish to display in the Unity client, create a Prefab containing the PPEntity component.
+[PPMaster](unity.md#ppmaster) represents the main connection point to PP's servers and performs the heavy lifting and orchestration of the SDK. You must have a GameObject in your game which has the Master Component.
 
-![Unity entity](https://planetaryprocessing.io/static/img/unity_entity.png)
+To configure the Master Component you will need to set some references to GameObjects and Prefabs, in the [PPMaster](unity.md#ppmaster) inspector window.&#x20;
 
-By default, entities' GameObjects will be moved to their server-side position, you can disable this per entity type by un-ticking 'Use Server Position' in the entity component's inspector window. Here you also need to set the entity's type, which must match the server-side type that this Prefab represents.
-
-Please note that the `player` type is only for players other than the one connecting with this client. You need to create a separate GameObject (not in a prefab) for the local player which also contains a PPEntity component.
-
-The final component, PPChunk, is to represent each chunk in the game world. As detailed here: [chunks.md](../server/chunks.md "mention") each chunk has a data table, which is synced down to the client with the PPChunk component. To use this, you must create a Prefab with the PPChunk component on it, which will be instantiated at the corner of each chunk and will hold its data.
-
-You need to add the entity Prefabs to the Prefabs field in the PPMaster inspector window. Here you will also need to set a reference to the local player GameObject, the Chunk Prefab and also, the Planetary Processing game ID and chunk size.
+* **Player:** Your local player will be represented by a GameObject.
+* **Chunk Prefab:** A Prefab with the [Chunk Component](unity.md#chunk-component) to manage Chunks.
+* **Prefabs**: Each Prefab created with the the [Entity Component ](unity.md#entity-component)must be added to the Entity 'Prefabs' list in the inspector.
+* **Game ID:** The ID of your game from the [web panel](https://panel.planetaryprocessing.io/games), for Unity to connect to.
+* **Chunk Size:** The size of chunks in your game, defined in the [web panel](https://panel.planetaryprocessing.io/games) game settings.
 
 ![Unity config](<../.gitbook/assets/Capture d’écran 2025-01-28 à 15.17.33.png>)
 
+### Entity Component
+
+[PPEntity ](unity.md#ppentity)represents a server-side entity in the game world. You are required to, for every [type ](../server/entities.md#types-and-behaviour-scripting)of entity you wish to display in the Unity client, create a Prefab containing the [PPEntity ](unity.md#ppentity)component.
+
+By default, entities' GameObjects will be moved to their server-side position, you can disable this per entity type by un-ticking 'Use Server Position' in the entity component's inspector window. Here you also need to set the entity's [type](../server/entities.md#types-and-behaviour-scripting), which must match the server-side type that this Prefab represents.
+
+Please note that the `player` [type](../server/entities.md#types-and-behaviour-scripting) is needed only for other players, not the one connecting with this client. For the local player, you need to create a separate GameObject (not in a prefab). The local player also requires a PPEntity component, but not a specific [type](../server/entities.md#types-and-behaviour-scripting) definition in the inspector.
+
+<figure><img src="../.gitbook/assets/unity_sdk_ppentity.png" alt=""><figcaption><p>Unity Entity Component</p></figcaption></figure>
+
+### Chunk Component
+
+[PPChunk ](unity.md#ppchunk)represents each [chunk ](../server/chunks.md)in the game world. Each chunk has a data table, which is synced down to the client with the [PPChunk ](unity.md#ppchunk)component. To use this, you must create a Prefab with the [PPChunk ](unity.md#ppchunk)component on it, which will be instantiated at the corner of each chunk and will hold its data.
+
+<figure><img src="../.gitbook/assets/unity_sdk_ppchunk.png" alt=""><figcaption><p>Unity Chunk Component</p></figcaption></figure>
+
 ## API
 
-Below is a reference of the API available within Unity's C# environment.
+Below are reference tables of the API available within Unity's C# environment.
 
-### Components
-
-The PPEntity and PPMaster components expose various public methods which can be accessed within MonoBehaviour scripts by getting a reference to the component like so:
+The [PPMaster](unity.md#ppmaster), [PPEntity](unity.md#ppentity), and [PPChunk ](unity.md#ppchunk)components expose various public methods which can be accessed within MonoBehaviour scripts by getting a reference to the component like so:
 
 ```csharp
 PPMaster master = GetComponent<PPMaster>();
@@ -48,9 +60,15 @@ PPEntity entity = GetComponent<PPEntity>();
 PPChunk chunk = GetComponent<PPChunk>();
 ```
 
-#### PPMaster
+To connect to the server and join with the player, for example:
 
-PPMaster exposes the following methods:
+```csharp
+PPMaster master = GetComponent<PPMaster>();
+master.Init("", "");
+master.Join();
+```
+
+### PPMaster
 
 | Method                     | Parameters                                                            | Return Type    | Description                                                                                                        |
 | -------------------------- | --------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------ |
@@ -60,9 +78,9 @@ PPMaster exposes the following methods:
 | `GetEntity(uuid)`          | `uuid: string`                                                        | `Entity`       | Get Entity details by UUID.                                                                                        |
 | `GetEntities()`            | None                                                                  | `List<Entity>` | Get a list of all Entities that this client can see.                                                               |
 
-#### PPEntity
 
-PPEntity exposes the following methods:
+
+### PPEntity
 
 | Method                | Parameters | Return Type                  | Description                                                                                                                                                                                                                                                     |
 | --------------------- | ---------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -70,9 +88,9 @@ PPEntity exposes the following methods:
 | `GetServerData()`     | None       | `Dictionary<string, object>` | Get the server-side data of this entity.                                                                                                                                                                                                                        |
 | `GetUUID()`           | None       | `string`                     | Get this entity's UUID.                                                                                                                                                                                                                                         |
 
-#### PPChunk
 
-PPChunk exposes the following methods:
+
+### PPChunk
 
 | Method            | Parameters | Return Type                  | Description                             |
 | ----------------- | ---------- | ---------------------------- | --------------------------------------- |
