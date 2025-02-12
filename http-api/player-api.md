@@ -35,7 +35,7 @@ To delete a player, you must send a `DELETE` request to the `https://api.planeta
 
 ```json
 {
-    "player_idd": "8a319bfb-5a71-41ed-a67c-5fd44b40fb11"
+    "player_id": "8a319bfb-5a71-41ed-a67c-5fd44b40fb11"
 }
 ```
 
