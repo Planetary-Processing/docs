@@ -35,3 +35,8 @@
 * [Events API](api-reference/events-api/README.md)
   * [on\_player\_join](api-reference/events-api/on_player_join.md)
   * [on\_player\_leave](api-reference/events-api/on_player_leave.md)
+
+## HTTP API
+
+* [Authentication](http-api/authentication.md)
+* [Player API](http-api/player-api.md)
