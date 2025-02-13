@@ -4,7 +4,7 @@ description: Premium Only
 
 # Authentication
 
-In order to authenticate requests to our HTTP API you will need an API key, this can be found in the game settings page of your game dashboard. If your API key is empty, you will need to [reset ](authentication.md#resetting-your-api-key)it.
+In order to authenticate requests to our HTTP API you will need an API key, this can be found in the game settings page of your game dashboard. If your API key is empty, you will need to [reset](authentication.md#resetting-your-api-key) it.
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 

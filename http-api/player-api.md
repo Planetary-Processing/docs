@@ -23,7 +23,9 @@ We provide an API for the creation, deletion and listing of players associated w
 
 ## Create New Player
 
-To create a new player, you must send a `POST` request to `https://api.planetaryprocessing.io/api/players` with a JSON body containing the username and password of the new player, like so:
+To create a new player, you must send a `POST` request to `https://api.planetaryprocessing.io/api/players` with a JSON body containing the username and password of the new player.\
+\
+Your request must also have your game's personal [API Key](authentication.md) in the `X-API-KEY` header.&#x20;
 
 ```json
 {
@@ -31,8 +33,6 @@ To create a new player, you must send a `POST` request to `https://api.planetary
     "password": "agoodpassword"
 }
 ```
-
-Using your game's personal [API Key](authentication.md) in the `X-API-KEY` header.&#x20;
 
 This will return the Player ID in a JSON response:
 
@@ -50,17 +50,19 @@ curl -X POST https://api.planetaryprocessing.io/api/players/ \
 --data '{"username": "sam", "password": "agoodpassword"}'
 ```
 
+
+
 ## Delete Player
 
-To delete a player, you must send a `DELETE` request to  `https://api.planetaryprocessing.io/api/players` with a JSON body containing the UUID of the player, like so:
+To delete a player, you must send a `DELETE` request to  `https://api.planetaryprocessing.io/api/players` with a JSON body containing the UUID of the player,.
+
+Your request must also have your game's personal [API Key](authentication.md) in the `X-API-KEY` header.&#x20;
 
 ```json
 {
     "player_id": "8a319bfb-5a71-41ed-a67c-5fd44b40fb11"
 }
 ```
-
-With your game's personal [API Key](authentication.md) in the `X-API-KEY` header.
 
 #### cURL Example
 
@@ -69,6 +71,8 @@ curl -X DELETE https://api.planetaryprocessing.io/api/players/ \
 -H "X-API-KEY: yourapikeyhere" \
 --data '{"player_id": "8a319bfb-5a71-41ed-a67c-5fd44b40fb11"}'
 ```
+
+
 
 ## List Players
 
@@ -87,3 +91,4 @@ To list players, simply call `GET` on the `https://api.planetaryprocessing.io/ap
 curl -X GET https://api.planetaryprocessing.io/api/players/ \
 -H "X-API-KEY: yourapikeyhere" 
 ```
+
