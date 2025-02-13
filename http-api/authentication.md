@@ -1,6 +1,10 @@
+---
+description: Premium Only
+---
+
 # Authentication
 
-In order to authenticate requests to our HTTP API you will need an API key, this can be found in the game settings page of your game dashboard. If your API key is empty, you will need to reset it (see below).
+In order to authenticate requests to our HTTP API you will need an API key, this can be found in the game settings page of your game dashboard. If your API key is empty, you will need to [reset ](authentication.md#resetting-your-api-key)it.
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
@@ -10,6 +14,6 @@ In order to use your API key, you'll need to provide it in requests to our HTTP 
 
 ## Resetting Your API Key
 
-In order to reset your API key (or set it for the first time), you will need to go to the Admin tab of your game settings and click "Reset API Key".
+In order to reset your API key (or set it for the first time), you will need to go to the Admin tab of your [game settings](https://panel.planetaryprocessing.io/games) and click "Reset API Key".
 
 <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
