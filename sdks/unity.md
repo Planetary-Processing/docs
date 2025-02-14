@@ -1,4 +1,22 @@
+---
+layout:
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
 # Unity
+
+The Unity SDK integrates our multiplayer platform with Unity. The plugin provides components and methods to use within your game client code - these communicate changes in state from your server side simulation to the game client itself.
+
+If you are new here, we recommend starting with the [Unity Quickstart Guide](../quick-start/unity.md).
 
 ## Installation
 
@@ -24,11 +42,11 @@ The Unity SDK provides three new components which can be added to GameObjects. T
 
 To configure the Master Component you will need to set some references to GameObjects and Prefabs, in the [PPMaster](unity.md#ppmaster) inspector window.&#x20;
 
-* **Player:** Your local player will be represented by a GameObject.
-* **Chunk Prefab:** A Prefab with the [Chunk Component](unity.md#chunk-component) to manage Chunks.
-* **Prefabs**: Each Prefab created with the the [Entity Component ](unity.md#entity-component)must be added to the Entity 'Prefabs' list in the inspector.
-* **Game ID:** The ID of your game from the [web panel](https://panel.planetaryprocessing.io/games), for Unity to connect to.
-* **Chunk Size:** The size of chunks in your game, defined in the [web panel](https://panel.planetaryprocessing.io/games) game settings.
+* **Player** - Your local player will be represented by a GameObject.
+* **Chunk Prefab** - A Prefab with the [Chunk Component](unity.md#chunk-component) to manage Chunks.
+* **Prefabs** - Each Prefab created with the the [Entity Component ](unity.md#entity-component)must be added to the Entity 'Prefabs' list in the inspector.
+* **Game ID** - The ID of your game from the [web panel](https://panel.planetaryprocessing.io/games), for Unity to connect to.
+* **Chunk Size** - The size of chunks in your game, defined in the [web panel](https://panel.planetaryprocessing.io/games) game settings.
 
 ![Unity config](<../.gitbook/assets/Capture d’écran 2025-01-28 à 15.17.33.png>)
 

@@ -1,6 +1,6 @@
 # Introduction
 
-Planetary Processing is a platform to make the creation and operation of online games extremely easy. You control the behaviour of your simulation by creating and editing scripts which run in on our servers using our comprehensive API. We then provide easy-to-use SDKs for popular game engines which handle all the networking for you.
+Planetary Processing is a toolkit to make the creation and operation of online multiplayer games extremely easy. You control the behaviour of your simulation by creating and editing scripts which run in on our servers using our comprehensive API. We then provide easy-to-use SDKs for popular game engines which handle all the networking for you.
 
 ## Entities
 
