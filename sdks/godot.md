@@ -85,7 +85,9 @@ With the [PPChunkNode ](godot.md#ppchunknode-1)selected, you will be able to edi
 
 Messages can be sent to your game server along a connection established by the [PPRootNode](godot.md#pprootnode-1). Signals from the server are sent to each of the [PP nodes](godot.md#api) on the clientside. Your scripts can connect to these signals.
 
-### [authenticate\_player](godot.md#pprootnode-1) - (Message to establish a connection)
+### [authenticate\_player](godot.md#pprootnode-1)
+
+* Message to establish a connection
 
 You may log a player in using the [`authenticate_player`](godot.md#pprootnode-1) method on the [PPRootNode](godot.md#pprootnode-1). After logging a player in, the custom nodes will begin emitting signals.
 
@@ -101,7 +103,9 @@ assert(pp_root_node, "PPRootNode not found")
 pp_root_node.authenticate_player("", "")
 </code></pre>
 
-### [new\_player\_entity ](godot.md#pprootnode-1)- (Signal when player has joined)
+### [new\_player\_entity ](godot.md#pprootnode-1)
+
+* Signal when player has joined
 
 For the player who has just logged in, the [PPRootNode ](godot.md#pprootnode-1)will emit a [`new_player_entity`](godot.md#pprootnode-1) signal. This signal is specific to the player running this instance of the game client. You can hook into this signal and instantiate your player scene accordingly.
 
@@ -134,7 +138,9 @@ func _on_new_player_entity(entity_id, state):
     player_instance.global_transform.origin = Vector3(state.x, state.z, state.y) 
 ```
 
-### [new\_entity ](godot.md#pprootnode-1)- (Signal when entities spawn)
+### [new\_entity ](godot.md#pprootnode-1)
+
+* Signal when entities spawn
 
 The [PPRootNode ](godot.md#pprootnode-1)will emit a [`new_entity` ](godot.md#pprootnode-1)signal for any entities that have not yet been seen by the game client. After first logging in, this signal will trigger for all entities in the game world, including other players. These scenes can then be instantiated and added to the scene's node tree.
 
@@ -170,7 +176,9 @@ func _on_new_entity(entity_id, state):
     entity_instance.global_transform.origin = Vector3(state.x, state.z, state.y)
 ```
 
-### [remove\_entity ](godot.md#pprootnode-1)- (Signal when entities despawn)
+### [remove\_entity ](godot.md#pprootnode-1)
+
+* Signal when entities despawn
 
 If any entities have left the simulation, the [PPRootNode ](godot.md#pprootnode-1)will emit a [`remove_entity` ](godot.md#pprootnode-1)signal. This signal can be used as a trigger to remove any scenes that are no longer needed from your node tree.
 
@@ -187,7 +195,9 @@ func _on_remove_entity(entity_id):
   print('Entity ' + entity_id + ' not found to remove')
 ```
 
-### [**state\_changed** ](godot.md#ppentitynode-1)- (Signal when entities update)
+### [**state\_changed** ](godot.md#ppentitynode-1)
+
+* Signal when entities update
 
 Each [PPEntityNode ](godot.md#ppentitynode-1)will emit a [`state_changed` ](godot.md#ppentitynode-1)signal each frame. You can use these signals to interpret movement from the server or trigger changes to your scenes as necessary. This script could be applied to the root node of an entity scene, for moving players or entities around the world.
 
@@ -206,7 +216,9 @@ func _on_state_changed(state):
     global_transform.origin = Vector3(state.x, state.z, state.y) 
 ```
 
-### [message ](godot.md#pprootnode-1)- (Message to send data to the server)
+### [message ](godot.md#pprootnode-1)
+
+* Message to send data to the server
 
 You can send regular updates from the player to the game server using the [`message()`](godot.md#pprootnode-1) function on the [PPRootNode](godot.md#pprootnode-1). These messages allow the player to interact with the game simulation. It is up to you what data you want to send and how to process it in your server side code. Note that currently all messages from the Godot client are received by the `player.lua` file on the server.
 
