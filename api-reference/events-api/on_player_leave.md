@@ -10,9 +10,9 @@ An event which runs when a player leaves the game.&#x20;
 
 Parameters:
 
-| Name   | Type   | Description                  |
-| ------ | ------ | ---------------------------- |
-| player | Entity | The leaving player's entity. |
+| Name   | Type     | Description                  |
+| ------ | -------- | ---------------------------- |
+| player | `Entity` | The leaving player's entity. |
 
 
 
@@ -21,7 +21,7 @@ Example:
 When the player leaves, message a nearby entity.&#x20;
 
 ```lua
--- event.lua
+-- events.lua
 local function on_player_leave(player)
 	local nearbyEntities = player:GetNearbyEntities(64)
 	local msg_data = {

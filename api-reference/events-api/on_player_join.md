@@ -10,10 +10,10 @@ An event which runs when a player joins the game.&#x20;
 
 Parameters:
 
-| Name   | Type    | Description                                    |
-| ------ | ------- | ---------------------------------------------- |
-| player | Entity  | The joining player's entity.                   |
-| first  | boolean | True, if this player has never joined before.  |
+| Name   | Type      | Description                                    |
+| ------ | --------- | ---------------------------------------------- |
+| player | `Entity`  | The joining player's entity.                   |
+| first  | `boolean` | True, if this player has never joined before.  |
 
 
 
@@ -21,7 +21,7 @@ Example:
 
 When the player joins, print whether it is their first time.
 
-<pre class="language-lua"><code class="lang-lua">-- event.lua
+<pre class="language-lua"><code class="lang-lua">-- events.lua
 local function on_player_join(player, first)
 	if first == true then 
 		print("Player "..player.ID.." has joined for the first time! "..

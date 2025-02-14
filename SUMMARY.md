@@ -29,12 +29,17 @@
 * [Logging](server/logs.md)
 * [Lua Environment](server/lua.md)
 * [Git Primer](server/git.md)
+* [Physics](server/physics.md)
 
 ## Api Reference
 
 * [Events API](api-reference/events-api/README.md)
   * [on\_player\_join](api-reference/events-api/on_player_join.md)
   * [on\_player\_leave](api-reference/events-api/on_player_leave.md)
+* [Physics API](api-reference/physics-api/README.md)
+  * [NewBody](api-reference/physics-api/newbody.md)
+  * [NewBoxShape](api-reference/physics-api/newboxshape.md)
+  * [NewSphereShape](api-reference/physics-api/newsphereshape.md)
 
 ## HTTP API
 
