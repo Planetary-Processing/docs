@@ -1,5 +1,9 @@
 # Defold
 
+The Defold SDK integrates our multiplayer platform with Defold. The plugin provides components and messages to use within your game client code - these communicate changes in state from your server side simulation to the game client itself.
+
+If you are new here, we recommend starting with the [Defold Quickstart Guide](../quick-start/defold.md).
+
 ## Installation
 
 The Defold SDK can be installed by navigating to your `game.project` file, then in the 'Project' tab (in the Editor window) you will see the 'Dependencies' list.
@@ -16,9 +20,11 @@ You need then to fetch dependencies, this is done with the 'Fetch Libraries' but
 
 ![Defold fetch libraries](https://planetaryprocessing.io/static/img/defold_fetch.png)
 
-## Example Project
+### Example Project
 
 You can find an example project in the same repo as the library, on our [GitHub](https://github.com/planetary-processing/defold-sdk).
+
+
 
 ## Components
 
