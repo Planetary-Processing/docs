@@ -20,6 +20,18 @@ You need then to fetch dependencies, this is done with the 'Fetch Libraries' but
 
 ![Defold fetch libraries](https://planetaryprocessing.io/static/img/defold_fetch.png)
 
+The Defold Websocket library has additional [configuration settings](https://github.com/defold/extension-websocket/blob/master/docs/index.md#configuration). Check there is a 'Websocket' tab in your game.project file, with the 'Debug' and 'Socket Timeout' settings.
+
+<figure><img src="../.gitbook/assets/image (33).png" alt="" width="563"><figcaption></figcaption></figure>
+
+If these settings are missing, edit your `game.project` file in a text editor and add the options to it manually.&#x20;
+
+```
+[websocket]
+debug = 1
+socket_timeout = 10000000
+```
+
 ### Example Project
 
 You can find an example project in the same repo as the library, on our [GitHub](https://github.com/planetary-processing/defold-sdk).

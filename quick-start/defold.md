@@ -229,6 +229,18 @@ https://github.com/Planetary-Processing/defold-sdk/archive/master.zip
 
 ![Defold fetch](https://planetaryprocessing.io/static/img/defold_fetch.png)
 
+The Defold Websocket library has additional [configuration settings](https://github.com/defold/extension-websocket/blob/master/docs/index.md#configuration). Check there is a 'Websocket' tab in your game.project file, with the 'Debug' and 'Socket Timeout' settings.
+
+<figure><img src="../.gitbook/assets/image (33).png" alt="" width="563"><figcaption></figcaption></figure>
+
+If these settings are missing, edit your `game.project` file in a text editor and add the options to it manually.&#x20;
+
+```
+[websocket]
+debug = 1
+socket_timeout = 10000000
+```
+
 ## Editing your backend code
 
 Using the [repo](defold.md#clone-your-game-repository) we cloned earlier you can edit the behaviour of entities by changing their Lua file within the 'entity' directory.
