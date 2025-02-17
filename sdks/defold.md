@@ -48,7 +48,7 @@ Factories to produce Entities must be attached to the same GameObject as the Mas
 
 ![Defold master](https://planetaryprocessing.io/static/img/defold_master.png)
 
-Within the Master Component you will need to set the URL of the local player GameObject and the Planetary Processing game ID.
+Within the Master Component you will need to set the URL of the local player GameObject and the Planetary Processing [Game ID](https://panel.planetaryprocessing.io/games).
 
 ![Defold config](https://planetaryprocessing.io/static/img/defold_config.png)
 
