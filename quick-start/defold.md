@@ -256,3 +256,12 @@ git push
 ## Play and update your game
 
 1. Start up your game again in Defold and in the web panel, to see the changes you have made!
+
+
+
+## Troubleshooting
+
+If you have encountered any issues, we have a premade demo of this guide:\
+[https://drive.google.com/drive/folders/1XonHBoVWp5ozIiFWrbMhAp669dhq\_WSX?usp=drive\_link](https://drive.google.com/drive/folders/1XonHBoVWp5ozIiFWrbMhAp669dhq_WSX?usp=drive_link)\
+\
+If you have further questions, please get in touch on our [Discord](https://pp.vg/discord).

@@ -1395,3 +1395,12 @@ git push
 
 1. Launch your LÖVE project.
 2. Connect to the multiplayer game through the game client, authenticate, and enjoy playing with others!
+
+
+
+## Troubleshooting
+
+If you have encountered any issues, we have a premade demo of this guide:\
+[https://drive.google.com/drive/folders/1A7pIeFlghVxURlJEsGoiu0G1UGDuVwc6?usp=drive\_link](https://drive.google.com/drive/folders/1A7pIeFlghVxURlJEsGoiu0G1UGDuVwc6?usp=drive_link)\
+\
+If you have further questions, please get in touch on our [Discord](https://pp.vg/discord).

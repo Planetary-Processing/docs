@@ -1065,3 +1065,12 @@ git push
 ## Play and update your game
 
 1. Start up your game again in Godot and in the web panel, to see the changes you have made!
+
+
+
+## Troubleshooting
+
+If you have encountered any issues, we have a premade demo of this guide:\
+[https://drive.google.com/drive/folders/1A6pF8YSL0M1Ubb41ytmE-NEp4uHwimYX?usp=drive\_link](https://drive.google.com/drive/folders/1A6pF8YSL0M1Ubb41ytmE-NEp4uHwimYX?usp=drive_link)\
+\
+If you have further questions, please get in touch on our [Discord](https://pp.vg/discord).
