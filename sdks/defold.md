@@ -58,6 +58,8 @@ Within the Master Component you will need to set the URL of the local player Gam
 
 Messages can be sent to and from your game server along a connection,. Messages to the server are sent to the [Master Component](defold.md#master-component). Messages from the server are sent to each entity, and the **listener** (the script which sent the [`pp_init`](defold.md#pp_init-establish-a-connection) message). Each of these message use a message\_id, such as [`pp_init`](defold.md#pp_init-establish-a-connection), [`pp_join`](defold.md#pp_join-join-with-a-player), [`pp_update`](defold.md#pp_update-receive-server-messages), or [`pp_message`](defold.md#pp_message-send-messages-to-the-server).
 
+There is 2KB limit on the size of messages in Defold, which affects the amount of data which can be transferred from the server. If your message buffer is being overloaded, reduce the amount of Data stored in each individual entity.
+
 
 
 ### [pp\_init ](defold.md#message-directory)-  (Establish a connection)
