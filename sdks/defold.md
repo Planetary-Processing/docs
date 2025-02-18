@@ -40,7 +40,7 @@ You can find an example project in the same repo as the library, on our [GitHub]
 
 ## Components
 
-The Defold SDK provides two new components which can be added to GameObjects. These are master and entity.
+The Defold SDK provides three new components which can be added to GameObjects. These are master, entity and chunk.
 
 ### Entity Component
 
@@ -51,6 +51,10 @@ Other players in the game are also represented as Entities, using the `player` [
 By default, entities will be moved to their server-side position, you can disable this per entity type by un-ticking 'Use Server Position' in the entity component's config window. Should you not want this, you can still keep track of the server position using [Messages](defold.md#messages).
 
 <figure><img src="../.gitbook/assets/pp_sdk_defold_entity_component.png" alt=""><figcaption><p>Defold Entity Component</p></figcaption></figure>
+
+### Chunk Component
+
+
 
 ### Master Component
 
