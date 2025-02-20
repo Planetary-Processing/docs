@@ -32,7 +32,7 @@ git clone https://git.planetaryprocessing.io/git/aBcDE/my-planetary-processing-g
 
 Open UE5 and start a new project. For this quickstart we will use the Third Person template and make a blueprint project. You may use any tempate of your choice.
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 You must first download the Planetary Processing plugin files from our website, you will need to be logged into your Planetary Processing account to do so, the link is: [https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar](https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar)
 
@@ -40,21 +40,21 @@ You'll need then to extract this and move the contents of the `lib` directory in
 
 In the UE5 editor, go to Edit and select Plugins. Search for and enable Planetary Processing. If it does not appear at first, try restarting the UE5 editor.
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 With the plugin enabled, you should be able to see the Planetary Processing plugin content in the Content Browser. Make sure you have 'Show plugin Content' ticked in the Content Browser Settings.
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Using the Planetary Processing Plugin
 
 First navigate to the Planetary Processing Content folder in Plugins and open the PP\_ExamplePlayerController blueprint. Find the Event BeginPlay chain at the top of the blueprint and edit the Init function to have the same Game ID as your Planetary Processing panel game. Remember to always compile and save before closing.
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 Navigate to your game controller. In the third person template this is BP\_ThirdPersonGameMode and can be found in All/Game/ThirdPerson/Blueprints. Open it and set the Player Controller Class to PP\_ExamplePlayerController.&#x20;
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Creating entities:
 
@@ -70,19 +70,19 @@ For the demo game repository, the Entity Types: cat, tree, and player are used. 
 
 Lets make a blueprint for our tree entity. Go to /All/Game/ThirdPerson/Blueprints and create a new blueprint class. Search for and select PP\_ExampleEntityActor. Name this blueprint 'Tree'.
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 Open this blueprint and make some edits of your choice. In this example we only have the starter content, so we will switch the static mesh to a Shape\_Cone and the material to M\_Bush. We will also increase the scale to 3 in all directions.
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 Register this new entity by going to PP\_ExamplePlayerController in the Plugins folder and selecting EntityMap in the Variables section. Add an element called tree and set the blueprint to our new tree blueprint. Note that the element name must be the same as a lua Entity Type in the backend ('tree' to match 'tree.lua').
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can follow the same process to make a blueprint for the cat entity if we so wished. Likewise, we can also make new entities in the backend and set them up in Unreal Engine in the same manner.
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 Any props, actors, terrain and other similar entities that you want to be shared between players must be setup as an entity, like we did with the tree.
 

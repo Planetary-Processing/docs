@@ -54,21 +54,23 @@ By default, entities will be moved to their server-side position, you can disabl
 
 ### Chunk Component
 
+Like the entity component, if you wish to represent chunk data in the Defold client, you must create a GameObject file containing the Chunk Component. This will act a protypes. The chunk prototype will be spawned into your world as an invisible object, by a factory attached to the Game Object with the [Master Component](defold.md#master-component).
 
+Chunks are static and invisible. A chunk object will spawn at the origin of each loaded chunk. Chunk objects are optional and you can create a game without them if you wish.
+
+<figure><img src="../.gitbook/assets/image.png" alt="" width="250"><figcaption><p>Defold Chunk Component</p></figcaption></figure>
 
 ### Master Component
 
 The Master Component represents the main connection point to PP's servers and performs the heavy lifting and orchestration of the SDK. You must have a GameObject in your game which has the Master Component.
 
-Factories to produce Entities must be attached to the same GameObject as the Master Component. These factories should be named after the[ Entity Type](../server/entities.md#types-and-behaviour-scripting) in the format`typenamefactory` as in the example below for the types `cat`, `player` and `tree`.
+Factories to produce Entities and Chunks must be attached to the same GameObject as the Master Component. Entity factories should be named after the[ Entity Type](../server/entities.md#types-and-behaviour-scripting) in the format`typenamefactory` as in the example below for the types `cat`, `player` and `tree`.
 
-![Defold master](https://planetaryprocessing.io/static/img/defold_master.png)
+<figure><img src="../.gitbook/assets/image (2).png" alt="" width="235"><figcaption><p>Defold Master</p></figcaption></figure>
 
-Within the Master Component you will need to set the URL of the local player GameObject and the Planetary Processing [Game ID](https://panel.planetaryprocessing.io/games).
+Within the Master Component you will need to set the URL of the local player GameObject, the [Chunk Size ](https://panel.planetaryprocessing.io/games)(available in Game Settings), and the Planetary Processing [Game ID](https://panel.planetaryprocessing.io/games).
 
-![Defold config](https://planetaryprocessing.io/static/img/defold_config.png)
-
-
+<figure><img src="../.gitbook/assets/image (3).png" alt="" width="247"><figcaption><p>Defold Config</p></figcaption></figure>
 
 ## Messages
 
@@ -126,7 +128,7 @@ end
 
 ### [pp\_update ](defold.md#message-directory)- (Receive server messages)
 
-The PP SDK sends and receives several different messages and accepts several too. Each time an entity updates its position or data, a message with ID `hash("pp_update")` is sent to that entity's GameObject and the listener.
+The PP SDK sends and receives several different messages and accepts several too. Each time an entity or chunk updates its position or data, a message with ID `hash("pp_update")` is sent to that entity's GameObject and the listener.
 
 This message is of the following format: \
 (the same format is also used for [`pp_spawn` ](defold.md#message-directory)and [`pp_delete` ](defold.md#message-directory)messages)
@@ -172,9 +174,9 @@ msg.post("go_with_master_component", hash("pp_message"), {test=123})
 | `pp_join`                 | Send this to the master component to spawn your player into the world.                 | None.                                                                                  |
 | `pp_message`              | Send this to the master component to send a message to your server-side player script. | Arbitrary table.                                                                       |
 | `pp_disconnect`           | Send this to the master component to disconnect from PP's servers.                     | None.                                                                                  |
-| `pp_update`               | Sent to an entity (and the listener) when it changes its server-side state.            | See above table for `pp_update` message format.                                        |
-| `pp_spawn`                | Sent to the listener when a new entity spawns.                                         | Same as `pp_update`.                                                                   |
-| `pp_delete`               | Sent to the listener when an entity is removed.                                        | Same as `pp_update`.                                                                   |
+| `pp_update`               | Sent to an entity or chunk (and the listener) when it changes its server-side state.   | See above table for `pp_update` message format.                                        |
+| `pp_spawn`                | Sent to the listener when a new entity or chunk spawns.                                | Same as `pp_update`.                                                                   |
+| `pp_delete`               | Sent to the listener when an entity or chunk is removed.                               | Same as `pp_update`.                                                                   |
 | `pp_authentication_error` | Sent to the listener when PP fails to authenticate.                                    | Short error string (`error`), an error code (`code`) and a longer message (`message`). |
 | `pp_connected`            | Sent to the listener when the client successfully connects and authenticates.          | The connected player's `uuid`.                                                         |
 | `pp_disconnected`         | Sent to the listener when the client disconnects from PP's servers.                    | A `message` field explaining cause of disconnection.                                   |

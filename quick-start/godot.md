@@ -52,7 +52,7 @@ git clone https://github.com/planetary-processing/godot-plugin planetary_process
 2. Add a PPRootNode as child node to your scene's root.
 3. In the Inspector panel of the PPRootNode, enter the Game ID of your game. This is a number which can be found on your [game dashboard](https://panel.planetaryprocessing.io/games), next to your game’s name and repo link.
 
-<figure><img src="../.gitbook/assets/image (15).png" alt="" width="341"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1).png" alt="" width="341"><figcaption></figcaption></figure>
 
 4. Select 'Tools > C# > Create C# Solution' from the ‘Project’ tab in the topbar.
 5. This creates a _.csproj_ and a _.sln_ file in the root folder of your project. (Tabbing in and out of the Godot Editor will refresh the FileSystem Panel to show the new .csproj file).
@@ -875,7 +875,7 @@ Player inputs need to be passed to the server.
 2. Navigate to the 'Input Map' tab and add four new actions: 'move\_forward', 'move\_left', 'move\_backward', and 'move\_right'.&#x20;
 3. Use the plus symbol to add an input event to each of them.
 
-<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. Attach a new script called 'player.gd' to the root node parameter (not PPEntityNode) of your player scene, with the following code.
 

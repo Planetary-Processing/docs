@@ -6,7 +6,7 @@ Planetary Processing is a toolkit to make the creation and operation of online m
 
 The core of the Planetary Processing engine is the entity, everything in your world is an entity. Each entity has a type and the type of the entity determines its behaviour. Behaviour is scripted in a repository we provide per-game, each type of entity needs its own behaviour script on the backend. Each entity has data which is visible to all players and the server.
 
-<figure><img src=".gitbook/assets/Entity (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Entity.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## Chunks
 

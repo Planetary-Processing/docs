@@ -37,7 +37,7 @@ https://github.com/Planetary-Processing/defold-sdk/archive/master.zip
 3. From the Defold Editor's project selection screen, select 'Launch from Disk…'
 4. Navigate to the folder, and select the `game.project` file within to open the example project.
 
-## Connecting to your game server
+### Connecting to your game server
 
 Although most of the example project comes pre-built, it still needs to be directed to your personal game repository.
 
@@ -46,9 +46,9 @@ Although most of the example project comes pre-built, it still needs to be direc
 3. In the 'Properties' pane, locate the 'Gameid' property input.
 4. Enter the Game ID of your game. This is a number which can be found on your [game dashboard](https://panel.planetaryprocessing.io/games), next to your game's name and repo link.
 
-![Defold Game Id](https://planetaryprocessing.io/static/img/defold_qs_game_id.png)
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-## Test your connection
+### Test your connection
 
 You now have everything you need to establish a basic connection between Defold and the server-side demo code.
 
@@ -74,19 +74,20 @@ Required `master.script` properties
 
 As well as the Game Id, the master script also defines which game object is the main player character. In this case the 'Player Url' property is pointing to the 'player' game object within the main.collection.
 
-![Defold Game Id](https://planetaryprocessing.io/static/img/defold_qs_master_properties.png)
+<figure><img src="../.gitbook/assets/image (8).png" alt="" width="215"><figcaption><p>Defold Game Id</p></figcaption></figure>
 
-## Entity generation (factories)
+## Entity & Chunk generation (factories)
 
-The 'player' game object should not be confused with the 'player' prototype, which is used for other players in the world.
-
-A prototype is a sort of blueprint for creating game objects. Factories then reproduce these prototypes. You will notice three factories within the `main.collection`'s 'go' game object:
+A prototype is a sort of blueprint for creating game objects. Factories then reproduce these prototypes. You will notice four factories within the `main.collection`'s 'go' game object:
 
 1. catfactory
 2. playerfactory
 3. Treefactory
+4. Chunkfactory
 
-![Defold Game Id](https://planetaryprocessing.io/static/img/defold_qs_factories.png)
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption><p>Factories in main.collection</p></figcaption></figure>
+
+The 'player' game object should not be confused with the 'player' prototype, which is used for other players in the world.
 
 Every entity in your world has a 'Type'. These Entity Types are defined in the backend code downloaded from your game repository.
 
@@ -105,6 +106,14 @@ Required `factory` properties
 
 ![Defold Game Id](https://planetaryprocessing.io/static/img/defold_qs_factories_properties.png)
 
+### Chunk Factory
+
+If you wish to store data in game world chunks, you can add chunk objects to your game as prototypes in the same way as entities. These chunk objects will be spawned into the world as invisible object at the origin of their respective chunks, and will load and unload as the player moves around the world.
+
+Chunk objects are optional and you can create a game without them if you wish.
+
+Like entities, the spawning Chunk objects in the world requires a factory and prototype. There is only one type of chunk, so the factory is simply called chunkfactory.
+
 ## Entities (prototypes)
 
 Prototypes have a blue icon in the 'Assets' pane. Opening up the `cat.go` prototype, we can see that it is made up of a game object with two components. The component script `entity-/pp/entity.script` defines which prototypes are entities for your Planetary Processing game server. The 'sprite' component tells it what image to use.
@@ -113,7 +122,13 @@ Required `prototype` components
 
 1. entity-/pp/entity.script
 
-![Defold Game Id](https://planetaryprocessing.io/static/img/defold_qs_prototype.png)
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption><p>The cat entity prototype</p></figcaption></figure>
+
+### Chunk Prototype
+
+Chunk prototypes are similar to other entity prototypes, but more simple. There is no need for a sprite, because a chunk object should be invisible in the world and a chunk is static, so there is no need to update its position from the server.&#x20;
+
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption><p>The chunk prototype</p></figcaption></figure>
 
 ## The main player character
 
@@ -126,7 +141,7 @@ Required main player character game object components:
 
 In the example project, the 'player' object also has the `player.script` component file. This script is doing two things: handling the player's movement inputs and establishing the connection to the game server.
 
-![Defold Game Id](https://planetaryprocessing.io/static/img/defold_qs_main_player_character.png)
+<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption><p>The main player entity</p></figcaption></figure>
 
 ## Messaging the game server
 
@@ -249,7 +264,7 @@ You can also change how many and what entities are spawned in the init.lua file.
 
 We recommend [experimenting ](../server/entities.md)here to get a sense of what you can do with Planetary Processing. When you add or change entities, make sure your server-side changes match up with your game engine client.
 
-## Push your Planetary Processing backend code to the game repository
+### Push your Planetary Processing backend code to the game repository
 
 After configuring your game entities and logic, [push your changes](../server/git.md) to the game repository:
 
@@ -259,13 +274,13 @@ git commit -m "Configure game entities and logic for Planetary Processing"
 git push
 ```
 
-## Deploy Latest Version in the Web UI
+### Deploy Latest Version in the Web UI
 
 1. Go back to your game dashboard in our web panel
 2. From the actions menu in the top right, stop the game if it's running.
 3. Select "Deploy Latest Version" - this will roll out your updated server-side code.
 
-## Play and update your game
+### Play and update your game
 
 1. Start up your game again in Defold and in the web panel, to see the changes you have made!
 
