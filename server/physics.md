@@ -1,8 +1,11 @@
 ---
-hidden: true
+description: Open Beta
 ---
 
 # Physics
+
+_<mark style="color:yellow;">**\[This feature is still in Open Beta and may have some bugs.**</mark>_ \
+_<mark style="color:yellow;">**Please direct any feedback to the Planetary Processing Team on**</mark>_ [_<mark style="color:yellow;">**Discord**</mark>_](https://pp.vg/discord)_<mark style="color:yellow;">**]**</mark>_
 
 Physics is an optional server-side setting that can be enabled for entities. When physics is applied to an entity, it is assigned a mass, a body (defining its shape), and a velocity. Forces can be applied to modify an entity’s velocity, and collisions between entities are simulated server-side.
 
