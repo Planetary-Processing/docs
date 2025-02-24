@@ -82,8 +82,8 @@ A prototype is a sort of blueprint for creating game objects. Factories then rep
 
 1. catfactory
 2. playerfactory
-3. Treefactory
-4. Chunkfactory
+3. treefactory
+4. chunkfactory
 
 <figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption><p>Factories in main.collection</p></figcaption></figure>
 
