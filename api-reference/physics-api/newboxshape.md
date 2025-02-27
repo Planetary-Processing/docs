@@ -37,5 +37,5 @@ local function init(self)
     self.Body = api.physics.NewBody(box, 10)
 end
 
--- this entity will occupy a box-shaped area, for physics calculations
+-- This entity will occupy a box-shaped area, for physics calculations.
 ```

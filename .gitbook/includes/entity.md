@@ -1,0 +1,28 @@
+---
+title: Entity
+---
+
+## Entity
+
+### Fields
+
+| Field       | Type   | Description                                                                                                                                        |
+| ----------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ID          | string | UUID of the entity. Read-only.                                                                                                                     |
+| Type        | string | Type of the entity. Read-only.                                                                                                                     |
+| Data        | table  | Custom lua table which can be used to store arbitrary data about the entity.                                                                       |
+| Chunkloader | bool   | If true, the chunk containing this entity will remain loaded even if no players are present. Note that chunkloader entities are a premium feature. |
+| Transient   | bool   | If true, when the chunk containing this entity is unloaded, it will not be persisted.                                                              |
+
+### Methods
+
+Each of these methods takes the entity object `self` as its first parameter. Hence you may use `self:Move(dx, dy, dz)` instead of `self.Move(self, dx, dy, dz)`.
+
+| Method                       | Parameters                                                                                                       | Returns                                                                                                   | Description                                                                                                                                                                                                                                                                |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Move(dx, dy, dz)`           | <p><code>dx: float</code><br><code>dy: float</code><br><code>dz: float</code></p>                                | None                                                                                                      | Move the entity relative to its current position.                                                                                                                                                                                                                          |
+| `MoveTo(x, y, z)`            | <p><code>x: float</code><br><code>y: float</code><br><code>z: float</code></p>                                   | None                                                                                                      | Move the entity relative to the origin (teleport).                                                                                                                                                                                                                         |
+| `GetPosition()`              | None                                                                                                             | <p><code>x: float</code><br><code>y: float</code><br><code>z: float</code> coordinates of the entity.</p> | Get the current position of the entity.                                                                                                                                                                                                                                    |
+| `Remove()`                   | None                                                                                                             | None                                                                                                      | Delete this entity.                                                                                                                                                                                                                                                        |
+| `GetNearbyEntities(dist)`    | `dist: float`                                                                                                    | Entity\[]                                                                                                 | Get entities within the specified distance. Please note that the maximum distance that can be reliably fetched is the game's chunk size, this is because GetNearbyEntities only searches 9 chunks centred on the entity's current chunk.                                   |
+| `Warp(dimension, [x, y, z])` | <p><code>dimension: string</code><br><code>x: float</code><br><code>y: float</code><br><code>z: float</code></p> | None                                                                                                      | Transport this entity to (x,y,z) in the dimension specified. The coordinate fields are optional and default to (0,0,0) if not specified. Specifying just two coordinates will also work, for example, if your game is 2D or otherwise where 0 is the desired z-axis value. |

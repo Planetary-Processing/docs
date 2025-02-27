@@ -33,6 +33,9 @@
 
 ## Api Reference
 
+* [Entity API](api-reference/entity-api/README.md)
+  * [Create](api-reference/entity-api/create.md)
+  * [Message](api-reference/entity-api/message.md)
 * [Events API](api-reference/events-api/README.md)
   * [on\_player\_join](api-reference/events-api/on_player_join.md)
   * [on\_player\_leave](api-reference/events-api/on_player_leave.md)

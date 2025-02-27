@@ -41,6 +41,6 @@ local function update(self, dt)
     self.Body:ApplyForce(vector)
 end
 
--- pushes the entity with a force of 0.2 in the X direction each frame.
+-- Pushes the entity with a force of 0.2 in the X direction each frame.
 ```
 

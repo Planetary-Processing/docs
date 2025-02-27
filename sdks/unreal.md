@@ -240,3 +240,18 @@ This is a simple login widget which calls the **Connect** function and handles e
 
 1. Binds to the **OnConnectionError** event when the widget is initialized
 2. Sets the error message to be visible when **OnConnectionError** is broadcast
+
+
+
+## API&#x20;
+
+### PlanetaryProcessing Class
+
+### Entity Class
+
+### EntityActor Class
+
+### MessageData Class
+
+### PP\_ExamplePlayerController
+

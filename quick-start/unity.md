@@ -38,42 +38,42 @@ https://github.com/Planetary-Processing/unity-sdk.git
 
 ## Creating a server connection object
 
-The Unity SDK provides two new components which can be added to GameObjects. These are PPMaster and PPEntity. These can be accessed in the 'Add Component' menu of any GameObject under the PP heading.
+The Unity SDK provides two new components which can be added to GameObjects. These are [PPMaster](../sdks/unity.md#master-component) and [PPEntity](../sdks/unity.md#entity-component). These can be accessed in the 'Add Component' menu of any GameObject under the PP heading.
 
 1. Create an empty GameObject. This will control which game server you connect to and sync the entities with the server.
-2. Add the PPMaster component to this GameObject.
+2. Add the [PPMaster](../sdks/unity.md#master-component) component to this GameObject.
 
-The PPMaster component will need to know three things: which object is the player, which prefabs represent the other players/entities, and the Game ID of the server.
+The [PPMaster](../sdks/unity.md#master-component) component will need to know three things: which object is the player, which prefabs represent the other players/entities, and the Game ID of the server.
 
 ![Unity Server Connection Object](https://planetaryprocessing.io/static/img/unity_qs_server_connection_object.png)
 
 ## Creating a player object:
 
 1. Create a 3D GameObject to act as the player, such as a cube.
-2. Add the PPEntity component to this GameObject.
+2. Add the [PPEntity](../sdks/unity.md#entity-component) component to this GameObject.
 
-The PPEntity component identifies entities in the game world. The main player character is the only entity which uses the PPEntity component but does not use a specific Entity Type.
+The [PPEntity](../sdks/unity.md#entity-component) component identifies entities in the game world. The main player character is the only entity which uses the [PPEntity](../sdks/unity.md#entity-component) component but does not use a specific 'Type' on the clientside.
 
 ![Unity Player Object](https://planetaryprocessing.io/static/img/unity_qs_player_object.png)
 
 ## Creating entities:
 
-Entities populate your game world. Every Entity has a ‘Type’. These Entity Types are defined in the backend code downloaded from your game repository.
+Entities populate your game world. Every Entity has a ‘Type’. These [Entity Types](../server/entities.md#types-and-behaviour-scripting) are defined in the backend code downloaded from your game repository.
 
 1. Navigate back to your cloned game repository.
 2. Locate the ‘entity’ folder.
-3. Make note of the names of the .lua files inside the ‘entity’ folder. These are your Entity Types.
+3. Make note of the names of the .lua files inside the ‘entity’ folder. These are your [Entity Types](../server/entities.md#types-and-behaviour-scripting).
 
 ![Lua Entity Files](https://planetaryprocessing.io/static/img/lua_entity_files.png)
 
-For the demo game repository, the Entity Types: cat, tree, and player are used. The ‘player’ type is for representing other players in the game. It is also used for the main character's server backend, but remember the main character's PPEntity Type must remain empty.
+For the demo game repository, the [Entity Types](../server/entities.md#types-and-behaviour-scripting): cat, tree, and player are used. The ‘player’ type is for representing other players in the game. It is also used for the main character's server backend, but remember the main character's [PPEntity](../sdks/unity.md#entity-component) Type must remain empty.
 
-Entities in Unity are formed from prefabs with the PPEntity component and a Type parameter. To make an Entity, download or create a prefab, then edit it to have the PPEntity component and a Type matching a Lua file.
+Entities in Unity are formed from prefabs with the [PPEntity](../sdks/unity.md#entity-component) component and a Type parameter. To make an Entity, download or create a prefab, then edit it to have the [PPEntity](../sdks/unity.md#entity-component) component and a Type matching a Lua file.
 
 To quickly make a prefab from scratch:
 
 1. Create a 3D GameObject, such as a sphere.
-2. Add the PPEntity component and input its Type. Entering ‘cat’ will sync this prefab with the ‘cat.lua’ entity in the server-side code.
+2. Add the [PPEntity](../sdks/unity.md#entity-component) component and input its Type. Entering ‘cat’ will sync this prefab with the ‘cat.lua’ entity in the server-side code.
 3. Select this GameObject in the hierarchy window, then drag and drop it into the assets window to automatically convert it into a prefab.
 4. Delete any instances of the prefab from your scene.
 
@@ -83,7 +83,7 @@ Create a prefab for every Lua file in your game repo’s entity folder.
 
 ## Configuring your server connection object
 
-1. Return to the empty GameObject you created first, with the PP Master component, and start filling in its parameters.
+1. Return to the empty GameObject you created first, with the [PPMaster](../sdks/unity.md#master-component) component, and start filling in its parameters.
 2. Connect your player GameObject (eg. a cube) into the ‘Player’ input.
 3. Connect each of your prefabs to separate elements in the ‘Prefabs’ input list.
 4. Enter the Game ID of your game. This is a number which can be found on your [game dashboard](https://panel.planetaryprocessing.io/games), next to your game’s name and repo link.
@@ -127,7 +127,7 @@ Basic player movement can use the regular Unity input system. However, rather th
 
 1. Make a movement script and add to it the player GameObject, with the code below as a guide.
 2. Create a 'PPMasterTag' tag for the server connection object, for ease of reference.
-3. Make sure the player object's PPEntity node has its 'Use server Position' value ticked (it is by default).&#x20;
+3. Make sure the player object's [PPEntity](../sdks/unity.md#entity-component) node has its 'Use server Position' value ticked (it is by default).&#x20;
 
 ```cs
 using System.Collections;
