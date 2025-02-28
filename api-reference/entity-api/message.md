@@ -21,7 +21,7 @@ Parameters:
 
 Example:
 
-Send a message
+Send messages to nearby cat and tree entities.
 
 ```lua
 -- entity_type_name.lua
