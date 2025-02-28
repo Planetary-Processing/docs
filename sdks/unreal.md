@@ -21,7 +21,187 @@ You can now enable the Planetary Processing plugin for your Unreal Engine 5 proj
 
 ### PlanetaryProcessing Class
 
-This class is the core of the Planetary Processing plugin. It handles initialization, connection to the server, authentication, message sending, and state updates from the server. This class is intended to be used as a singleton, and instantiated via the **Init** static function.
+This class is the core of the Planetary Processing plugin. It handles initialization, connection to the server, authentication, message sending, and state updates from the server. This class is intended to be used as a singleton, and instantiated via the [Init](unreal.md#planetaryprocessing-class-1) static function.
+
+<figure><img src="../.gitbook/assets/unreal_sdk_PlanetaryProcessingInstanceInit.png" alt=""><figcaption></figcaption></figure>
+
+### Entity Class
+
+This class represents an [Entity](../server/entities.md) in the Planetary Processing system. It contains all the [data](unreal.md#entity-class-1) of the corresponding entity on your game server. The [Entity Types](../server/entities.md#types-and-behaviour-scripting) can be matched up with the [EntityActor](unreal.md#entityactor-class) class using the [Entity Map](unreal.md#entity-actor-spawning) variable.
+
+<figure><img src="../.gitbook/assets/unreal_sdk_EntityFind (2).png" alt=""><figcaption></figcaption></figure>
+
+### EntityActor Class
+
+This class extends the Unreal Engine Actor class, spawning an Actor in your game client based on an [Entity](../server/entities.md) from your game simulation. You are intended to subclass [Entity Actor](unreal.md#entity-actor-spawning) to create Actors for each of your [Entity Types](../server/entities.md#types-and-behaviour-scripting). As an example, a 'Tree' class could be an [Entity Actor](unreal.md#entity-actor-spawning) for a 'tree' [Entity Type](../server/entities.md#types-and-behaviour-scripting). Meanwhile a 'Cat' class could be a completely different [Entity Actor](unreal.md#entity-actor-spawning) with a separate mesh component and behaviours.
+
+<figure><img src="../.gitbook/assets/unreal_sdk_EntityMap.png" alt=""><figcaption></figcaption></figure>
+
+The [EntityActor](unreal.md#entity-actor-spawning) class is intended to have an [Entity](unreal.md#entity-class-1) associated with it once created, via [SetEntity](unreal.md#entity-actor-spawning). With this set, the [EntityActor](unreal.md#entity-actor-spawning) class will automatically broadcast [OnUpdated](unreal.md#pp_exampleentityactor) and [OnRemoved](unreal.md#pp_exampleentityactor) events accordingly, as its associated [Entity](unreal.md#entity-class-1) is either updated or removed.
+
+<figure><img src="../.gitbook/assets/unreal_sdk_SetEntityActor.png" alt=""><figcaption></figcaption></figure>
+
+### MessageData Class
+
+The [MessageData](unreal.md#send-player-coordinates-message) class is designed to serve as a flexible container for arbitrary data, akin to JavaScript objects. Its primary purpose is twofold:
+
+* **Deserialization from JSON:** It allows update messages received from the server in JSON format to be efficiently parsed and stored in a way that can be accessed within Unreal Engine. This ensures that the data stored on each [Entity](unreal.md#entity-class-1) (strings, numbers, booleans, arrays and nested objects) can be translated into native Unreal Engine data structures.
+* **Serialization to JSON:** Conversely, the class enables the construction of arbitrary data structures which can be serialized and sent to the server as the body of the message in a [SendMessage](unreal.md#send-player-coordinates-message) call.
+
+Hence it can be used in [Blueprints](unreal.md#blueprints) to both access data on [Entity](unreal.md#entity-class-1) instances and construct messages for [SendMessage](unreal.md#send-player-coordinates-message).&#x20;
+
+If you want to handle serialization and deserialization yourself, without [MessageData](unreal.md#send-player-coordinates-message), the original JSON of an [Entity](unreal.md#entity-class-1) is available in the [DataJSON](unreal.md#entity-class-1) property of that class. Raw JSON messages can also be sent using the [SendJSONMessage](unreal.md#planetaryprocessing-class-1) function of the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) class.
+
+<figure><img src="../.gitbook/assets/unreal_sdk_MessageData.png" alt=""><figcaption></figcaption></figure>
+
+## Blueprints
+
+The Planetary Processing plugin is packaged with a number of example Blueprints. These serve to show how to carry out some basic functions using the Planetary Processing plugin. These blueprints are [PP\_ExamplePlayerController](unreal.md#pp_exampleplayercontroller), [PP\_ExampleEntityActor](unreal.md#pp_exampleentityactor), and the [PP\_ExampleLoginWidget](unreal.md#pp_exampleloginwidget).
+
+### PP\_ExamplePlayerController
+
+This blueprint demonstrates how to initialize your [Planetary Processing](unreal.md#planetaryprocessing-class-1) instance and then how to carry out the fundamental processes required to make use of it. These include [establishing the connection](unreal.md#authentication), [initializing entities](unreal.md#entity-actor-spawning), [maintaining the connection](unreal.md#connection-error-handling), and [processing messages to](unreal.md#send-player-coordinates-message) and [from the server](unreal.md#update-entities).
+
+#### Authentication
+
+There are two stages to authentication: initializing the connection the game server and joining the validated connection's processing.
+
+![Authentication](https://planetaryprocessing.io/static/img/unreal_authentication.png)
+
+Initializing the connection:
+
+1. `Event BeginPlay/Show Login ->  Init -> Set`
+   * Initialize the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) singleton with a Game ID (Game ID available in the [Planetary Processing Panel](https://panel.planetaryprocessing.io/)).
+2. `Create PP Example Login Widget Widget -> Set -> Add to Viewport`
+   * Create an instance of [PP\_ExampleLoginWidget](unreal.md#pp_exampleloginwidget) and adds it to the viewport.
+3. `Planetary Processing Instance -> Bind Event to On Authenticated -> OnAuthenticated_Event`
+   * Bind the connection joining processes to the [OnAuthenticated ](unreal.md#delegates)event triggered from the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) singleton.
+
+Joining a valid connection:
+
+1. `OnAuthenticated_Event -> Delay`
+   * A short delay ensures subsequent bindings are handled by the game thread.
+2. `Login Widget Instance -> Remove from Parent -> Set`
+   * Remove the login widget from the viewport.
+3. `Unbind All Events from On Authenticated -> Planetary Processing Instance`
+   * Unbind all events from the [OnAuthenticated](unreal.md#delegates) event.
+4. `Planetary Processing Instance - > Bind Event to On Entity Added -> Bind Event to On Connection Error`
+   * Set up bindings to generate the game server world using the [OnEntityAdded](unreal.md#entity-actor-spawning) and [OnConnectionError](unreal.md#connection-error-handling) events from the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) singleton.
+5. `Start Game -> Start Game (Custom Event)`
+   * Continue with game logic, in this case a custom event named StartGame.
+
+
+
+#### Entity Actor Spawning
+
+![Entity Actor Spawning](https://planetaryprocessing.io/static/img/unreal_actor_spawning.png)
+
+1. `OnEntityAdded_Event -> GetType / Entity Map -> Find`
+   * Look up the [EntityActor](unreal.md#entityactor-class-1) class reference in the [EntityMap](unreal.md#pp_exampleplayercontroller-1) variable using the [Entity Type](unreal.md#entity-class-1) from the [OnEntityAdded\_Event](unreal.md#delegates)**.**
+2. `GetLocationVector -> Make Transform`
+   * Use the [GetLocationVector](unreal.md#entity-class-1) function of the added [Entity](unreal.md#entity-class-1) to create a Vector for the initial location of the [EntityActor](unreal.md#entityactor-class-1).
+3. `Find / Branch / Make Transfrom -> Spawn Actor`
+   * If the [Type](unreal.md#entity-class-1) is valid, spawn an instance of the [EntityActor](unreal.md#entityactor-class-1)**.**
+4. `OnEntityAdded_Event / Spawn Actor -> Set Entity`
+   * Call [SetEntity](unreal.md#entityactor-class-1) on the  [EntityActor](unreal.md#entityactor-class-1) to associate it with the [Entity](unreal.md#entity-class-1) that we are representing.
+
+If you wish, you can extend the script to remove spawning for the client player entity. This can be done by adding an extra branch to filter entities with the same ID as the [Planetary Processing](unreal.md#planetaryprocessing-class-1) instance's [UUID](unreal.md#planetaryprocessing-class-1). This only removes the player's own entity from the client, not other players.
+
+<figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+
+
+
+#### Connection Error Handling
+
+If the connection fails, cease processing the world and return to the authentication login.
+
+![Connection Error Handling](https://planetaryprocessing.io/static/img/unreal_error_handling.png)
+
+1. `OnConnectionError_Event / Planetary Processing Instance -> Unbind All Events from On Entity Added / Planetary Processing Instance -> Unbind All Events from On Connection Error`
+   * Unbinds all events from [OnEntityAdded](unreal.md#delegates) and [OnConnectionError](unreal.md#delegates)**.**
+2. `Show Login -> Show Login Custom Event`
+   * Calls a custom event called [ShowLogin](unreal.md#authentication), which feeds back into the [authentication](unreal.md#authentication) flow above.
+
+
+
+#### Update Entities
+
+![Update Entities](https://planetaryprocessing.io/static/img/unreal_update_entities.png)
+
+1. `Planetary Processing Instance -> IsAuthenticated / Event Tick ->  Branch`
+   * On each tick, check if the connection is authenticated by calling [IsAuthenticated](unreal.md#functions) on the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) instance.
+2. `Branch -> Sequence / Planetary Processing Instance -> Update -> OnUpdated_Event`
+   * If it is authenticated, call the [Update](unreal.md#functions) function of the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) instance to process state changes received.
+3. `Sequence -> Send Player Coords -> SendPlayerCoords (Custom Event)`
+   * We then also call the [SendPlayerCoords](unreal.md#send-player-coordinates-message) custom event.
+
+
+
+#### Send Player Coordinates Message
+
+![Send Player Coordinates Message](https://planetaryprocessing.io/static/img/unreal_send_player_coords_message.png)
+
+1. `Send Player Coords (Custom Event) -> ...`
+   * Process the message on each [update tick](unreal.md#update-entities) using the [Send Player Coords](unreal.md#update-entities) broadcast.
+2. `Get Player Pawn -> Get Actor Location`
+   * Get the location of the Player Pawn Actor.
+3. `Convert Vector To Server Coords Message Data -> Set`
+   * Call the [ConvertVectorToServerCoordsMessageData](unreal.md#functions) static function from the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) class. This gives us a map of strings to MessageData values, with the x, y and z values set based on the player position. [ConvertVectorToServerCoordsMessageData](unreal.md#functions) alters these xyz values to match the Planetary Processing coordinate system orientation.
+4. `Set / To MessageData (bool) -> Add`
+   * Uses the implicit conversion of a boolean to [MessageData](unreal.md#messagedata-class-1) as the value for a new key of _threedee_ in our map.
+5. `Add / Planetary Processing Instance / Set -> Send Message`
+   * Calls [SendMessage](unreal.md#functions) on our [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) instance with our message map as an argument.
+
+
+
+### PP\_ExampleEntityActor
+
+This blueprint shows how to bind to the [OnUpdated](unreal.md#entityactor-class-1) and [OnRemoved](unreal.md#entityactor-class-1) events for an [EntityActor](unreal.md#entityactor-class-1).
+
+#### Event Binding
+
+![Entity Actor Event Binding](https://planetaryprocessing.io/static/img/unreal_entiaty_actor_binding.png)
+
+1. `Event BeginPlay -> Bind Event to On Updated -> OnUpdated_Event -> Set Actor Location to Entity Coords`
+   * Bind to the [OnUpdated](unreal.md#entityactor-class-1) event for the [EntityActor](unreal.md#entityactor-class-1). Calls [SetActorLocationToEntityCoords](unreal.md#entityactor-class-1) to update the Actor's location to match the [Entity](unreal.md#entity-class-1)**.**
+2. `Bind Event to On Removed -> OnRemoved_Event -> Destroy Actor`
+   * Bind to the [OnRemoved](unreal.md#entityactor-class-1) event for the [EntityActor](unreal.md#entityactor-class-1). Destroys the Actor when this event is broadcast.
+
+For the actor to follow the server-side location, without issue, it must have physics disabled on the clientside.
+
+If you wish to retrieve the location vector of an entity before it is set, you can do so with the following example. Replace the Print String function with functions of your choice. This is useful for smoothing movement on the client side.
+
+<figure><img src="../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### PP\_ExampleLoginWidget
+
+This is a simple login widget which calls the [Connect](unreal.md#planetaryprocessing-class-1) function and displays an error if the connection fails.
+
+#### Login Click
+
+![Login Click](https://planetaryprocessing.io/static/img/unreal_login_click.png)
+
+1. `OnClicked (Login_Button) / Error Message Text -> Set Visibility`
+   * Hide the error message (effectively resetting the error state of the login form) when clicked.
+2. `Username / Password -> GetText  -> Get Planetary Processing Instance / To String (Text) ->  Connect`
+   * Call the [Connect](unreal.md#planetaryprocessing-class-1) function on the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) instance with the username and password from the login form.
+
+#### Error Handling
+
+![Login Error Handling](https://planetaryprocessing.io/static/img/unreal_login_error_handling.png)
+
+1. `Event On Initialized -> Get Planetary Processing Instance -> Bind Event to On Connection Error -> OnConnectionError_Event`
+   * Bind to the [OnConnectionError](unreal.md#delegates) event when the widget is initialized.
+2. `OnConnectionError_Event / Error Message Text -> Set`
+   * Set the error message to be visible when [OnConnectionError](unreal.md#delegates) is broadcast.
+
+
+
+## API&#x20;
+
+### PlanetaryProcessing Class
 
 #### Properties
 
@@ -35,45 +215,47 @@ This class is the core of the Planetary Processing plugin. It handles initializa
 
 | Name                                          | Parameters                                       | Return Type                    | Description                                                                                                                                                                                                                                                                                             |
 | --------------------------------------------- | ------------------------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| static Init                                   | int32 InGameID                                   | UPlanetaryProcessing\*         | Initializes the Planetary Processing singleton with the given game ID. If called again once already initialized, the existing Planetary Processing instance will be restored to its initial state and returned.                                                                                         |
+| static Init                                   | int32 InGameID                                   | UPlanetaryProcessing\*         | Initializes the Planetary Processing singleton with the given game ID. If called again, the existing Planetary Processing instance will be restored to its initial state and returned.                                                                                                                  |
 | static GetInstance                            | None                                             | UPlanetaryProcessing\*         | Gets the singleton instance of the Planetary Processing class.                                                                                                                                                                                                                                          |
 | Connect                                       | const FString& Username, const FString& Password | void                           | Connects the player to the server with the provided username and password. Broadcasts **OnAuthenticated** upon successful connection.                                                                                                                                                                   |
 | Update                                        | None                                             | void                           | Updates the **Entities** map by processing state updates that the client has received from the server since the last update. Intended to be called once each game tick such that the **Entities** map consists of fresh data. Broadcasts **OnEntityAdded**, **OnEntityUpdated** and **OnEntityRemoved** |
 | IsAuthenticated                               | None                                             | bool                           | Returns whether the user is authenticated.                                                                                                                                                                                                                                                              |
-| IsConnected                                   | None                                             | bool                           | Returns whether the socket connection to the server is active.                                                                                                                                                                                                                                          |
-| SendMessage                                   | const TMap\<FString, UMessageData\*>& Message    | void                           | Sends a message to the server. See **MessageData** class for a description of how to construct message data for sending.                                                                                                                                                                                |
+| IsConnected                                   | None                                             | bool                           | Returns whether the initial socket connection to the server is active.                                                                                                                                                                                                                                  |
+| SendMessage                                   | const TMap\<FString, UMessageData\*>& Message    | void                           | Sends a message to the server, using the **MessageData** format.                                                                                                                                                                                                                                        |
 | SendJSONMessage                               | const FString& JsonString                        | void                           | Sends a JSON message to the server. This can be used if your data is already in JSON format and as such can be sent directly.                                                                                                                                                                           |
 | Logout                                        | None                                             | void                           | Logs out and disconnects the player from the server.                                                                                                                                                                                                                                                    |
-| static ConvertVectorToServerCoords            | const FVector& InVector                          | TMap\<FString, float>          | Converts an Unreal Engine Vector into the coordinate system as used in Planetary Processing                                                                                                                                                                                                             |
-| static ConvertVectorToServerCoordsMessageData | const FVector& InVector                          | TMap\<FString, UMessageData\*> | Helper function to convert an Unreal Engine Vector into Message Data with x, y and z values set in the Planetary Processing coordinate system. This is helpful if you want to communicate, for example, a change in the location of the player.                                                         |
+| static ConvertVectorToServerCoords            | const FVector& InVector                          | TMap\<FString, float>          | Converts an Unreal Engine Vector into the coordinate system used in Planetary Processing.                                                                                                                                                                                                               |
+| static ConvertVectorToServerCoordsMessageData | const FVector& InVector                          | TMap\<FString, UMessageData\*> | Converts an Unreal Engine Vector into **MessageData** with x, y and z values set in the Planetary Processing coordinate system.                                                                                                                                                                         |
 
 #### Delegates
 
-| Delegate          | Parameter                   | Description                                                                                                                                                                                                                                                |
-| ----------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| OnAuthenticated   | None                        | Fires when player is successfully authenticated.                                                                                                                                                                                                           |
-| OnEntityAdded     | UEntity\* NewEntity         | Fires when a new **Entity** is added to the **Entities** map. This can be used to spawn a new **EntityActor**.                                                                                                                                             |
-| OnEntityUpdated   | UEntity\* UpdatedEntity     | Fires when an existing **Entity** in the **Entities** map is updated. If an **EntityActor** has been spawned based on this **Entity**, the **EntityActor** will re-broadcast this as an **OnUpdated** event, which will be more useful for many use cases. |
-| OnEntityRemoved   | const FString& EntityID     | Fires when an **Entity** is removed from the **Entities** map. If an **EntityActor** has been spawned based on this **Entity**, the **EntityActor** will re-broadcast this as an **OnRemoved** event, which will be more useful for many use cases         |
-| OnConnectionError | const FString& ErrorMessage | Currently a catch-all for connection related errors, including authentication errors, loss of connection, failure to send messages or failure to parse updates.                                                                                            |
+| Delegate          | Parameter                   | Description                                                                                                                                                                                                          |
+| ----------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| OnAuthenticated   | None                        | Fires when player is successfully authenticated.                                                                                                                                                                     |
+| OnEntityAdded     | UEntity\* NewEntity         | Fires when a new **Entity** is added to the **Entities** map. This can be used to spawn a new **EntityActor**.                                                                                                       |
+| OnEntityUpdated   | UEntity\* UpdatedEntity     | Fires when an existing **Entity** in the **Entities** map is updated. If an **EntityActor** has already been spawned based on this **Entity**, the **EntityActor** will re-broadcast this as an **OnUpdated** event. |
+| OnEntityRemoved   | const FString& EntityID     | Fires when an **Entity** is removed from the **Entities** map. If an **EntityActor** has been spawned based on this **Entity**, the **EntityActor** will re-broadcast this as an **OnRemoved** event.                |
+| OnConnectionError | const FString& ErrorMessage | Currently a catch-all for connection related errors, including authentication errors, loss of connection, failure to send messages or failure to parse updates.                                                      |
+
+
+
+***
 
 
 
 ### Entity Class
 
-This class represents an entity in the Planetary Processing system.
-
 #### Properties
 
-| Name     | Type                           | Description                                                                                                         |
-| -------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
-| ID       | FString                        | The unique identifier of the entity.                                                                                |
-| X        | double                         | X coordinate of the entity.                                                                                         |
-| Y        | double                         | Y coordinate of the entity.                                                                                         |
-| Z        | double                         | Z coordinate of the entity.                                                                                         |
-| Data     | TMap\<FString, UMessageData\*> | Additional data of the entity. See **MessageData** class documentation                                              |
-| DataJSON | FString                        | JSON representation of the additional entity data. Used if you want to handle deserialization into Structs yourself |
-| Type     | FString                        | Type of the entity.                                                                                                 |
+| Name     | Type                           | Description                                        |
+| -------- | ------------------------------ | -------------------------------------------------- |
+| ID       | FString                        | The unique identifier of the entity.               |
+| X        | double                         | X coordinate of the entity.                        |
+| Y        | double                         | Y coordinate of the entity.                        |
+| Z        | double                         | Z coordinate of the entity.                        |
+| Data     | TMap\<FString, UMessageData\*> | Additional data of the entity.                     |
+| DataJSON | FString                        | JSON representation of the additional entity Data. |
+| Type     | FString                        | Type of the entity.                                |
 
 #### Functions
 
@@ -83,11 +265,11 @@ This class represents an entity in the Planetary Processing system.
 
 
 
+***
+
+
+
 ### EntityActor Class
-
-This class extends the Unreal Engine Actor class and represents an Actor in your game client that has been spawned based on an **Entity** from your game simulation. You are intended to subclass **Entity Actor** to create Actors for each of your **Entity** types. As an example, a Tree class may be an **Entity Actor** with a mesh component, while a Cat class may be an **Entity Actor** with a different mesh component and some custom behaviours.
-
-The **EntityActor** class is intended to have an **Entity** associated with it once created, via **SetEntity**. With this set, the **EntityActor** class will automatically broadcast **OnUpdated** and **OnRemoved** events accordingly as the **Entity** it is associated with is either updated or removed.
 
 #### Properties
 
@@ -104,16 +286,11 @@ The **EntityActor** class is intended to have an **Entity** associated with it o
 | SetEntity                      | UEntity\* InEntity | void        | Sets the entity for this actor.                                                                                                                                                     |
 | SetActorLocationToEntityCoords | None               | void        | Converts the Planetary Processing X, Y and Z coordinates of the associated Entity into a Vector in the Unreal Engine coordinate system and sets the Actor's location to this Vector |
 
+***
+
 
 
 ### MessageData Class
-
-The **MessageData** class in is designed to serve as a flexible container for arbitrary data, akin to JavaScript objects. Its primary purpose is twofold:
-
-* **Deserialization from JSON:** It allows data received from the server in JSON format to be efficiently parsed and stored in a way that can be accessed within Unreal Engine. This ensures that arbitrary data stored on each **Entity** (strings, numbers, booleans, arrays and nested objects) can be translated into native Unreal Engine data structures.
-* **Serialization to JSON:** Conversely, the class enables the construction of arbitary data structures which can be serialized and sent to the server as the body of the message in a _SendMessage_ call.
-
-This is particularly useful when using Blueprints to both access data on **Entity** instances and also when constructing messages for **SendMessage**. Should you want to handle serialization and deserialization yourself, the original JSON of an **Entity** is available in the **DataJSON** property and raw JSON messages can be sent using the **SendJSONMessage** function of the **PlanetaryProcessing**, so **MessageData** is entirely optional.
 
 #### Functions
 
@@ -138,13 +315,11 @@ This is particularly useful when using Blueprints to both access data on **Entit
 
 
 
-## Blueprints
+***
 
-The Planetary Processing plugin is packaged with a number of example Blueprints. These serve to show how to carry out some basic functions using the Planetary Processing plugin.
+
 
 ### PP\_ExamplePlayerController
-
-This blueprint is provided to demonstrate how to initialize your Planetary Processing instance and then how to carry out the fundamental processes required to make use of it.
 
 #### Variables
 
@@ -155,103 +330,19 @@ This blueprint is provided to demonstrate how to initialize your Planetary Proce
 | LocationMessage             | Map\<string: Message Data Object Reference> | A message to be used in a call to **SendMessage**.                                                                                                                                   |
 | EntityMap                   | Map\<string: Entity Actor Class Reference>  | Used to map Entity types to the Entity Actor they should spawn. The default values for this variable map both _cat_ and _tree_ to the **PP\_ExampleEntityActor** as a demonstration. |
 
-#### Authentication
-
-![Authentication](https://planetaryprocessing.io/static/img/unreal_authentication.png)
-
-1. Initializes PlanetaryProcessing singleton with a Game ID (Game ID available in the [Planetary Processing Panel](https://panel.planetaryprocessing.io/))
-2. Creates an instance of **PP\_ExampleLoginWidget** and adds it to the viewport
-3. Binds the following to the **OnAuthenticated** event from the PlanetaryProcessing singleton 1. Short delay to ensure subsequent bindings are handled by the game thread 2. Remove the login widget from the viewport 3. Unbind all events from **OnAuthenticated** 4. Set up bindings for **OnEntityAdded** and **OnConnectionError** events from the PlanetaryProcessing singleton (see **Entity Actor Spawning** and **Connection Error Handling**) 5. Continues with game logic, in this case a custom event named StartGame
-
-#### Entity Actor Spawning
-
-![Entity Actor Spawning](https://planetaryprocessing.io/static/img/unreal_actor_spawning.png)
-
-1. Looks up the **EntityActor** class reference in the **EntityMap** variable using the _type_ from the **OnEntityAddedEvent**
-2. Uses the **GetLocationVector** function of the added Entity to create a Vector for the initial location of the **EntityActor**.
-3. Spawns an instance of the **EntityActor**
-4. Calls **SetEntity** on the **EntityActor** to associate it with the **Entity** that we are representing
-
-If you wish, you can extend the script to remove spawning for the client player entity by adding a branch that filters entities with the same ID as the planetary processing instance's UUID. This only removes the player's own entity from the client, not other players.
-
-<figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
-
-#### Connection Error Handling
-
-![Connection Error Handling](https://planetaryprocessing.io/static/img/unreal_error_handling.png)
-
-1. Unbinds all events from **OnEntityAdded** and **OnConnectionError**
-2. Calls a custom event called **ShowLogin**, which feeds back into the authentication flow above
-
-#### Update Entities
-
-![Update Entities](https://planetaryprocessing.io/static/img/unreal_update_entities.png)
-
-1. On each tick, check if we are authenticated by calling **IsAuthenticated** on the PlanetaryProcessing instance
-2. If we are, call the **Update** function of the PlanetaryProcessing instance to process state changes received
-3. _additonal_ - after this, we also call the **SendPlayerCoords** custom event (see **Send Player Coordinates Message**)
-
-#### Send Player Coordinates Message
-
-![Send Player Coordinates Message](https://planetaryprocessing.io/static/img/unreal_send_player_coords_message.png)
-
-1. Called on each tick (see last step of **Update Entities** above)
-2. Gets the Location of the Player Pawn Actor
-3. Calls the **ConvertVectorToServerCoordsMessageData** static function from the PlanetaryProcessing class. This gives us a map of strings to MessageData with the **x**, **y** and **z** values set based on the player position, adjusted to match the Planetary Processing coordinate system
-4. Uses the implicit conversion of a boolean to **MessageData** as the value for a new key of _threedee_ in our map
-5. Calls **SendMessage** on our PlanetaryProcessing instance with our message map as an argument
 
 
-
-### PP\_ExampleEntityActor
-
-This blueprint shows how to bind to the **OnUpdated** and **OnRemoved** events for an **EntityActor**.
-
-#### Event Binding
-
-![Entity Actor Event Binding](https://planetaryprocessing.io/static/img/unreal_entiaty_actor_binding.png)
-
-1. Binds to the **OnUpdated** event for the **EntityActor**. Calls **SetActorLocationToEntityCoords** to update the Actor's location to match the **Entity**
-2. Binds to the **OnRemoved** event for the **EntityActor**. Destroys the Actor when this event is broadcast
-
-Note: for the actor to move correctly, following the server-side location, the actor must have physics disabled.
-
-If you wish to retrieve the location vector of an entity before it is set, you can do so with the following example. Replace the print function with functions of your choice. This is particularly useful for smoothing movement on the client side.
-
-<figure><img src="../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+***
 
 
 
 ### PP\_ExampleLoginWidget
 
-This is a simple login widget which calls the **Connect** function and handles errors.
+#### Variables
 
-#### Login Click
-
-![Login Click](https://planetaryprocessing.io/static/img/unreal_login_click.png)
-
-1. Hides the error message (effectively resetting the error state of the login form)
-2. Gets the PlanetaryProcessing singleton instance
-3. Calls the **Connect** function on the PlanetaryProcessing instance with the username and password from the form
-
-#### Error Handling
-
-![Login Error Handling](https://planetaryprocessing.io/static/img/unreal_login_error_handling.png)
-
-1. Binds to the **OnConnectionError** event when the widget is initialized
-2. Sets the error message to be visible when **OnConnectionError** is broadcast
-
-
-
-## API&#x20;
-
-### PlanetaryProcessing Class
-
-### Entity Class
-
-### EntityActor Class
-
-### MessageData Class
-
-### PP\_ExamplePlayerController
-
+| Name             | Type             | Description                                                                        |
+| ---------------- | ---------------- | ---------------------------------------------------------------------------------- |
+| Username         | UEditableTextBox | A text box widget for entering a username.                                         |
+| Password         | UEditableTextBox | A text box widget for entering a password.                                         |
+| Login\_Button    | UButton          | A button widget for triggering the OnClicked event, to connect to the game server. |
+| ErrorMessageText | UTextBlock       | Error text displayed, when a connection fails                                      |

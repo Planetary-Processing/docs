@@ -1,7 +1,3 @@
----
-description: Open Beta
----
-
 # Physics
 
 _<mark style="color:yellow;">**\[This feature is still in Open Beta and may have some bugs.**</mark>_ \
