@@ -91,6 +91,14 @@ Messages sent from the client will always be received by the corresponding playe
 
 
 
+## Entities and Chunks
+
+Entities won't load game world [chunks](chunks.md), by default. If an entity tries to move into an unloaded chunk, it will delay processing until the chunk is [loaded](chunks.md#world-generation). Players and [Chunkloader](entities.md#entity) entities are not required to wait and will automatically load the required chunk.&#x20;
+
+Entities can access the data for the chunk they are in, using the [`chunk`](chunks.md#chunk-api) variable.&#x20;
+
+
+
 ## Example Cat Entity
 
 Below is the example `cat.lua` script which exists in the default template repository. The comments provide further information on what each line is doing.
@@ -210,3 +218,4 @@ Each of these methods takes the entity object `self` as its first parameter. Hen
 | Method  | Parameters                                                                                                                                       | Return Value | Description                                             |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ | ------------------------------------------------------- |
 | Message | <p><code>self: Entity</code></p><p><code>msg: table({</code><br>  <code>Data: table</code><br>  <code>Client: bool</code><br><code>)}</code></p> | None         | A necessary function, to receive messages to an entity. |
+

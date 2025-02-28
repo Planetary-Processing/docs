@@ -47,7 +47,7 @@ end
 
 In the above example, when this entity receives a message it will transport itself to the dimension with the ID `test`. If this dimension doesn't exist, this API call will fail and a message will be printed to the console.&#x20;
 
-Additionally, an entity will only transition to a dimension, if the required chunk is loaded. Otherwise it will wait for it to be loaded. This works in the same way that entities will wait if they attempt to move into an unloaded chunk in the same dimension. Players and [Chunkloader](entities.md#fields) entities are not required to wait and will automatically load the required chunk.
+Additionally, an entity will only transition to a dimension, if the required chunk is loaded. Otherwise it will wait for it to be loaded. This works in the same way that entities will wait if they attempt to move into an unloaded chunk in the same dimension. Players and [Chunkloader](entities.md#entity) entities are not required to wait and will automatically load the required chunk.
 
 
 
