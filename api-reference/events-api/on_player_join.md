@@ -20,6 +20,8 @@ layout:
 
 An event which runs when a player joins the game.&#x20;
 
+This function may only be called from within the `events.lua` file, and must be returned in a table at the end of the file.
+
 
 
 Parameters:

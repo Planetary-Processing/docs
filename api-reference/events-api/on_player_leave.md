@@ -6,13 +6,17 @@
 
 An event which runs when a player leaves the game.&#x20;
 
+This function may only be called from within the `events.lua` file, and must be returned in a table at the end of the file.
+
+The player parameter will be accessible for the duration of the function. However the player entity will be removed before any messages can be sent to it.
+
 
 
 Parameters:
 
-| Name   | Type     | Description                  |
-| ------ | -------- | ---------------------------- |
-| player | `Entity` | The leaving player's entity. |
+| Name   | Type     | Description                   |
+| ------ | -------- | ----------------------------- |
+| player | `Entity` | The leaving player's entity.  |
 
 
 
@@ -42,5 +46,3 @@ end
 -- Prints:
 <strong>-- Player e2e838b4-a250-4a89-9f1d-acae063201b8 has left. They were at chunk (2,3)
 </strong></code></pre>
-
-Note that the player entity will disconnect before any messages can be sent to it.&#x20;
