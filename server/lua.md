@@ -63,6 +63,7 @@ We provide utilities through the `api.util` section of the API, currently this i
 
 ```lua
 api.util.Time() -- returns the unix timestamp in seconds
+api.util.TimeMillis() -- returns the unix timestamp in milliseconds
 ```
 
 ## HTTP \[BETA]

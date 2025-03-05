@@ -54,10 +54,13 @@ A [PPRootNode ](godot.md#pprootnode-1)should be attached as a direct child of yo
 To configure your game, you must fill in the fields in the inspector:
 
 * **Chunk Size** - The size of chunks in your game, defined in the [web panel](https://panel.planetaryprocessing.io/games) game settings.
+* **Player Scene** - The scene representing your main player.
+* **Chunk Scene** - (Optional) The scene representing chunk storage in the world.
+* **Scenes** - An array of scenes with each element representing a different entity in your game.
 * **Game ID** - The ID of your game from the [web panel](https://panel.planetaryprocessing.io/games), for Godot to connect to.
 * **Add Csproj Reference** - If you have already added the "Planetary" reference to your ._csproj_ file, then the **Add Csproj Reference** button will not be visible. If it is present, you can click the button to have the plugin automatically add the reference to your _.csproj_ file.
 
-<figure><img src="../.gitbook/assets/sdk_godot_pprootnode (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (47).png" alt="" width="338"><figcaption></figcaption></figure>
 
 ### PPEntityNode
 
@@ -83,7 +86,7 @@ With the [PPChunkNode ](godot.md#ppchunknode-1)selected, you will be able to edi
 
 ## Signals and Messaging
 
-Messages can be sent to your game server along a connection established by the [PPRootNode](godot.md#pprootnode-1). Signals from the server are sent to each of the [PP nodes](godot.md#api) on the clientside. Your scripts can connect to these signals.
+Messages can be sent to your game server along a connection established by the [PPRootNode](godot.md#pprootnode-1). Signals from the server are sent to each of the [PP nodes](godot.md#api) on the clientside. The Planetary Processing Plugin uses these signals to manage you game and entities, but you can also connect to these signals in your scripts.
 
 ### [authenticate\_player](godot.md#pprootnode-1)
 
@@ -107,92 +110,34 @@ pp_root_node.authenticate_player("", "")
 
 * Signal when player has joined
 
-For the player who has just logged in, the [PPRootNode ](godot.md#pprootnode-1)will emit a [`new_player_entity`](godot.md#pprootnode-1) signal. This signal is specific to the player running this instance of the game client. You can hook into this signal and instantiate your player scene accordingly.
-
-Note that [PPEntityNode's](godot.md#ppentitynode-1) [`entity_id` ](godot.md#ppentitynode-1)variable must be set after instantiation, so that the node knows which signals to filter out and re-emit.
+For the player who has just logged in, the [PPRootNode ](godot.md#pprootnode-1)will emit a [`new_player_entity`](godot.md#pprootnode-1) signal. This signal is specific to the player running this instance of the game client. You can connect to this signal and extend the instantiation of your player scene as you see fit.
 
 ```gdscript
-# scene_root_node_script.gd
-var player_scene = preload("res://scenes/player.tscn") 
-
 func _on_new_player_entity(entity_id, state):
-    # check if the player instance already exists, and exit function if so  
-    for instance in get_children():
-        var pp_entity = instance.get_node_or_null('PPEntityNode')
-        if pp_entity and "entity_id" in pp_entity:
-            if pp_entity.entity_id == entity_id:
-                return
-    
-    # create a player instance in the Godot game client
-    var player_instance = player_scene.instantiate()
-    var pp_entity_node = player_instance.get_node_or_null("PPEntityNode")
-    if pp_entity_node:
-      pp_entity_node.entity_id = entity_id
-    else:
-      print("PPEntityNode not found in the player instance") 
-      
-    # add the player instance to the node tree        
-    add_child(player_instance)
-    # NOTE Planetary Processing uses 'y' for depth in 3 dimensional games, and 'z' for height. The depth axis is also inverted.
-    # To convert coordinates, set Godot's 'y' to negative, then swap 'y' and 'z'.
-    player_instance.global_transform.origin = Vector3(state.x, state.z, state.y) 
+    # your code
 ```
 
 ### [new\_entity ](godot.md#pprootnode-1)
 
 * Signal when entities spawn
 
-The [PPRootNode ](godot.md#pprootnode-1)will emit a [`new_entity` ](godot.md#pprootnode-1)signal for any entities that have not yet been seen by the game client. After first logging in, this signal will trigger for all entities in the game world, including other players. These scenes can then be instantiated and added to the scene's node tree.
+The [PPRootNode ](godot.md#pprootnode-1)will emit a [`new_entity` ](godot.md#pprootnode-1)signal for any entities that have not yet been seen by the game client. After first logging in, this signal will trigger for all entities in the game world, including other players. These scenes will then be instantiated and added to the scene's node tree. You can also connect to the signal.
 
 ```gdscript
-# scene_root_node_script.gd
-var player_scene = preload("res://data/player/other_player.tscn")
-var cat_scene = preload("res://data/environment/cat_scene.tscn")
-
-# create a map between the Entity Types and scenes
-var scene_map = {
-    "player": player_scene,
-    "cat": cat_scene
-}
-
 func _on_new_entity(entity_id, state):
-    # check if the entity scene exists
-    var entity_scene = scene_map.get(state.type)
-    if not entity_scene:
-    print("Matching scene not found, for Entity Type: " + state.type)
-    
-    # create an entity instance in the Godot game client
-    var entity_instance = entity_scene.instantiate()
-    var pp_entity_node = entity_instance.get_node_or_null("PPEntityNode")
-    if pp_entity_node:
-      pp_entity_node.entity_id = entity_id
-    else:
-      print("PPEntityNode not found in the instance")
-    
-    # add the entity instance to the node tree  
-    add_child(entity_instance)
-    # NOTE Planetary Processing uses 'y' for depth in 3 dimensional games, and 'z' for height. The depth axis is also inverted.
-    # To convert coordinates, set Godot's 'y' to negative, then swap 'y' and 'z'.
-    entity_instance.global_transform.origin = Vector3(state.x, state.z, state.y)
+    # your code
 ```
 
 ### [remove\_entity ](godot.md#pprootnode-1)
 
 * Signal when entities despawn
 
-If any entities have left the simulation, the [PPRootNode ](godot.md#pprootnode-1)will emit a [`remove_entity` ](godot.md#pprootnode-1)signal. This signal can be used as a trigger to remove any scenes that are no longer needed from your node tree.
+If any entities have left the simulation, the [PPRootNode ](godot.md#pprootnode-1)will emit a [`remove_entity` ](godot.md#pprootnode-1)signal.&#x20;
 
 ```gdscript
 # scene_root_node_script.gd
 func _on_remove_entity(entity_id):
-  for child in get_children():
-    var pp_entity_node = child.get_node_or_null("PPEntityNode")
-    if pp_entity_node and pp_entity_node.entity_id == entity_id:
-      remove_child(child)
-      child.queue_free()
-      print('Entity ' + entity_id + ' removed')
-      return
-  print('Entity ' + entity_id + ' not found to remove')
+  # your code
 ```
 
 ### [**state\_changed** ](godot.md#ppentitynode-1)
@@ -327,3 +272,4 @@ pp_root_node.authenticate_player("", "")
 ### PPChunkNode
 
 <table><thead><tr><th>Name</th><th valign="middle">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>chunk_id</code></td><td valign="middle"><code>string</code></td><td>A unique identifier for the chunk instance in the game world</td></tr><tr><td><code>type</code></td><td valign="middle"><code>string</code></td><td>This should be 'chunk'. The value for this field is initially set based on the name of the root node of the current scene.</td></tr><tr><td><p>[Draft]</p><p><code>pp_root_node</code></p></td><td valign="middle"><code>Node</code></td><td>The PPRootNode of the game world.</td></tr><tr><td>[Draft]<br><code>is_instanced</code></td><td valign="middle"><code>bool</code></td><td>True if the chunk scene has been correctly instantiated into the  world</td></tr></tbody></table>
+

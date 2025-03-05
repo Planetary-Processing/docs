@@ -50,15 +50,18 @@ git clone https://github.com/planetary-processing/godot-plugin planetary_process
 
 1. Create a Node3D root node in the Scene panel, and save it as 'main'.
 2. Add a PPRootNode as child node to your scene's root.
+
+<figure><img src="../.gitbook/assets/image (35).png" alt="" width="313"><figcaption></figcaption></figure>
+
 3. In the Inspector panel of the PPRootNode, enter the Game ID of your game. This is a number which can be found on your [game dashboard](https://panel.planetaryprocessing.io/games), next to your game’s name and repo link.
 
-<figure><img src="../.gitbook/assets/image (15) (1).png" alt="" width="341"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (37).png" alt="" width="311"><figcaption></figcaption></figure>
 
 4. Select 'Tools > C# > Create C# Solution' from the ‘Project’ tab in the topbar.
 5. This creates a _.csproj_ and a _.sln_ file in the root folder of your project. (Tabbing in and out of the Godot Editor will refresh the FileSystem Panel to show the new .csproj file).
 6. In the Inspector panel of the PPRootNode, press the "Add Csproj Reference" button.
 
-<figure><img src="../.gitbook/assets/image (32).png" alt="" width="315"><figcaption></figcaption></figure>
+We will come back to the PPRootNode after we have made some scenes to represent our player and our entities.
 
 ## Setting Up your Starting Scene
 
@@ -77,7 +80,7 @@ git clone https://github.com/planetary-processing/godot-plugin planetary_process
 5. In the Inspector assign the Mesh parameter a 'New BoxMesh' to make it visible.
 6. Add a Camera3D to the root node of your scene and position it to look at the player.
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
 
 ## Creating entities
 
@@ -98,7 +101,7 @@ For the demo game repository, the Entity Types: cat, tree, and player are used. 
 8. In the Inspector assign the Mesh parameter a 'New SphereMesh', to make it visible.
 9. Repeat the process for trees and give them a CylinderMesh.
 
-<figure><img src="../.gitbook/assets/image (24).png" alt="" width="480"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
 
 ## Creating other players
 
@@ -110,7 +113,7 @@ Other players are created in the same way as most entities, however they share t
 4. Add a MeshInstance to the root node of your scene.&#x20;
 5. In the Inspector assign the Mesh parameter a 'New CapsuleMesh', to make it visible.
 
-<figure><img src="../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
 
 ## Moving entities
 
@@ -180,142 +183,14 @@ func _on_state_changed(state):
 
 </details>
 
-## Spawning entities
+## Configuring your server connection object <a href="#configuring-your-server-connection-object" id="configuring-your-server-connection-object"></a>
 
-The PPRootNode emits a signal when new entities are added and removed on the server. These signals can be used to create or destroy entities in game.
+1. Return to the PPRootNode in the main scene, and start filling in its parameters.
+2. Drag and drop your player.tscn into the ‘Player Scene’ input.
+3. Connect cat.tscn, tree.tscn and other\_player.tscn to separate elements in the ‘Scenes’ input list.
+4. You can leave Chunk Scene empty for now. Chunk scenes are optional, but for help implementing them go to [#creating-chunk-scenes](godot.md#creating-chunk-scenes "mention") below.
 
-1. Attach a new script called 'root.gd' to the root node parameter (not PPRootNode) of your main scene, with the following code.
-2. Use this code to extend the root node's functionality and prepare the entity scenes for use in the main scene.
-
-<pre class="language-gdscript"><code class="lang-gdscript"># root.gd script
-
-# extend the functionality of your root node (here Node3D)
-extends Node3D
-
-<strong># create a variable to store the PPRootNode
-</strong>var pp_root_node
-
-# preload all the scenes for use by this script
-var player_scene = preload("res://player.tscn")
-
-var cat_scene = preload("res:///cat.tscn")
-var tree_scene = preload("res://tree.tscn")
-var other_player_scene = preload("res://other_player.tscn")
-
-# define all the scenes by their entity type, except the player character
-var scene_map = {
-    "cat": cat_scene,
-    "tree": tree_scene,
-    "player": other_player_scene,
-}
-</code></pre>
-
-3. Create a \_ready() function and start listening for trigger events sent from the server to the PPRootNode.
-
-```gdscript
-# when the scene is loaded
-func _ready():
-    # access the PPRootNode from the scene's node tree
-    pp_root_node = get_tree().current_scene.get_node_or_null('PPRootNode')
-    assert(pp_root_node, "PPRootNode not found") 
-
-    # using signals from the PPRootNode,
-    # trigger functions for entity spawning/despawning/positioning 
-    pp_root_node.new_player_entity.connect(_on_new_player_entity)
-    pp_root_node.new_entity.connect(_on_new_entity)
-    pp_root_node.remove_entity.connect(_on_remove_entity)
-
-# create a new player instance, and add it as a child node
-func _on_new_player_entity(entity_id, state):
-...
-
-# create an entity instance matching its type, and add it as a child node
-func _on_new_entity(entity_id, state):
-...
-
-# remove an entity instance, from the current child nodes
-func _on_remove_entity(entity_id):
-...
-```
-
-4. Create a function to handle the player character's spawning.
-
-```gdscript
-# create a new player instance, and add it as a child node
-func _on_new_player_entity(entity_id, state):
-    #check if the player instance already exists, and exit function if so  
-    for instance in get_children():
-        var pp_entity = instance.get_node_or_null('PPEntityNode')
-        if pp_entity and "entity_id" in pp_entity:
-            if pp_entity.entity_id == entity_id:
-                return
-                
-    # create the player instance
-    var player_instance = player_scene.instantiate()
-
-    # validate that the player scene has a PPEntityNode
-    var pp_entity_node = player_instance.get_node_or_null("PPEntityNode")
-    if pp_entity_node:
-        pp_entity_node.entity_id = entity_id
-    else:
-        print("PPEntityNode not found in the player instance")
-
-    # add the player as a child of the root node
-    add_child(player_instance)
-    # position the player based on its server location
-    # NOTE: Planetary Processing uses 'y' for depth in 3D games, and 'z' for height. The depth axis is also inverted.
-    # To convert, set Godot's 'y' to negative, then swap 'y' and 'z'.
-    player_instance.global_transform.origin = Vector3(state.x, state.z, -state.y)
-```
-
-5. Create a function to handle entity spawning.
-
-```gdscript
-# create an entity instance matching its type, and add it as a child node
-func _on_new_entity(entity_id, state):
-    # get the entity scene based on entity type
-    var entity_scene = scene_map.get(state.type)
-    # validate that the entity type has a matching scene
-    if not entity_scene:
-        print("matching scene not found: " + state.type)
-
-    # create an entity instance
-    var entity_instance = entity_scene.instantiate()
-
-    # validate that the entity scene has a PPEntityNode
-    var pp_entity_node = entity_instance.get_node_or_null("PPEntityNode")
-    if pp_entity_node:
-        pp_entity_node.entity_id = entity_id
-    else:
-        print("PPEntityNode not found in the instance")
-
-    # add the entity as a child of the root node  
-    add_child(entity_instance)
-    # position the entity based on its server location
-    # NOTE: Planetary Processing uses 'y' for depth in 3D games, and 'z' for height. The depth axis is also inverted.
-    # To convert, set Godot's 'y' to negative, then swap 'y' and 'z'.
-    entity_instance.global_transform.origin = Vector3(state.x, state.z, -state.y)
-```
-
-6. Create a function to handle entity removal.
-
-<pre class="language-gdscript"><code class="lang-gdscript"><strong># remove an entity instance, from the current child nodes
-</strong>func _on_remove_entity(entity_id):
-    for child in get_children():
-        # check if the child is an entity 
-        var pp_entity_node = child.get_node_or_null("PPEntityNode")
-
-        # check if it matches the entity_id to be removed
-        if pp_entity_node and pp_entity_node.entity_id == entity_id:
-            # delink the child from the parent
-            remove_child(child)
-            # remove the child from processing
-            child.queue_free()
-            print('Entity ' + entity_id + ' removed')
-            return
-      
-    print('Entity ' + entity_id + ' not found to remove')
-</code></pre>
+<figure><img src="../.gitbook/assets/image (44).png" alt="" width="337"><figcaption></figcaption></figure>
 
 ## Creating Chunk Scenes
 
@@ -371,122 +246,12 @@ func _on_state_changed(state):
 
 </details>
 
-## Spawning Chunks
-
-The PPRootNode emits a signal when new chunks are added and removed on the server. These signals can be used to create or destroy chunks in game.
-
-1. Go to your main scene and click on PPRootNode. Find ChunkSize in the inspector and set it to the same value as your game's chunk size (which can be found in the settings of your game on the Planetary Processing panel).
-
-<figure><img src="../.gitbook/assets/image (30).png" alt="" width="315"><figcaption></figcaption></figure>
-
-2. Go to 'root.gd', connected to the root node parameter (not PPRootNode) of your main scene, and update it with the following code. New lines are commented.
-3. Use this code to extend the root node's functionality and prepare the chunk scenes for use in the main scene.
-
-```gdscript
-# preload all the scenes for use by this script
-var player_scene = preload("res://player.tscn")
-
-var cat_scene = preload("res:///cat.tscn")
-var tree_scene = preload("res://tree.tscn")
-var other_player_scene = preload("res://other_player.tscn")
-### New Line ###
-var chunk_scene = preload("res://chunk.tscn")
-
-# define all the scenes by their entity type, except the player character
-var scene_map = {
-	"cat": cat_scene,
-	"tree": tree_scene,
-	"player": other_player_scene,
-	### New Line ###
-	"chunk": chunk_scene
-}
-```
-
-4. Change the \_ready() function to include chunk events:
-
-```gdscript
-func _ready():
-	# access the PPRootNode from the scene's node tree
-	pp_root_node = get_tree().current_scene.get_node_or_null('PPRootNode')
-	assert(pp_root_node, "PPRootNode not found") 
-
-	# using signals from the PPRootNode,
-	# trigger functions for entity spawning/despawning/positioning 
-	pp_root_node.new_player_entity.connect(_on_new_player_entity)
-	pp_root_node.new_entity.connect(_on_new_entity)
-	pp_root_node.remove_entity.connect(_on_remove_entity)
-	### New Lines ###
-	pp_root_node.new_chunk.connect(_on_new_chunk)
-	pp_root_node.remove_chunk.connect(_on_remove_chunk)
-	
-	# authorise your connection to the game server 
-	#(Anonymous Auth uses empty strings as parameters)
-	pp_root_node.authenticate_player("", "")
-	print("authenticated and starting")
-```
-
-5. Create a function to handle chunk spawning:
-
-```gdscript
-#create an chunk instance matching its type, and add it as a child node
-func _on_new_chunk(chunk_id, state):
-	if not chunk_scene:
-		print("matching scene not found: chunk_scene" )
-
-	# create an chunk instance
-	var chunk_instance = chunk_scene.instantiate()
-
-	# validate that the entity scene has a PPEntityNode
-	var pp_chunk_node = chunk_instance.get_node_or_null("PPChunkNode")
-	if pp_chunk_node:
-		pp_chunk_node.chunk_id = chunk_id
-	else:
-		print("PPChunkNode not found in the instance")
-
-	# add the chunk as a child of the root node  
-	add_child(chunk_instance)
-	# position the entity based on its server location
-	# NOTE: Planetary Processing uses 'y' for depth in 3D games, and 'z' for height. The depth axis is also inverted.
-	# To convert, set Godot's 'y' to negative, then swap 'y' and 'z'.
-	chunk_instance.global_transform.origin = Vector3((state.x * pp_root_node.Chunk_Size), 0, -(state.y *  pp_root_node.Chunk_Size))
-```
-
-6. Create a function to handle chunk removal:
-
-```gdscript
-# remove an chunk instance, from the current child nodes
-func _on_remove_chunk(chunk_id):
-	for child in get_children():
-		# check if the child is a chunk
-		var pp_chunk_node = child.get_node_or_null("PPChunkNode")
-
-		# check if it matches the chunk_id to be removed
-		if pp_chunk_node and pp_chunk_node.chunk_id == chunk_id:
-			# delink the child from the parent
-			remove_child(child)
-			# remove the child from processing
-			child.queue_free()
-			print('Chunk ' + chunk_id + ' removed')
-			return
-	  
-	print('Chunk ' + chunk_id + ' not found to remove')
-```
-
 ## Connecting the player
 
-1. Add the following line of code to the end of your \_ready() function in 'root.gd'. This will allow the player to join and interact with the game world.
+1. Attach a new script called 'root.gd' to the root node parameter (not PPRootNode) of your main scene, with the following code. This will allow the player to join and interact with the game world.
 
 ```gdscript
-    # authorise your connection to the game server 
-    #(Anonymous Auth uses empty strings as parameters)
-    pp_root_node.authenticate_player("", "")
-```
-
-<details>
-
-<summary>Full root.gd script code (commented)</summary>
-
-<pre class="language-gdscript"><code class="lang-gdscript"># root.gd script
+# root.gd script
 
 # extend the functionality of your root node (here Node3D)
 extends Node3D
@@ -494,378 +259,13 @@ extends Node3D
 # create a variable to store the PPRootNode
 var pp_root_node
 
-# preload all the scenes for use by this script
-var player_scene = preload("res://player.tscn")
-
-var cat_scene = preload("res:///cat.tscn")
-var tree_scene = preload("res://tree.tscn")
-var other_player_scene = preload("res://other_player.tscn")
-var chunk_scene = preload("res://chunk.tscn")
-
-# define all the scenes by their entity type, except the player character
-var scene_map = {
-	"cat": cat_scene,
-	"tree": tree_scene,
-	"player": other_player_scene,
-	"chunk": chunk_scene
-}
 # when the scene is loaded
 func _ready():
-	# access the PPRootNode from the scene's node tree
-	pp_root_node = get_tree().current_scene.get_node_or_null('PPRootNode')
-	assert(pp_root_node, "PPRootNode not found") 
+	pp_root_node = get_tree().current_scene.get_node_or_null("PPRootNode")
+	assert(pp_root_node, "PPRootNode not found")
 
-	# using signals from the PPRootNode,
-	# trigger functions for entity spawning/despawning/positioning 
-	pp_root_node.new_player_entity.connect(_on_new_player_entity)
-	pp_root_node.new_entity.connect(_on_new_entity)
-	pp_root_node.remove_entity.connect(_on_remove_entity)
-	pp_root_node.new_chunk.connect(_on_new_chunk)
-	pp_root_node.remove_chunk.connect(_on_remove_chunk)
-	
-	# authorise your connection to the game server 
-	#(Anonymous Auth uses empty strings as parameters)
-	pp_root_node.authenticate_player("", "")
-	print("authenticated and starting")
-
-# create a new player instance, and add it as a child node
-func _on_new_player_entity(entity_id, state):
-<strong>	#check if the player instance already exists, and exit function if so  
-</strong> 	for instance in get_children():
-		var pp_entity = instance.get_node_or_null('PPEntityNode')
-		if pp_entity and "entity_id" in pp_entity:
-			if pp_entity.entity_id == entity_id:
-                		return
-
-	# create the player instance
-	var player_instance = player_scene.instantiate()
-
-	# validate that the player scene has a PPEntityNode
-	var pp_entity_node = player_instance.get_node_or_null("PPEntityNode")
-	if pp_entity_node:
-		pp_entity_node.entity_id = entity_id
-		print("making new player entity")
-	else:
-		print("PPEntityNode not found in the player instance")
-
-	# add the player as a child of the root node
-	add_child(player_instance)
-	# position the player based on its server location
-	# NOTE: Planetary Processing uses 'y' for depth in 3D games, and 'z' for height. The depth axis is also inverted.
-	# To convert, set Godot's 'y' to negative, then swap 'y' and 'z'.
-	player_instance.global_transform.origin = Vector3(state.x, state.z, -state.y)
-	
-#create an entity instance matching its type, and add it as a child node
-func _on_new_entity(entity_id, state):
-	# get the entity scene based on entity type
-	var entity_scene = scene_map.get(state.type)
-	# validate that the entity type has a matching scene
-	if not entity_scene:
-		print("matching scene not found: " + state.type)
-
-	# create an entity instance
-	var entity_instance = entity_scene.instantiate()
-
-	# validate that the entity scene has a PPEntityNode
-	var pp_entity_node = entity_instance.get_node_or_null("PPEntityNode")
-	if pp_entity_node:
-		pp_entity_node.entity_id = entity_id
-	else:
-		print("PPEntityNode not found in the instance")
-
-	# add the entity as a child of the root node  
-	add_child(entity_instance)
-	# position the entity based on its server location
-	# NOTE: Planetary Processing uses 'y' for depth in 3D games, and 'z' for height. The depth axis is also inverted.
-	# To convert, set Godot's 'y' to negative, then swap 'y' and 'z'.
-	entity_instance.global_transform.origin = Vector3(state.x, state.z, -state.y)
-	
-# remove an entity instance, from the current child nodes
-func _on_remove_entity(entity_id):
-	for child in get_children():
-		# check if the child is an entity 
-		var pp_entity_node = child.get_node_or_null("PPEntityNode")
-
-		# check if it matches the entity_id to be removed
-		if pp_entity_node and pp_entity_node.entity_id == entity_id:
-			# delink the child from the parent
-			remove_child(child)
-			# remove the child from processing
-			child.queue_free()
-			print('Entity ' + entity_id + ' removed')
-			return
-	  
-	print('Entity ' + entity_id + ' not found to remove')
-	
-	
-#create an chunk instance matching its type, and add it as a child node
-func _on_new_chunk(chunk_id, state):
-	if not chunk_scene:
-		print("matching scene not found: chunk_scene" )
-
-	# create an chunk instance
-	var chunk_instance = chunk_scene.instantiate()
-
-	# validate that the entity scene has a PPEntityNode
-	var pp_chunk_node = chunk_instance.get_node_or_null("PPChunkNode")
-	if pp_chunk_node:
-		pp_chunk_node.chunk_id = chunk_id
-	else:
-		print("PPChunkNode not found in the instance")
-
-	# add the chunk as a child of the root node  
-	add_child(chunk_instance)
-	# position the entity based on its server location
-	# NOTE: Planetary Processing uses 'y' for depth in 3D games, and 'z' for height. The depth axis is also inverted.
-	# To convert, set Godot's 'y' to negative, then swap 'y' and 'z'.
-	chunk_instance.global_transform.origin = Vector3((state.x * pp_root_node.Chunk_Size), 0, -(state.y *  pp_root_node.Chunk_Size))
-	
-# remove an chunk instance, from the current child nodes
-func _on_remove_chunk(chunk_id):
-	for child in get_children():
-		# check if the child is a chunk
-		var pp_chunk_node = child.get_node_or_null("PPChunkNode")
-
-		# check if it matches the chunk_id to be removed
-		if pp_chunk_node and pp_chunk_node.chunk_id == chunk_id:
-			# delink the child from the parent
-			remove_child(child)
-			# remove the child from processing
-			child.queue_free()
-			print('Chunk ' + chunk_id + ' removed')
-			return
-	  
-	print('Chunk ' + chunk_id + ' not found to remove')
-	
-
-</code></pre>
-
-</details>
-
-<details>
-
-<summary>Full root.gd script code (no comments)</summary>
-
-<pre class="language-gdscript"><code class="lang-gdscript">extends Node3D
-
-var pp_root_node
-
-var player_scene = preload("res://player.tscn")
-
-var cat_scene = preload("res:///cat.tscn")
-var tree_scene = preload("res://tree.tscn")
-var other_player_scene = preload("res://other_player.tscn")
-var chunk_scene = preload("res://chunk.tscn")
-
-var scene_map = {
-	"cat": cat_scene,
-	"tree": tree_scene,
-	"player": other_player_scene,
-	"chunk": chunk_scene
-}
-<strong>
-</strong>func _ready():
-	pp_root_node = get_tree().current_scene.get_node_or_null('PPRootNode')
-	assert(pp_root_node, "PPRootNode not found") 
-	
-	pp_root_node.new_player_entity.connect(_on_new_player_entity)
-	pp_root_node.new_entity.connect(_on_new_entity)
-	pp_root_node.remove_entity.connect(_on_remove_entity)
-	pp_root_node.new_chunk.connect(_on_new_chunk)
-	pp_root_node.remove_chunk.connect(_on_remove_chunk)
-	
-	pp_root_node.authenticate_player("", "")
-	print("authenticated and starting")
-
-func _on_new_player_entity(entity_id, state):	
- 	for instance in get_children():
-		var pp_entity = instance.get_node_or_null('PPEntityNode')
-		if pp_entity and "entity_id" in pp_entity:
-			if pp_entity.entity_id == entity_id:
-                		return
-        
-	var player_instance = player_scene.instantiate()
-
-	var pp_entity_node = player_instance.get_node_or_null("PPEntityNode")
-	if pp_entity_node:
-		pp_entity_node.entity_id = entity_id
-		print("making new player entity")
-	else:
-		print("PPEntityNode not found in the player instance")
-		
-	add_child(player_instance)
-	player_instance.global_transform.origin = Vector3(state.x, state.z, -state.y)
-	
-func _on_new_entity(entity_id, state):
-	var entity_scene = scene_map.get(state.type)
-	if not entity_scene:
-		print("matching scene not found: " + state.type)
-
-	var entity_instance = entity_scene.instantiate()
-
-	var pp_entity_node = entity_instance.get_node_or_null("PPEntityNode")
-	if pp_entity_node:
-		pp_entity_node.entity_id = entity_id
-	else:
-		print("PPEntityNode not found in the instance")
-
-	add_child(entity_instance)
-	entity_instance.global_transform.origin = Vector3(state.x, state.z, -state.y)
-	
-func _on_remove_entity(entity_id):
-	for child in get_children():
-		var pp_entity_node = child.get_node_or_null("PPEntityNode")
-		if pp_entity_node and pp_entity_node.entity_id == entity_id:
-			remove_child(child)
-			child.queue_free()
-			print('Entity ' + entity_id + ' removed')
-			return
-	  
-	print('Entity ' + entity_id + ' not found to remove')
-	
-func _on_new_chunk(chunk_id, state):
-	if not chunk_scene:
-		print("matching scene not found: chunk_scene" )
-	var chunk_instance = chunk_scene.instantiate()
-	
-	var pp_chunk_node = chunk_instance.get_node_or_null("PPChunkNode")
-	if pp_chunk_node:
-		pp_chunk_node.chunk_id = chunk_id
-	else:
-		print("PPChunkNode not found in the instance")
-
-	add_child(chunk_instance)
-	chunk_instance.global_transform.origin = Vector3((state.x * pp_root_node.Chunk_Size), 0, -(state.y *  pp_root_node.Chunk_Size))
-	
-func _on_remove_chunk(chunk_id):
-	for child in get_children():
-		var pp_chunk_node = child.get_node_or_null("PPChunkNode")
-
-		if pp_chunk_node and pp_chunk_node.chunk_id == chunk_id:
-			remove_child(child)
-			child.queue_free()
-			print('Chunk ' + chunk_id + ' removed')
-			return
-	  
-	print('Chunk ' + chunk_id + ' not found to remove')
-	
-
-</code></pre>
-
-</details>
-
-<details>
-
-<summary>Full root.gd script code (2D)</summary>
-
-```gdscript
-extends Node2D
-
-var pp_root_node
-
-var player_scene = preload("res://player.tscn")
-
-var cat_scene = preload("res:///cat.tscn")
-var tree_scene = preload("res://tree.tscn")
-var other_player_scene = preload("res://other_player.tscn")
-var chunk_scene = preload("res://chunk.tscn")
-
-var scene_map = {
-	"cat": cat_scene,
-	"tree": tree_scene,
-	"player": other_player_scene,
-	"chunk": chunk_scene
-}
-
-func _ready():
-	pp_root_node = get_tree().current_scene.get_node_or_null('PPRootNode')
-	assert(pp_root_node, "PPRootNode not found") 
-	
-	pp_root_node.new_player_entity.connect(_on_new_player_entity)
-	pp_root_node.new_entity.connect(_on_new_entity)
-	pp_root_node.remove_entity.connect(_on_remove_entity)
-	pp_root_node.new_chunk.connect(_on_new_chunk)
-	pp_root_node.remove_chunk.connect(_on_remove_chunk)
-	
-	pp_root_node.authenticate_player("", "")
-	print("authenticated and starting")
-
-func _on_new_player_entity(entity_id, state): 
- 	for instance in get_children():
-		var pp_entity = instance.get_node_or_null('PPEntityNode')
-		if pp_entity and "entity_id" in pp_entity:
-			if pp_entity.entity_id == entity_id:
-                		return
-        
-	var player_instance = player_scene.instantiate()
-
-	var pp_entity_node = player_instance.get_node_or_null("PPEntityNode")
-	if pp_entity_node:
-		pp_entity_node.entity_id = entity_id
-		print("making new player entity")
-	else:
-		print("PPEntityNode not found in the player instance")
-		
-	add_child(player_instance)
-	player_instance.global_transform.origin = Vector2(state.x, -state.y)
-	
-func _on_new_entity(entity_id, state):
-	var entity_scene = scene_map.get(state.type)
-	if not entity_scene:
-		print("matching scene not found: " + state.type)
-
-	var entity_instance = entity_scene.instantiate()
-
-	var pp_entity_node = entity_instance.get_node_or_null("PPEntityNode")
-	if pp_entity_node:
-		pp_entity_node.entity_id = entity_id
-	else:
-		print("PPEntityNode not found in the instance")
-
-	add_child(entity_instance)
-	entity_instance.global_transform.origin = Vector2(state.x, -state.y)
-	
-func _on_remove_entity(entity_id):
-	for child in get_children():
-		var pp_entity_node = child.get_node_or_null("PPEntityNode")
-		if pp_entity_node and pp_entity_node.entity_id == entity_id:
-			remove_child(child)
-			child.queue_free()
-			print('Entity ' + entity_id + ' removed')
-			return
-	  
-	print('Entity ' + entity_id + ' not found to remove')
-	
-func _on_new_chunk(chunk_id, state):
-	if not chunk_scene:
-		print("matching scene not found: chunk_scene" )
-	var chunk_instance = chunk_scene.instantiate()
-	
-	var pp_chunk_node = chunk_instance.get_node_or_null("PPChunkNode")
-	if pp_chunk_node:
-		pp_chunk_node.chunk_id = chunk_id
-	else:
-		print("PPChunkNode not found in the instance")
-
-	add_child(chunk_instance)
-	chunk_instance.global_transform.origin = Vector2((state.x * pp_root_node.Chunk_Size), -(state.y *  pp_root_node.Chunk_Size))
-	
-func _on_remove_chunk(chunk_id):
-	for child in get_children():
-		var pp_chunk_node = child.get_node_or_null("PPChunkNode")
-
-		if pp_chunk_node and pp_chunk_node.chunk_id == chunk_id:
-			remove_child(child)
-			child.queue_free()
-			print('Chunk ' + chunk_id + ' removed')
-			return
-	  
-	print('Chunk ' + chunk_id + ' not found to remove')
-	
-
+	pp_root_node.authenticate_player("", "")  # Start authentication
 ```
-
-</details>
 
 ## Moving the player
 
