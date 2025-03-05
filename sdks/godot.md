@@ -259,7 +259,7 @@ pp_root_node.authenticate_player("", "")
 
 #### Variables
 
-<table><thead><tr><th>Name</th><th valign="middle">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>entity_id</code></td><td valign="middle"><code>string</code></td><td>A unique identifier for the entity instance in the game world</td></tr><tr><td><code>type</code></td><td valign="middle"><code>string</code></td><td>The entity type. The value for this field is initially set based on the name of the root node of the current scene.</td></tr><tr><td><p>[Draft]</p><p><code>pp_root_node</code></p></td><td valign="middle"><code>Node</code></td><td>The PPRootNode of the game world.</td></tr><tr><td>[Draft]<br><code>is_instanced</code></td><td valign="middle"><code>bool</code></td><td>Is true if the entity scene has been correctly instantiated into the  world</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th valign="middle">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>entity_id</code></td><td valign="middle"><code>string</code></td><td>A unique identifier for the entity instance in the game world</td></tr><tr><td><code>type</code></td><td valign="middle"><code>string</code></td><td>The entity type. The value for this field is initially set based on the name of the root node of the current scene.</td></tr></tbody></table>
 
 #### **Signals**
 
@@ -271,5 +271,5 @@ pp_root_node.authenticate_player("", "")
 
 ### PPChunkNode
 
-<table><thead><tr><th>Name</th><th valign="middle">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>chunk_id</code></td><td valign="middle"><code>string</code></td><td>A unique identifier for the chunk instance in the game world</td></tr><tr><td><code>type</code></td><td valign="middle"><code>string</code></td><td>This should be 'chunk'. The value for this field is initially set based on the name of the root node of the current scene.</td></tr><tr><td><p>[Draft]</p><p><code>pp_root_node</code></p></td><td valign="middle"><code>Node</code></td><td>The PPRootNode of the game world.</td></tr><tr><td>[Draft]<br><code>is_instanced</code></td><td valign="middle"><code>bool</code></td><td>True if the chunk scene has been correctly instantiated into the  world</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th valign="middle">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>chunk_id</code></td><td valign="middle"><code>string</code></td><td>A unique identifier for the chunk instance in the game world</td></tr><tr><td><code>type</code></td><td valign="middle"><code>string</code></td><td>This should be 'chunk'. The value for this field is initially set based on the name of the root node of the current scene.</td></tr></tbody></table>
 
