@@ -67,4 +67,4 @@ On the control panel, within the game overview page you can see a dropdown at th
 
 The full dimensions API is shown below, these functions are accessed by interfacing with the `api.dimension` object in the global scope within all server-side scripts.
 
-{% include "../.gitbook/includes/dimensions-api-table.md" %}
+{% include "../.gitbook/includes/dimension-api-table.md" %}
