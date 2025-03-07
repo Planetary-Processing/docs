@@ -14,4 +14,4 @@ The following features are only available for [premium](https://www.planetarypro
 * [Player API](../http-api/player-api.md)
 * [Chunkloader Entities](../server/entities.md#fields)
 
-You can upgrade any game to premium from the 'Admin' settings of your [Game Dashboard](https://panel.planetaryprocessing.io/games).
+You can upgrade any game to [premium](https://www.planetaryprocessing.com/pricing), from the 'Admin' settings of your [Game Dashboard](https://panel.planetaryprocessing.io/games).
