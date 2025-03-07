@@ -46,8 +46,13 @@ function init()
     end
 end
 
+-- Send a DELETE HTTP request to the url https://eg.mydatabase.com/chunks.
+-- The endpoint url removes some existing data.
+-- The endpoint responds with a message about the data removed.
+-- The string body of the response is printed.
+
 -- Prints (dependent on endpoint response):
--- Response returned successfully: Chunks are
+-- Response returned successfully: Chunks were lame. Chunks are
 -- Chunk data has been deleted.
 
 -- Or Prints (exact code number varies):

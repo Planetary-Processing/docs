@@ -27,7 +27,7 @@ Returns:
 
 Example:
 
-Send a POST request to an endpoint, updating its data.
+Send a PUT request to an endpoint, updating its data.
 
 ```lua
 -- init.lua
@@ -47,6 +47,11 @@ function init()
         end
     end
 end
+
+-- Send a PUT HTTP request to the url https://eg.mydatabase.com/chunks.
+-- The endpoint url updates its data based on the request's body: "cool!"
+-- The endpoint responds with some updated data about chunks.
+-- The string body of the response is printed.
 
 -- Prints (dependent on endpoint response):
 -- Response returned successfully: Chunks were lame. Chunks are cool!

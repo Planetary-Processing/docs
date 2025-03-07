@@ -31,6 +31,11 @@
 * [Git Primer](server/git.md)
 * [Physics](server/physics.md)
 
+## HTTP API
+
+* [Authentication](http-api/authentication.md)
+* [Player API](http-api/player-api.md)
+
 ## Api Reference
 
 * [Entity API](api-reference/entity-api/README.md)
@@ -59,8 +64,3 @@
   * [NewBody](api-reference/physics-api/newbody.md)
   * [NewBoxShape](api-reference/physics-api/newboxshape.md)
   * [NewSphereShape](api-reference/physics-api/newsphereshape.md)
-
-## HTTP API
-
-* [Authentication](http-api/authentication.md)
-* [Player API](http-api/player-api.md)

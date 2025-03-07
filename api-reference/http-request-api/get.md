@@ -44,6 +44,10 @@ function init()
     end
 end
 
+-- Send a GET HTTP request to the url https://eg.mydatabase.com/chunks.
+-- The endpoint url responds with some data about chunks.
+-- The string body of the response is printed.
+
 -- Prints (dependent on endpoint response):
 -- Response returned successfully: Chunks are cool!
 
