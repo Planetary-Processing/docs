@@ -1,3 +1,7 @@
+---
+description: Premium Only
+---
+
 # HTTP Request API
 
 `api.http`
