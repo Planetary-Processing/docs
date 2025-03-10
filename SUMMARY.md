@@ -15,10 +15,10 @@
 ## Quick Start
 
 * [Unity](quick-start/unity.md)
+* [Godot](quick-start/godot.md)
 * [Defold](quick-start/defold.md)
 * [LÖVE](quick-start/love.md)
 * [Unreal](quick-start/unreal.md)
-* [Godot](quick-start/godot.md)
 
 ## Server Side <a href="#server" id="server"></a>
 
