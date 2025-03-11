@@ -307,9 +307,7 @@ func _on_state_changed(state):
     # sync the player's position, using the server's values
     # NOTE: Planetary Processing uses 'y' for depth in 3D games, and 'z' for height. The depth axis is also inverted.
     # To convert, set Godot's 'y' to negative, then swap 'y' and 'z'.
-    var diff_in_position = (global_transform.origin - Vector3(state.x, state.z, -state.y)).abs() 
-    if diff_in_position > Vector3(1,1,1):
-        global_transform.origin = Vector3(state.x, state.z, -state.y)
+    global_transform.origin = Vector3(state.x, state.z, -state.y)
 
 func _process(delta: float) -> void:
     # get the raw input values
@@ -323,7 +321,6 @@ func _process(delta: float) -> void:
 
     # move the player
     var movement = input_direction * speed * delta
-    translate(movement)
 
     # message the server to update the player's x and y positions
     # NOTE: Planetary Processing uses 'y' for depth in 3D games, and 'z' for height. The depth axis is also inverted.
@@ -356,9 +353,7 @@ func _ready() -> void:
         print("PPEntityNode not found")
         
 func _on_state_changed(state):
-    var diff_in_position = (global_transform.origin - Vector3(state.x, state.z, -state.y)).abs() 
-    if diff_in_position > Vector3(1,1,1):
-        global_transform.origin = Vector3(state.x, state.z, -state.y)
+    global_transform.origin = Vector3(state.x, state.z, -state.y)
 
 func _process(delta: float) -> void:
     var input_direction = Vector3(
@@ -369,7 +364,6 @@ func _process(delta: float) -> void:
     input_direction = input_direction.normalized()
 
     var movement = input_direction * speed * delta
-    translate(movement)
 
     pp_root_node.message({
         "x": movement[0],
@@ -401,9 +395,7 @@ func _ready() -> void:
         print("PPEntityNode not found")
         
 func _on_state_changed(state):
-    var diff_in_position = (global_transform.origin - Vector2(state.x, -state.y)).abs() 
-    if diff_in_position > Vector2(1,1):
-        global_transform.origin = Vector2(state.x, -state.y) 
+    global_transform.origin = Vector2(state.x, -state.y) 
 
 func _process(delta: float) -> void:
     var input_direction = Vector2(
@@ -414,7 +406,6 @@ func _process(delta: float) -> void:
 
     # move the player
     var movement = input_direction * speed * delta
-    translate(movement)
 
     pp_root_node.message({
         "x": movement[0],
