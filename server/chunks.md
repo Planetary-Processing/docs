@@ -66,6 +66,7 @@ Information about the current chunk can be accessed from the global variable [`c
 
 | Field     | Type   | Description                                                                                                                       |
 | --------- | ------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| ID        | int    | ID of the chunk                                                                                                                   |
 | X         | int    | X coordinate in chunk space.                                                                                                      |
 | Y         | int    | Y coordinate in chunk space.                                                                                                      |
 | Size      | int    | Size of the chunk in world units.                                                                                                 |
