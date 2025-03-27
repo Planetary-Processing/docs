@@ -38,7 +38,7 @@ The most recent log entry will appear at the bottom of the table. While a log gr
 
 ![Log Entries Image](https://planetaryprocessing.io/static/img/pp_log_entries.png)
 
-&#x20;Any logs entries greater than 4MB in length will have their message truncated.
+&#x20;Any individual logs entries greater than 512B in length will have their message truncated.
 
 ## Errors
 
