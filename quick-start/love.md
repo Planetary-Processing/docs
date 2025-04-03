@@ -2,6 +2,10 @@
 
 Follow these steps to quickly set up and start using Planetary Processing with your LÖVE game. For more detailed information on both the SDK and the server-side API, please visit our [documentation](https://docs.planetaryprocessing.io/).
 
+## LÖVE Version
+
+We recommend using LÖVE's most recent release version. If you are using an older version, we recommend a minimum of 11.0 for a successful integration.
+
 ## Create a Planetary Processing Game
 
 1. Navigate to the [games section of our web panel](https://panel.planetaryprocessing.io/games)

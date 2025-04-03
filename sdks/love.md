@@ -4,6 +4,10 @@ The LÖVE SDK integrates our multiplayer platform with LÖVE. The library provid
 
 If you are new here, we recommend starting with the [LÖVE Quickstart Guide](../quick-start/love.md).
 
+## Pre-requisites
+
+* LÖVE v11.0+
+
 ## Installation
 
 The LÖVE SDK can be installed by cloning the latest version from our [GitHub](https://github.com/planetary-processing/) into your a folder called `sdk` within your LÖVE game directory.
@@ -195,3 +199,4 @@ sdk.join()
 | `X`    | `float`  | X coordinate in chunk units. |
 | `Y`    | `float`  | Y coordinate in chunk units. |
 | `Data` | `table`  | Data of the chunk.           |
+
