@@ -14,8 +14,9 @@ The PP Unreal plugin supports macOS or Windows. It does not currently support Li
 
 1. Navigate to the [games section of our web panel](https://panel.planetaryprocessing.io/games).
 2. Click **Create Game** in the top right.
-3. Provide the details of your game. Upon its creation, you will be taken to your Game Dashboard.
-   1. Note: UE5's coordinate system is measured in centimetres. Therefore we should select a large chunk size of 6400 (equivalent to 64 meters).
+3. Provide the details of your game.&#x20;
+   1. Select a **Chunk Size** of 6400. UE5's coordinate system is measured in centimetres. Therefore we should select a large chunk size (equivalent to 64 meters).
+   2. Upon the game's creation, you will be taken to your Game Dashboard.
 4. For this quick start, we will be using **Anonymous Auth**, which allows players to connect without a username and password. To enable this, navigate to the settings section of your Game Dashboard and enable Anonymous Auth as the Player Authentication Type within Game Settings.
 
 ![PP New Game](https://planetaryprocessing.io/static/img/pp_new_game_settings.png)
