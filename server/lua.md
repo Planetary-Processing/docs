@@ -8,7 +8,7 @@ The `math` library remains, as do various libraries added by PP. Additionally, `
 
 Runtime metatables and metamethods are not currently supported.
 
-
+Additionally, we have incorporated an open source JSON encoding/decoding library, documentation here: [https://github.com/rxi/json.lua](https://github.com/rxi/json.lua)
 
 ## Tables
 
