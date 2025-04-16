@@ -32,19 +32,27 @@ Log groups are used to batch display logs from the same source together. The mos
 
 ### Entries
 
-Logs will display information about: the time they occurred; the [dimension](dimensions.md) and [chunk](chunks.md) they occurred in; and the printed message or error itself.&#x20;
+Logs will display information about: the time they occurred; the [dimension](dimensions.md) and [chunk](chunks.md) they occurred in; and the printed [message](logs.md#messages) or [error](logs.md#errors) itself.&#x20;
 
 The most recent log entry will appear at the bottom of the table. While a log group is still active, the entries can be refreshed by clicking the word 'refresh' below the table.
 
 ![Log Entries Image](https://planetaryprocessing.io/static/img/pp_log_entries.png)
 
-&#x20;Any individual logs entries greater than 512B in length will have their message truncated.
+### Messages
+
+Messages contain any information sent to logs using `print()` function. Where possible variables will be printed in a pretty format, for example printed entities will display their individual field values, space-separated, starting with their ID; X, Y, Z positions; Type; and Data table.
+
+Most tables nested within other tables will only show their memory address rather than being prettified. Very large numbers will be displayed using scientific 'e' notation.&#x20;
+
+Any individual messages greater than 512B in length will have their message truncated.
+
+
 
 ## Errors
 
-Errors are displayed in the [logs](https://panel.planetaryprocessing.io/logs) section of the web panel, in the same way as other entries. Many errors will also be visible directly from the panel map.&#x20;
+Errors and their stack traces are displayed in the [logs](https://panel.planetaryprocessing.io/logs) section of the web panel, in the same way as other entries.&#x20;
 
-Chunks which are failing or contain erroring entities will be coloured red on the map. Clicking on these [chunks](chunks.md) will show an information icon 🛈 with the error causing the failure.
+Many errors will also be visible directly from the panel map. Chunks which are failing or contain erroring entities will be coloured red on the map. Clicking on these [chunks](chunks.md) will show an information icon 🛈 with the error causing the failure.
 
 
 
