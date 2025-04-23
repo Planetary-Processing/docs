@@ -8,6 +8,8 @@ Creates a new entity.&#x20;
 
 This function will automatically call the `init` function for the specified entity type. It fails if there is no entity type that matches the provided `type`.
 
+No more than 1024 new entities can be created in a single update tick.
+
 
 
 Parameters:
