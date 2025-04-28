@@ -41,7 +41,7 @@ git clone https://git.planetaryprocessing.io/git/aBcDE/my-planetary-processing-g
 git clone https://github.com/planetary-processing/godot-plugin planetary_processing
 ```
 
-5. Select the ‘Project Settings’ from the ‘Project’ tab in the topbar.&#x20;
+5. In the topbar, select the ‘Project > Project Settings’.&#x20;
 6. Navigate to the 'Plugins' tab and enable the Planetary Processing plugin.
 
 <figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
@@ -57,15 +57,18 @@ git clone https://github.com/planetary-processing/godot-plugin planetary_process
 
 <figure><img src="../.gitbook/assets/image (37).png" alt="" width="311"><figcaption></figcaption></figure>
 
-4. Select 'Tools > C# > Create C# Solution' from the ‘Project’ tab in the topbar.
+4. In the topbar, select 'Project > Tools > C# > Create C# Solution'.&#x20;
 5. This creates a _.csproj_ and a _.sln_ file in the root folder of your project. (Tabbing in and out of the Godot Editor will refresh the FileSystem Panel to show the new .csproj file).
-6. In the Inspector panel of the PPRootNode, press the "Add Csproj Reference" button.
+
+<figure><img src="../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
+
+4. In the Inspector panel of the PPRootNode, press the "Add Csproj Reference" button. This enables Planetary Processing's C# code in your project.
 
 We will come back to the PPRootNode after we have made some scenes to represent our player and our entities.
 
 ## Setting Up your Starting Scene
 
-1. Select the ‘Project Settings’ from the ‘Project’ tab in the topbar.&#x20;
+1. In the topbar, select the ‘Project > Project Settings’.&#x20;
 2. In the 'General' tab, find the 'Application > Run' section.
 3. Set the Main Scene to be 'main.tscn'.
 
