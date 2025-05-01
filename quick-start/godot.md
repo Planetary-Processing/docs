@@ -459,6 +459,8 @@ git push
 ## Play and update your game
 
 1. Start up your game again in Godot and in the web panel, to see the changes you have made!
+2. If you want to learn more about updating your server-side code, check out our server-side tutorial video:\
+   [https://www.youtube.com/watch?v=QYWtedo1kr4\&list=PLW5OY4K85Qhn7lwZeSPVZXH\_Lg5IwhjNC](https://www.youtube.com/watch?v=QYWtedo1kr4\&list=PLW5OY4K85Qhn7lwZeSPVZXH_Lg5IwhjNC)
 
 
 

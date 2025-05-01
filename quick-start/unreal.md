@@ -162,6 +162,8 @@ Make more changes to your game server as you see fit. You can change how many an
 1. Make changes to your game repository, then push and deploy them.
 2. Reset the simulation state in the Admin section of your game panel.
 3. Start up your game again in Unreal Engine 5 and in the web panel, to see the changes you have made!
+4. If you want to learn more about updating your server-side code, check out our server-side tutorial video:\
+   [https://www.youtube.com/watch?v=QYWtedo1kr4\&list=PLW5OY4K85Qhn7lwZeSPVZXH\_Lg5IwhjNC](https://www.youtube.com/watch?v=QYWtedo1kr4\&list=PLW5OY4K85Qhn7lwZeSPVZXH_Lg5IwhjNC)
 
 
 

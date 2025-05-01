@@ -1399,6 +1399,8 @@ git push
 
 1. Launch your LÖVE project.
 2. Connect to the multiplayer game through the game client, authenticate, and enjoy playing with others!
+3. If you want to learn more about updating your server-side code, check out our server-side tutorial video:\
+   [https://www.youtube.com/watch?v=QYWtedo1kr4\&list=PLW5OY4K85Qhn7lwZeSPVZXH\_Lg5IwhjNC](https://www.youtube.com/watch?v=QYWtedo1kr4\&list=PLW5OY4K85Qhn7lwZeSPVZXH_Lg5IwhjNC)
 
 
 
