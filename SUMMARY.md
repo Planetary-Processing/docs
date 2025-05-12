@@ -41,6 +41,8 @@
 * [Entity API](api-reference/entity-api/README.md)
   * [Create](api-reference/entity-api/create.md)
   * [Message](api-reference/entity-api/message.md)
+* [Client API](api-reference/client-api/README.md)
+  * [Message](api-reference/client-api/message.md)
 * [Dimension API](api-reference/dimension-api/README.md)
   * [Create](api-reference/dimension-api/create.md)
   * [Delete](api-reference/dimension-api/delete.md)
