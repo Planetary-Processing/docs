@@ -17,6 +17,8 @@ You'll need then to extract this and move the contents of the `lib` directory in
 
 You can now enable the Planetary Processing plugin for your Unreal Engine 5 project. You will be required to restart the engine once you enable the plugin.
 
+
+
 ## Classes
 
 ### PlanetaryProcessing Class
@@ -25,11 +27,15 @@ This class is the core of the Planetary Processing plugin. It handles initializa
 
 <figure><img src="../.gitbook/assets/unreal_sdk_PlanetaryProcessingInstanceInit.png" alt=""><figcaption></figcaption></figure>
 
+
+
 ### Entity Class
 
 This class represents an [Entity](../server/entities.md) in the Planetary Processing system. It contains all the [data](unreal.md#entity-class-1) of the corresponding entity on your game server. The [Entity Types](../server/entities.md#types-and-behaviour-scripting) can be matched up with the [EntityActor](unreal.md#entityactor-class) class using the [Entity Map](unreal.md#entity-actor-spawning) variable.
 
 <figure><img src="../.gitbook/assets/unreal_sdk_EntityFind (2).png" alt=""><figcaption></figcaption></figure>
+
+
 
 ### EntityActor Class
 
@@ -40,6 +46,20 @@ This class extends the Unreal Engine Actor class, spawning an Actor in your game
 The [EntityActor](unreal.md#entity-actor-spawning) class is intended to have an [Entity](unreal.md#entity-class-1) associated with it once created, via [SetEntity](unreal.md#entity-actor-spawning). With this set, the [EntityActor](unreal.md#entity-actor-spawning) class will automatically broadcast [OnUpdated](unreal.md#pp_exampleentityactor) and [OnRemoved](unreal.md#pp_exampleentityactor) events accordingly, as its associated [Entity](unreal.md#entity-class-1) is either updated or removed.
 
 <figure><img src="../.gitbook/assets/unreal_sdk_SetEntityActor.png" alt=""><figcaption></figcaption></figure>
+
+### ChunkActor Class
+
+Use of this class is optional. Similar to the [Entity Actor](unreal.md#entityactor-class), this class spawns an Actor in your game client. If used, an Actor is spawned at the bottom-left corner of every [Chunk](../server/chunks.md) in your game simulation.&#x20;
+
+The main purpose of the [Chunk Actor](unreal.md#chunk-actor-spawning) is to store information, such as data about nearby terrain. In most cases the [Chunk Actor](unreal.md#chunk-actor-spawning) will not need a mesh, since it cannot move or act.&#x20;
+
+<figure><img src="../.gitbook/assets/ChunkMapAndSize.png" alt=""><figcaption></figcaption></figure>
+
+Chunks only have one type, 'chunk'. A subclass of [Chunk Actor](unreal.md#chunk-actor-spawning) must be defined in the Chunk Map using the key 'chunk'. You must also define the Chunk Size integer variable, using the chunk size set in your [online game](https://panel.planetaryprocessing.io/games).
+
+<figure><img src="../.gitbook/assets/SetChunk.png" alt=""><figcaption></figcaption></figure>
+
+The ChunkActor class is intended to have an Chunk associated with it once created, via SetChunk. With this set, the ChunkActor class will automatically broadcast [OnUpdated](unreal.md#pp_exampleentityactor) and [OnRemoved](unreal.md#pp_exampleentityactor) events accordingly, as its associated Chunk is either updated or goes out of range of a Chunkloader.
 
 ### MessageData Class
 
@@ -53,6 +73,8 @@ Hence it can be used in [Blueprints](unreal.md#blueprints) to both access data o
 If you want to handle serialization and deserialization yourself, without [MessageData](unreal.md#send-player-coordinates-message), the original JSON of an [Entity](unreal.md#entity-class-1) is available in the [DataJSON](unreal.md#entity-class-1) property of that class. Raw JSON messages can also be sent using the [SendJSONMessage](unreal.md#planetaryprocessing-class-1) function of the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) class.
 
 <figure><img src="../.gitbook/assets/unreal_sdk_MessageData.png" alt=""><figcaption></figcaption></figure>
+
+
 
 ## Blueprints
 
@@ -100,14 +122,27 @@ Joining a valid connection:
    * Look up the [EntityActor](unreal.md#entityactor-class-1) class reference in the [EntityMap](unreal.md#pp_exampleplayercontroller-1) variable using the [Entity Type](unreal.md#entity-class-1) from the [OnEntityAdded\_Event](unreal.md#delegates)**.**
 2. `GetLocationVector -> Make Transform`
    * Use the [GetLocationVector](unreal.md#entity-class-1) function of the added [Entity](unreal.md#entity-class-1) to create a Vector for the initial location of the [EntityActor](unreal.md#entityactor-class-1).
-3. `Find / Branch / Make Transfrom -> Spawn Actor`
+3. `Find / Branch / Make Transform -> Spawn Actor`
    * If the [Type](unreal.md#entity-class-1) is valid, spawn an instance of the [EntityActor](unreal.md#entityactor-class-1)**.**
 4. `OnEntityAdded_Event / Spawn Actor -> Set Entity`
-   * Call [SetEntity](unreal.md#entityactor-class-1) on the  [EntityActor](unreal.md#entityactor-class-1) to associate it with the [Entity](unreal.md#entity-class-1) that we are representing.
+   * Call [SetEntity](unreal.md#entityactor-class-1) on the [EntityActor](unreal.md#entityactor-class-1) to associate it with the [Entity](unreal.md#entity-class-1) that we are representing.
 
 If you wish, you can extend the script to remove spawning for the client player entity. This can be done by adding an extra branch to filter entities with the same ID as the [Planetary Processing](unreal.md#planetaryprocessing-class-1) instance's [UUID](unreal.md#planetaryprocessing-class-1). This only removes the player's own entity from the client, not other players.
 
 <figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+
+#### Chunk Actor Spawning
+
+<figure><img src="../.gitbook/assets/ChunkActorSpawning.png" alt=""><figcaption></figcaption></figure>
+
+1. `OnChunkAdded_Event -> Entity Map -> Find`
+   * Look up the ChunkActor class reference in the ChunkMap variable using the key 'chunk'**.**
+2. `GetLocationVector / Chunk Size -> Multiply -> Make Transform`
+   * Use the [GetLocationVector](unreal.md#entity-class-1) function of the added Chunk to get its X and Y values. Multiply these by the Chunk Size to create a Vector for the location of the ChunkActor.
+3. `Find / Branch / Make Transform -> Spawn Actor`
+   * If the 'chunk' key is in use, spawn an instance of the ChunkActo&#x72;**.**
+4. `OnChunkAdded_Event / Spawn Actor -> Set Chunk`
+   * Call SetChunk on the ChunkActor to associate it with the Chunk that we are representing.
 
 
 
@@ -169,9 +204,22 @@ This blueprint shows how to bind to the [OnUpdated](unreal.md#entityactor-class-
 
 For the actor to follow the server-side location, without issue, it must have physics disabled on the clientside.
 
-If you wish to retrieve the location vector of an entity before it is set, you can do so with the following example. Replace the Print String function with functions of your choice. This is useful for smoothing movement on the client side.
+If you wish to retrieve the location vector of an entity before it is set automatically, you can use the following example. Replace the Print String function with functions of your choice.
 
 <figure><img src="../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+
+### PP\_ExampleChunkActor
+
+This blueprint shows how to bind to the [OnUpdated](unreal.md#entityactor-class-1) and [OnRemoved](unreal.md#entityactor-class-1) events for a ChunkActor.
+
+#### Event Binding
+
+<figure><img src="../.gitbook/assets/ChunkActorUpdateRemove (1).png" alt=""><figcaption></figcaption></figure>
+
+1. `Event BeginPlay -> Bind Event to On Updated -> OnUpdated_Event -> Set Actor Location to Chunk Coords`
+   * Bind to the [OnUpdated](unreal.md#entityactor-class-1) event for the ChunkActor. Calls SetActorLocationToChunkCoords to update the Actor's location to match the [Entity](unreal.md#entity-class-1)**.**
+2. `Bind Event to On Removed -> OnRemoved_Event -> Destroy Actor`
+   * Bind to the [OnRemoved](unreal.md#entityactor-class-1) event for the ChunkActor. Destroys the Actor when this event is broadcast.
 
 
 
@@ -187,6 +235,8 @@ This is a simple login widget which calls the [Connect](unreal.md#planetaryproce
    * Hide the error message (effectively resetting the error state of the login form) when clicked.
 2. `Username / Password -> GetText  -> Get Planetary Processing Instance / To String (Text) ->  Connect`
    * Call the [Connect](unreal.md#planetaryprocessing-class-1) function on the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) instance with the username and password from the login form.
+
+
 
 #### Error Handling
 
@@ -290,6 +340,27 @@ This is a simple login widget which calls the [Connect](unreal.md#planetaryproce
 
 
 
+### ChunkActor Class
+
+#### Properties
+
+| Name      | Type                 | Description                                |
+| --------- | -------------------- | ------------------------------------------ |
+| Chunk     | UChunk\*             | The chunk associated with this actor.      |
+| OnUpdated | FOnChunkUpdatedEvent | Delegate called when the chunk is updated. |
+| OnRemoved | FOnChunkRemovedEvent | Delegate called when the chunk is removed. |
+
+#### Functions
+
+| Name                          | Parameters       | Return Type | Description                                                                                                                                                                        |
+| ----------------------------- | ---------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SetChunk                      | UChunk\* InChunk | void        | Sets the chunk for this actor.                                                                                                                                                     |
+| SetActorLocationToChunkCoords | None             | void        | Converts the Planetary Processing X, Y and Z coordinates of the associated Chunk into a Vector in the Unreal Engine coordinate system and sets the Actor's location to this Vector |
+
+***
+
+
+
 ### MessageData Class
 
 #### Functions
@@ -328,7 +399,9 @@ This is a simple login widget which calls the [Connect](unreal.md#planetaryproce
 | PlanetaryProcessingInstance | Planetary Processing Object Reference       | Reference to the Planetary Processing singleton.                                                                                                                                     |
 | LoginWidgetInstance         | PP Example Login Object Reference           | Stores a reference to the Login Widget when it is shown.                                                                                                                             |
 | LocationMessage             | Map\<string: Message Data Object Reference> | A message to be used in a call to **SendMessage**.                                                                                                                                   |
-| EntityMap                   | Map\<string: Entity Actor Class Reference>  | Used to map Entity types to the Entity Actor they should spawn. The default values for this variable map both _cat_ and _tree_ to the **PP\_ExampleEntityActor** as a demonstration. |
+| EntityMap                   | Map\<string: Entity Actor Class Reference>  | Used to map Entity types to the Entity Actor they should spawn. The default values for this variable map both 'cat' and 'tree' to the **PP\_ExampleEntityActor** as a demonstration. |
+| ChunkMap                    | Map\<string: Chunk Actor Class Reference>   | Used to defined the Chunk Actor for chunks. By default this map is blank, but can be initialised using the key 'chunk'.                                                              |
+| ChunkSize                   | int32                                       | Defines the chunk size on the clientside. Must be the same as on the game server.                                                                                                    |
 
 
 

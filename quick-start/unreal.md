@@ -57,7 +57,7 @@ Navigate to your game controller. In the third person template this is BP\_Third
 
 <figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
-## Creating entities:
+## Creating Entities
 
 Entities populate your game world. Every Entity has a ‘Type’. These Entity Types are defined in the backend code downloaded from your game repository.
 
@@ -77,7 +77,7 @@ Open this blueprint and make some edits of your choice. In this example we only 
 
 <figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
-Register this new entity by going to PP\_ExamplePlayerController in the Plugins folder and selecting EntityMap in the Variables section. Add an element called tree and set the blueprint to our new tree blueprint. Note that the element name must be the same as a lua Entity Type in the backend ('tree' to match 'tree.lua').
+Register this new entity by going to PP\_ExamplePlayerController in the Plugins folder and selecting EntityMap in the Variables section. Add an element called 'tree' and set the blueprint to our new Tree blueprint. Note that the element name must be the same as a lua Entity Type in the backend ('tree' to match 'tree.lua').
 
 <figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -86,6 +86,30 @@ We can follow the same process to make a blueprint for the cat entity if we so w
 <figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 Any props, actors, terrain and other similar entities that you want to be shared between players must be setup as an entity, like we did with the tree.
+
+
+
+## (Optional) Creating Chunks
+
+Chunks are the segments your game world is divided into. They do not need a physical representation in your game but you may choose to use them for storing data about the world, such as information about terrain.
+
+Like for our entity, we can make a blueprint for our chunk. Go to /All/Game/ThirdPerson/Blueprints and create a new blueprint class. Search for and select PP\_ExampleChunkActor. Name this blueprint 'Chunk'.
+
+<figure><img src="../.gitbook/assets/CreateChunkBlueprint.png" alt=""><figcaption></figcaption></figure>
+
+Open this blueprint and make some edits of your choice. Most of the time chunks will not need a mesh, since they act primarily as a data store.&#x20;
+
+Initially however, to better visualise the world scale, set the static mesh to a Pillar\_50x500 and the material to M\_Statue. We will also increase the scale to 20 in the Z direction.&#x20;
+
+<figure><img src="../.gitbook/assets/ChunkBlueprintMesh (1).png" alt=""><figcaption></figcaption></figure>
+
+Register the chunk blueprint by going to PP\_ExamplePlayerController in the Plugins folder and selecting ChunkMap in the Variables section. Add an element called 'chunk' and set the blueprint to our new 'Chunk' blueprint.&#x20;
+
+Also select ChunkSize from the Variables section and set its value. It should be the same as the Chunk Size of your [Planetary Processing game](unreal.md#create-a-planetary-processing-game) (eg. 6400).
+
+<figure><img src="../.gitbook/assets/ChunkMapAndSize (1).png" alt=""><figcaption></figcaption></figure>
+
+
 
 ## Editing your backend code
 
