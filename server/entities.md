@@ -68,7 +68,7 @@ The `msg` argument supplied to this function is defined as follows:
 
 ## Entity Messaging
 
-Messages are sent using either [`api.entity.message()`](entities.md#entity-api) or by the [Client](entities.md#message). They are received by an entity's [`message`](entities.md#message) function.
+Messages between entities are sent using [`api.entity.Message()`](entities.md#entity-api). They are received by an entity's [`message`](entities.md#message) function.
 
 For example, sending a message to a particular entity each tick would look like:
 
@@ -87,7 +87,21 @@ local function message(self, msg)
 end
 ```
 
-Messages sent from the client will always be received by the corresponding player entity, in the [`message`](entities.md#message-1) function of the `player.lua` file.
+
+
+## Client Messaging
+
+Messages can be sent manually from the [Client](entities.md#message) to the game server, using a message function in the [SDK](broken-reference). These will always be received by the corresponding player entity, in the [`message`](entities.md#message-1) function of the `player.lua` file.
+
+<figure><img src="../.gitbook/assets/ClientToServer.png" alt=""><figcaption></figcaption></figure>
+
+Messages are sent to every client automatically every tick, syncing the clientside entities' data fields with those of the serverside [Entity](entities.md#fields).&#x20;
+
+<figure><img src="../.gitbook/assets/AutoServerToClient2.png" alt=""><figcaption></figcaption></figure>
+
+Messages can be manually sent to a specific player client using [`api.client.Message()`](../api-reference/client-api/message.md). These messages are received by the [SDK's](broken-reference) server-to-client messaging function.
+
+<figure><img src="../.gitbook/assets/ServerToClient.png" alt=""><figcaption></figcaption></figure>
 
 
 

@@ -8,6 +8,8 @@ Sends a message to a player client.
 
 This sends a manual message from the server to the client of a player, via that player's serverside entity.
 
+These messages can be received by the clientside SDK's server-to-client messaging function.
+
 
 
 Parameters:
