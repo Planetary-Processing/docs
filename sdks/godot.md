@@ -58,9 +58,12 @@ To configure your game, you must fill in the fields in the inspector:
 * **Chunk Scene** - (Optional) The scene representing chunk storage in the world.
 * **Scenes** - An array of scenes with each element representing a different entity in your game.
 * **Game ID** - The ID of your game from the [web panel](https://panel.planetaryprocessing.io/games), for Godot to connect to.
+* **Server to Client Node** - A Node which receives manual messages from the game [server to the client](godot.md#server-to-client-messaging).
 * **Add Csproj Reference** - If you have already added the "Planetary" reference to your ._csproj_ file, then the **Add Csproj Reference** button will not be visible. If it is present, you can click the button to have the plugin automatically add the reference to your _.csproj_ file.
 
-<figure><img src="../.gitbook/assets/image (47).png" alt="" width="338"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/PPRootNode (2).png" alt="" width="296"><figcaption></figcaption></figure>
+
+
 
 ### PPEntityNode
 
@@ -68,7 +71,7 @@ The Planetary Processing Entity Node ([PPEntityNode](godot.md#ppentitynode-1)) d
 
 With the [PPEntityNode ](godot.md#ppentitynode-1)selected, you will be able to edit the following in your inspector:&#x20;
 
-* **Type** - The type field should correlate with whichever server side [Entity Type](../server/entities.md#types-and-behaviour-scripting) this scene is intended to represent, for example 'cat'.
+* **Type** - The type field should correlate with whichever server side [Entity Type](../server/entities.md#types-and-behaviour-scripting) this scene is intended to represent, for example 'cat' or 'player'.
 
 <figure><img src="../.gitbook/assets/sdk_godot_ppentity (3).png" alt=""><figcaption></figcaption></figure>
 
@@ -83,6 +86,8 @@ With the [PPChunkNode ](godot.md#ppchunknode-1)selected, you will be able to edi
 * **Type** - The type field should be 'chunk'.
 
 <figure><img src="../.gitbook/assets/sdk_godot_ppchunk (2).png" alt=""><figcaption></figcaption></figure>
+
+
 
 ## Signals and Messaging
 
@@ -207,6 +212,19 @@ end
 
 
 
+## Server To Client Messaging
+
+The [PPEntityNode](godot.md#ppentitynode-1) automatically receives and syncs all [Entity](../server/entities.md) data from the game world.
+
+Messages can be manually sent to a specific client using [`api.client.Message()`](../api-reference/client-api/message.md). These message can be received by a designated [Server To Client Node](godot.md#pprootnode). This Node needs a custom script, with a function named [`server_to_client`](godot.md#custom-scripts), which receives the server message as a parameter.
+
+```gdscript
+func server_to_client(message):
+    print(message)
+```
+
+
+
 ## API
 
 Below are reference tables of the API available within Godot's environment.
@@ -253,6 +271,8 @@ pp_root_node.authenticate_player("", "")
 | `new_chunk`         | <p><code>id: string</code></p><p><code>data: dictionary</code></p>  | Fired when a new chunk is spawned in the server side game simulation                                                      |
 | `remove_chunk`      | `id: string`                                                        | Fired when a chunk is removed from the server side game simulation                                                        |
 
+***
+
 
 
 ### PPEntityNode
@@ -267,9 +287,22 @@ pp_root_node.authenticate_player("", "")
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `state_changed` | <p><code>state: dictionary({</code><br>    <code>x: number</code><br>    <code>y: number</code><br>    <code>z: number</code><br>    <code>data: dictionary</code></p><p>    <code>type: string</code><br><code>})</code></p> | <p>Fired each frame when the entity is still present in the simulation. Exposes the entity's coordinates, data table, and type. <br><br><strong>NOTE Planetary Processing uses 'y' for depth in 3 dimensional games, and 'z' for height, so this will need translating if your are running a 3D game</strong></p> |
 
+***
+
 
 
 ### PPChunkNode
 
+#### **Variables**
+
 <table><thead><tr><th>Name</th><th valign="middle">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>chunk_id</code></td><td valign="middle"><code>string</code></td><td>A unique identifier for the chunk instance in the game world</td></tr><tr><td><code>type</code></td><td valign="middle"><code>string</code></td><td>This should be 'chunk'. The value for this field is initially set based on the name of the root node of the current scene.</td></tr></tbody></table>
 
+***
+
+
+
+### Custom Scripts
+
+#### **Methods**
+
+<table><thead><tr><th>Name</th><th valign="middle">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>server_to_client</code></td><td valign="middle"><code>Dictionary(String, Variant)</code></td><td>Receives manual messages from the server. Must be assigned to a Node in the PPRootNode inspector.</td></tr></tbody></table>
