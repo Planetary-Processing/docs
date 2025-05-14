@@ -80,7 +80,21 @@ end
 You can call the [`sdk.message`](love.md#sdk-object-1) function to send a message to the server. This message will be received by the `player.lua` file's [`message`](../server/entities.md#message) function on the server.
 
 ```lua
-sdk.messsage({x=1, y=-1})
+sdk.message({x=1, y=-1})
+```
+
+
+
+### [sdk.server\_to\_client](love.md#sdk-object-1)
+
+* Receive manual server messages
+
+The [`sdk.server_to_client`](love.md#sdk-object-1) variable can store a function. This function triggers when the client receives  a message manually sent from the server by [`api.client.Message()`](../api-reference/client-api/message.md).
+
+```lua
+sdk.server_to_client = function (message)
+    print(message)
+end
 ```
 
 
@@ -156,11 +170,12 @@ sdk.join()
 
 #### **Variables**
 
-| Variable   | Type                                                                                                                 | Description                                     |
-| ---------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `entities` | <p><code>entities: table({</code></p><p><code>id: string</code><br><code>entity: table</code><br><code>)}</code></p> | List of entities the client can see.            |
-| `chunks`   | <p><code>table: table({</code></p><p><code>id: string</code><br><code>chunk: table</code><br><code>)}</code></p>     | List of chunks the client can see.              |
-| `uuid`     | `string`                                                                                                             | UUID of the player associated with this client. |
+| Variable           | Type                                                                                                                 | Description                                                                                     |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `entities`         | <p><code>entities: table({</code></p><p><code>id: string</code><br><code>entity: table</code><br><code>)}</code></p> | List of entities the client can see.                                                            |
+| `chunks`           | <p><code>table: table({</code></p><p><code>id: string</code><br><code>chunk: table</code><br><code>)}</code></p>     | List of chunks the client can see.                                                              |
+| `uuid`             | `string`                                                                                                             | UUID of the player associated with this client.                                                 |
+| `server_to_client` | `function(table)`                                                                                                    | Function which triggers, when a message is manually sent from the server to this player client. |
 
 #### **Methods**
 
