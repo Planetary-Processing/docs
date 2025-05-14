@@ -6,12 +6,14 @@ Planetary Processing provides a plugin for Unreal Engine 5. The plugin consists 
 
 ### Pre-requisites
 
-* Unreal Engine 5.4+ _<mark style="color:yellow;">(</mark><mark style="color:yellow;">**Note: the update for Unreal Engine 5.5 is still in development. Please use 5.4).**</mark>_&#x20;
+* Unreal Engine 5.4+&#x20;
 * macOS or Windows, the PP Unreal plugin does not currently support Linux.
 
 ### Installation
 
 To install the Planetary Processing plugin, you must first download the plugin files from our website, you will need to be logged into your Planetary Processing account to do so, the link is: [https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar](https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar)
+
+Or use a legacy version: [5.4](https://drive.google.com/drive/folders/1qgiDb0X0n63Lh0JDH5kIcvHy93v7AH-E?usp=drive_link).
 
 You'll need then to extract this and move the contents of the `lib` directory into a directory called `PlanetaryProcessing` in the `Plugins` directory at the root level of your project. You'll need to create the Plugins directory if it does not already exist.
 
@@ -61,6 +63,8 @@ Chunks only have one type, 'chunk'. A subclass of [Chunk Actor](unreal.md#chunk-
 
 The ChunkActor class is intended to have an Chunk associated with it once created, via SetChunk. With this set, the ChunkActor class will automatically broadcast [OnUpdated](unreal.md#pp_exampleentityactor) and [OnRemoved](unreal.md#pp_exampleentityactor) events accordingly, as its associated Chunk is either updated or goes out of range of a Chunkloader.
 
+
+
 ### MessageData Class
 
 The [MessageData](unreal.md#send-player-coordinates-message) class is designed to serve as a flexible container for arbitrary data, akin to JavaScript objects. Its primary purpose is twofold:
@@ -73,6 +77,16 @@ Hence it can be used in [Blueprints](unreal.md#blueprints) to both access data o
 If you want to handle serialization and deserialization yourself, without [MessageData](unreal.md#send-player-coordinates-message), the original JSON of an [Entity](unreal.md#entity-class-1) is available in the [DataJSON](unreal.md#entity-class-1) property of that class. Raw JSON messages can also be sent using the [SendJSONMessage](unreal.md#planetaryprocessing-class-1) function of the [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) class.
 
 <figure><img src="../.gitbook/assets/unreal_sdk_MessageData.png" alt=""><figcaption></figcaption></figure>
+
+
+
+### Event Class
+
+The [Event](unreal.md#server-to-client-event-messaging-example) Class handles manual server-to-client messaging. Every tick, if a message has been sent from the server using [`api.client.Message()`](../api-reference/client-api/message.md), the Unreal custom event [OnEventReceived\_Event](unreal.md#server-to-client-event-messaging-example) is triggered.&#x20;
+
+Use this to handle data sent to a specific player client, as opposed to entity data which is sent to all player clients.
+
+<figure><img src="../.gitbook/assets/image (50).png" alt="" width="349"><figcaption></figcaption></figure>
 
 
 
@@ -186,6 +200,17 @@ If the connection fails, cease processing the world and return to the authentica
    * Uses the implicit conversion of a boolean to [MessageData](unreal.md#messagedata-class-1) as the value for a new key of _threedee_ in our map.
 5. `Add / Planetary Processing Instance / Set -> Send Message`
    * Calls [SendMessage](unreal.md#functions) on our [PlanetaryProcessing](unreal.md#planetaryprocessing-class-1) instance with our message map as an argument.
+
+
+
+#### Server to Client Event Messaging (example)
+
+<figure><img src="../.gitbook/assets/ServerToClient (1).png" alt=""><figcaption><p>Receive Server to Client Message</p></figcaption></figure>
+
+1. `OnEventReceived_Event (Custom Event) -> Get Map`
+   * Get a message map sent to this player client.
+2. `Find -> Get String -> Print String`
+   * Use a key to find a specific value in the map, and define what data type that value is expected to be. Then print the value.
 
 
 
@@ -384,9 +409,15 @@ This is a simple login widget which calls the [Connect](unreal.md#planetaryproce
 | static SerializeMapToJson         | const TMap\<FString, UMessageData\*>& Map   | FString                        | Serializes a map of UMessageData to JSON format.                                    |
 | DeserializeFromJson               | const FString& JsonString                   | void                           | Deserializes JSON string into message data.                                         |
 
-
-
 ***
+
+
+
+### Event Class
+
+| Name       | Type                            | Description                                 |
+| ---------- | ------------------------------- | ------------------------------------------- |
+| Event Data | TMap\<FString, UMessageData\*>  | A manual message received from the server.  |
 
 
 
@@ -394,14 +425,14 @@ This is a simple login widget which calls the [Connect](unreal.md#planetaryproce
 
 #### Variables
 
-| Name                        | Type                                        | Description                                                                                                                                                                          |
-| --------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| PlanetaryProcessingInstance | Planetary Processing Object Reference       | Reference to the Planetary Processing singleton.                                                                                                                                     |
-| LoginWidgetInstance         | PP Example Login Object Reference           | Stores a reference to the Login Widget when it is shown.                                                                                                                             |
-| LocationMessage             | Map\<string: Message Data Object Reference> | A message to be used in a call to **SendMessage**.                                                                                                                                   |
-| EntityMap                   | Map\<string: Entity Actor Class Reference>  | Used to map Entity types to the Entity Actor they should spawn. The default values for this variable map both 'cat' and 'tree' to the **PP\_ExampleEntityActor** as a demonstration. |
-| ChunkMap                    | Map\<string: Chunk Actor Class Reference>   | Used to defined the Chunk Actor for chunks. By default this map is blank, but can be initialised using the key 'chunk'.                                                              |
-| ChunkSize                   | int32                                       | Defines the chunk size on the clientside. Must be the same as on the game server.                                                                                                    |
+| Name                        | Type                                          | Description                                                                                                                                                                          |
+| --------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| PlanetaryProcessingInstance | Planetary Processing Object Reference         | Reference to the Planetary Processing singleton.                                                                                                                                     |
+| LoginWidgetInstance         | PP Example Login Object Reference             | Stores a reference to the Login Widget when it is shown.                                                                                                                             |
+| LocationMessage             | TMap\<FString: Message Data Object Reference> | A message to be used in a call to **SendMessage**.                                                                                                                                   |
+| EntityMap                   | TMap\<FString: Entity Actor Class Reference>  | Used to map Entity types to the Entity Actor they should spawn. The default values for this variable map both 'cat' and 'tree' to the **PP\_ExampleEntityActor** as a demonstration. |
+| ChunkMap                    | TMap\<FString: Chunk Actor Class Reference>   | Used to defined the Chunk Actor for chunks. By default this map is blank, but can be initialised using the key 'chunk'.                                                              |
+| ChunkSize                   | int32                                         | Defines the chunk size on the clientside. Must be the same as on the game server.                                                                                                    |
 
 
 

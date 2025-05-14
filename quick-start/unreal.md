@@ -4,7 +4,7 @@ Follow these steps to quickly set up and start using Planetary Processing with y
 
 ## Unreal Engine Version
 
-We recommend using the latest Unreal Engine 5 version. _<mark style="color:yellow;">(</mark><mark style="color:yellow;">**Note: the update for Unreal Engine 5.5 is still in development. Please use 5.4).**</mark>_ If you are using an older version, you must use at least Unreal Engine 5.4+&#x20;
+We recommend using the latest Unreal Engine 5 version. If you are using an older version, you must use at least Unreal Engine 5.4+&#x20;
 
 ## Operating Systems
 
@@ -36,6 +36,8 @@ Open UE5 and start a new project. For this quickstart we will use the Third Pers
 <figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 You must first download the Planetary Processing plugin files from our website, you will need to be logged into your Planetary Processing account to do so, the link is: [https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar](https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar)
+
+Or use a legacy version: [5.4](https://drive.google.com/drive/folders/1qgiDb0X0n63Lh0JDH5kIcvHy93v7AH-E?usp=drive_link).
 
 You'll need then to extract this and move the contents of the `lib` directory into a directory called `PlanetaryProcessing` in the `Plugins` directory at the root level of your project. You'll need to create the Plugins directory if it does not already exist.
 
