@@ -14,10 +14,10 @@ These messages can be received by the clientside SDK's server-to-client messagin
 
 Parameters:
 
-| Name     | Type     | Description                                                               |
-| -------- | -------- | ------------------------------------------------------------------------- |
-| playerid | `string` | The ID of the player entity, to send the message through.                 |
-| message  | `table`  | The Data being conveyed. Must be a key-value pair table, not array-style. |
+| Name     | Type     | Description                                                                        |
+| -------- | -------- | ---------------------------------------------------------------------------------- |
+| playerid | `string` | The ID of the player entity, to send the message through.                          |
+| message  | `table`  | The Data being conveyed. Must be a key-value pair table, not an array-style table. |
 
 
 
