@@ -184,7 +184,7 @@ Messages can be manually sent to a specific client from the game server using [`
 ```lua
 function on_message(self, message_id, message, sender)
 	if message_id == hash("pp_server_to_client") then
-		print(message)
+		print(message.message)
 	end
 end
 ```
