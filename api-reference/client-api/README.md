@@ -1,5 +1,5 @@
 # Client API
 
-`api.entity`
+`api.client`
 
-{% include "../../.gitbook/includes/entity-api-table.md" %}
+{% include "../../.gitbook/includes/client-api-table.md" %}

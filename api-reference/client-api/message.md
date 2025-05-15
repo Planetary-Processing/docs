@@ -42,8 +42,8 @@ local function message(self, msg)
     end
 end
 
--- Receive a typical move message sent from the client to the game server.
+-- Receive a typical move message, sent from the client to the game server.
 -- Reconstruct the same move message.
--- Send the move message back from the server to the client.
+-- Send the move message back, from the server to the client.
 ```
 
