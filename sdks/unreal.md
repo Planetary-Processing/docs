@@ -61,7 +61,7 @@ Chunks only have one type, 'chunk'. A subclass of [Chunk Actor](unreal.md#chunk-
 
 <figure><img src="../.gitbook/assets/SetChunk.png" alt=""><figcaption></figcaption></figure>
 
-The ChunkActor class is intended to have an Chunk associated with it once created, via SetChunk. With this set, the ChunkActor class will automatically broadcast [OnUpdated](unreal.md#pp_exampleentityactor) and [OnRemoved](unreal.md#pp_exampleentityactor) events accordingly, as its associated Chunk is either updated or goes out of range of a Chunkloader.
+The [ChunkActor](unreal.md#chunk-actor-spawning) class is intended to have an [Chunk](../server/chunks.md) associated with it once created, via SetChunk. With this set, the [ChunkActor](unreal.md#chunk-actor-spawning) class will automatically broadcast [OnUpdated](unreal.md#pp_examplechunkactor) and [OnRemoved](unreal.md#pp_examplechunkactor) events accordingly, as its associated Chunk is either updated or goes out of range of a Chunkloader.
 
 
 
