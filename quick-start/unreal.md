@@ -87,7 +87,19 @@ We can follow the same process to make a blueprint for the cat entity if we so w
 
 <figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
-Any props, actors, terrain and other similar entities that you want to be shared between players must be setup as an entity, like we did with the tree.
+Any props, actors, terrain and other similar entities that you want to be shared between players must be setup as an entity, like we did with the tree.&#x20;
+
+
+
+## Creating Players
+
+Other players are also considered to be entities in your main player character's world. They have the entity type 'player'.&#x20;
+
+However the main player character also shares the type 'player'. So a player actor will automatically be spawned, even though we are already using the BP\_ThirdPersonCharacter.
+
+Create the player entity blueprint, in the same way as other entities. Then open PP\_ExamplePlayerController and go to the Entity Actor Spawning section. Get the ID of the new entity being spawned to check if it matches the UUID of the main player character connection. If it does, set its actor's mesh visibility to nothing. This will hide the main player character's entity, without losing access to its entity data from the server.
+
+<figure><img src="../.gitbook/assets/HidePlayerEntity (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
