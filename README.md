@@ -39,3 +39,7 @@ Planetary Processing games can have multiple separate dimensions simulated in pa
 By default, there is only one dimension with dimension ID of the empty string (`""`), but new dimensions can be created and destroyed with API calls.
 
 <figure><img src=".gitbook/assets/Dimensions (1).png" alt="" width="563"><figcaption></figcaption></figure>
+
+## Lua
+
+We use Lua for our server-side scripting, if you're new to Lua we recommend giving [this excellent guide](https://learnxinyminutes.com/lua/) a read!
