@@ -48,7 +48,7 @@ The Master Component represents the main connection point to PP's servers and pe
 
 Factories to produce [Entities](defold.md#entity-component) and [Chunks](defold.md#chunk-component) must be attached to the same GameObject as the Master Component. Entity factories should be named after the[ Entity Type](../server/entities.md#types-and-behaviour-scripting) in the format `typenamefactory`  as in the example below for the types `cat`, `player` and `tree`.
 
-<figure><img src="../.gitbook/assets/image (2).png" alt="" width="235"><figcaption><p>Defold Master</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt="" width="235"><figcaption><p>Defold Master</p></figcaption></figure>
 
 Within the Master Component you will need to set the URL of the local player GameObject, the [Chunk Size](https://panel.planetaryprocessing.io/games), and the Planetary Processing [Game ID](https://panel.planetaryprocessing.io/games).
 
@@ -79,7 +79,7 @@ Like the entity component, if you wish to represent chunk data in the Defold cli
 
 Chunks are static and invisible. A chunk object will spawn at the origin of each loaded chunk. Chunk objects are optional and you can create a game without them if you wish.
 
-<figure><img src="../.gitbook/assets/image.png" alt="" width="250"><figcaption><p>Defold Chunk Component</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt="" width="250"><figcaption><p>Defold Chunk Component</p></figcaption></figure>
 
 
 

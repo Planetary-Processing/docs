@@ -40,17 +40,29 @@ The Unity SDK provides three new components which can be added to GameObjects. T
 
 [PPMaster](unity.md#ppmaster) represents the main connection point to PP's servers and performs the heavy lifting and orchestration of the SDK. You must have a GameObject in your game which has the Master Component.
 
-To configure the Master Component you will need to set some references to GameObjects and Prefabs, in the [PPMaster](unity.md#ppmaster) inspector window.&#x20;
+To configure the Master Component you will need to set some references to GameObjects and Prefabs or Scenes, in the [PPMaster](unity.md#ppmaster) inspector window.&#x20;
+
+
+
+Essential Variables:
 
 * **Player** - Your local player will be represented by a GameObject.
-* **Chunk Prefab** - A Prefab with the [Chunk Component](unity.md#chunk-component) to manage Chunks.
-* **Prefabs** - Each Prefab created with the the [Entity Component ](unity.md#entity-component)must be added to the Entity 'Prefabs' list in the inspector.
+* **Prefabs** - Each Prefab created with the the [Entity Component](unity.md#entity-component) must be added to the Entity 'Prefabs' list in the inspector.
 * **Game ID** - The ID of your game from the [web panel](https://panel.planetaryprocessing.io/games), for Unity to connect to.
+
+
+
+Optional Variables:
+
+* **Use Scene Player -** Checkbox for whether to use a GameObject or Scene. GameObject by default
+* **Scene Player Name -** The string name of the scene containing your playe GameObject and PPEntity. Only required if Use Scene Player is enabled. &#x20;
+* **Chunk Prefab** - A Prefab with the [Chunk Component](unity.md#chunk-component) to manage Chunks.
+* **Scenes -** If you would rather arrange your entities as scenes, each Scene created with the the [Entity Component ](unity.md#entity-component)must be added to the Entity 'Scenes' list in the inspector.
 * **Chunk Size** - The size of chunks in your game, defined in the [web panel](https://panel.planetaryprocessing.io/games) game settings.
 * **Two Dimensions** - Automatically adjusts entity positions to use Unity's 2D orientation.
 * **Server To Client Object** - A GameObject which receives manual messages from the game [server to the client](unity.md#server-to-client-messaging).
 
-<figure><img src="../.gitbook/assets/PPMasterComponent (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Entity Component
 
@@ -81,6 +93,18 @@ Messages can be manually sent to a specific client using [`api.client.Message()`
         message.TryGetValue("key", out object value);
     }
 </code></pre>
+
+
+
+## Using Scenes
+
+By default we recommend representing your player with a GameObject in the main scene and Entities with Prefabs spawned in the main scene. However, you may wish to represent your player and entities as Unity Scenes.&#x20;
+
+To do so for the player, you must enable '[**Use Scene Player**](unity.md#master-component)**'** and specify the scene name in '[**Scene Player Name**](unity.md#master-component)**'.** The default '[Player](unity.md#master-component)' field can be left blank, if '[**Use Scene Player**](unity.md#master-component)**'** is enabled.&#x20;
+
+Non-player entities can also be scenes. You can add the scene name for each in the '[**Scenes**](unity.md#master-component)**'** list. The scene name does not have to match the [Entity Type](../server/entities.md#types-and-behaviour-scripting), though we recommend you do for project consistency. An Entity Scene should contain a GameObject with a [PPEntity](unity.md#entity-component) component at the top level of the hierarchy, just as with an Entity Prefab.&#x20;
+
+On the serverside, an Entity Scene functions in the same way as an Entity Prefab. Entity Scenes can be useful for structuring larger games on the Unity client.
 
 
 

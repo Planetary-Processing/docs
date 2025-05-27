@@ -16,4 +16,4 @@ In order to use your API key, you'll need to provide it in requests to our HTTP 
 
 In order to reset your API key (or set it for the first time), you will need to go to the Admin tab of your [game settings](https://panel.planetaryprocessing.io/games) and click "Reset API Key".
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
