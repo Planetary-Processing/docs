@@ -40,7 +40,9 @@ The most recent log entry will appear at the bottom of the table. While a log gr
 
 ### Messages
 
-Messages contain any information sent to logs using `print()` function. Where possible variables will be printed in a pretty format, for example printed entities will display their individual field values, space-separated, starting with their ID; X, Y, Z positions; Type; and Data table.
+Messages contain any information sent to logs using `print()` function. Because the logging process is asynchronous, messages will not always arrive in the logs in the exact order they are sent.\
+\
+Where possible variables will be printed in a pretty format, for example printed entities will display their individual field values, space-separated, starting with their ID; X, Y, Z positions; Type; and Data table.
 
 Most tables nested within other tables will only show their memory address rather than being prettified. Very large numbers will be displayed using scientific 'e' notation.&#x20;
 
