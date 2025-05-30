@@ -35,7 +35,7 @@ Example:
 Create a new cat entity with custom data, whenever a chunk is loaded or reloaded.
 
 <pre class="language-lua"><code class="lang-lua">-- init.lua
-local function init()
+function init()
     local cat_x = chunk.X * chunk.Size
     local cat_y = chunk.Y * chunk.Size   
     
