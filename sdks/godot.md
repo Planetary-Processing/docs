@@ -214,9 +214,9 @@ end
 
 ## Server To Client Messaging
 
-The [PPEntityNode](godot.md#ppentitynode-1) automatically receives and syncs all [Entity](../server/entities.md) data from the game world.
+The [PPEntityNode](godot.md#ppentitynode-1) automatically receives and syncs all [Entity](../server/entities.md) data from the game world. Any client can access Entity data passed from the server, using the `state_changed` signal.
 
-Messages can be manually sent to a specific client using [`api.client.Message()`](../api-reference/client-api/message.md). These message can be received by a designated [Server To Client Node](godot.md#pprootnode). This Node needs a custom script, with a function named [`server_to_client`](godot.md#custom-scripts), which receives the server message as a parameter.
+Alternatively, messages can be manually sent to a specific client using [`api.client.Message()`](../api-reference/client-api/message.md). These message can be received by a designated [Server To Client Node](godot.md#pprootnode). This Node needs a custom script, with a function named [`server_to_client`](godot.md#custom-scripts), which receives the server message as a parameter.
 
 ```gdscript
 func server_to_client(message):

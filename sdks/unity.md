@@ -84,9 +84,9 @@ Please note that the `player` [type](../server/entities.md#types-and-behaviour-s
 
 ## Server To Client Messaging
 
-The [PPEntity](unity.md#ppentity) component automatically receives and syncs all [Entity](../server/entities.md) data from the game world.
+The [PPEntity](unity.md#ppentity) component automatically receives and syncs all [Entity](../server/entities.md) data from the game world. Any client can access Entity data passed from the server, using [`GetServerData()`](unity.md#ppmaster).
 
-Messages can be manually sent to a specific client using [`api.client.Message()`](../api-reference/client-api/message.md). These message can be received by a designated [Server To Client Object](unity.md#master-component). This GameObject needs a custom script component, with a function named [`ServerToClient`](unity.md#custom-scripts), which receives the server message as a parameter.
+Alternatively, messages can be manually sent to a specific client using [`api.client.Message()`](../api-reference/client-api/message.md). These message can be received by a designated [Server To Client Object](unity.md#master-component). This GameObject needs a custom script component, with a function named [`ServerToClient`](unity.md#custom-scripts), which receives the server message as a parameter.
 
 <pre class="language-csharp"><code class="lang-csharp"><strong>void ServerToClient(Dictionary&#x3C;string, object> message)
 </strong>    {

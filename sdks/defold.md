@@ -139,7 +139,7 @@ end
 
 ### [pp\_update](defold.md#pp-entity) - (Receive server messages)
 
-The Planetary Processing SDK sends and receives several different messages and accepts several too. Each time an [entity](defold.md#pp-entity) or [chunk](defold.md#pp-chunk) updates its position or data, a message with ID `hash("pp_update")` is sent to that entity's GameObject and the [listener](defold.md#listener).
+Each time an [entity](defold.md#pp-entity) or [chunk](defold.md#pp-chunk) updates its position or data, a message with ID `hash("pp_update")` is sent to that entity's GameObject and the [listener](defold.md#listener).
 
 This message is of the following format: \
 (the same format is also used for [`pp_spawn`](defold.md#listener) and [`pp_delete`](defold.md#listener) messages)
