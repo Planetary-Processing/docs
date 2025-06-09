@@ -28,7 +28,7 @@ Send messages to nearby cat and tree entities.
 local function update(self, dt)    
     local entity_list = self:GetNearbyEntities(5)
     
-    for id, entity in pairs(entity_list) do
+    for index, entity in pairs(entity_list) do
         local message = {
             words = "Hello "..entity.Type.."!",
             action = "pet",
