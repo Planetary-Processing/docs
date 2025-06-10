@@ -62,7 +62,7 @@ Optional Variables:
 * **Two Dimensions** - Automatically adjusts entity positions to use Unity's 2D orientation.
 * **Server To Client Object** - A GameObject which receives manual messages from the game [server to the client](unity.md#server-to-client-messaging).
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Entity Component
 

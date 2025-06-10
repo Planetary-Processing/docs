@@ -33,7 +33,7 @@ git clone https://git.planetaryprocessing.io/git/aBcDE/my-planetary-processing-g
 
 Open UE5 and start a new project. For this quickstart we will use the Third Person template and make a blueprint project. You may use any tempate of your choice.
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 You must first download the Planetary Processing plugin files from our website, you will need to be logged into your Planetary Processing account to do so, the link is: [https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar](https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar)
 
@@ -43,17 +43,17 @@ You'll need then to extract this and move the contents of the `lib` directory in
 
 In the UE5 editor, go to Edit and select Plugins. Search for and enable Planetary Processing. If it does not appear at first, try restarting the UE5 editor.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 With the plugin enabled, you should be able to see the Planetary Processing plugin content in the Content Browser. Make sure you have 'Show plugin Content' ticked in the Content Browser Settings.
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Using the Planetary Processing Plugin
 
 First navigate to the Planetary Processing Content folder in Plugins and open the PP\_ExamplePlayerController blueprint. Find the Event BeginPlay chain at the top of the blueprint and edit the Init function to have the same Game ID as your Planetary Processing panel game. Remember to always compile and save before closing.
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Navigate to your game controller. In the third person template this is BP\_ThirdPersonGameMode and can be found in All/Game/ThirdPerson/Blueprints. Open it and set the Player Controller Class to PP\_ExamplePlayerController.&#x20;
 

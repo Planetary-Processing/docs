@@ -10,15 +10,27 @@ The Defold SDK can be installed by navigating to your `game.project` file, then 
 
 You need to add the following dependencies:
 
-* [The Planetary Processing SDK](https://github.com/Planetary-Processing/defold-sdk): `https://github.com/Planetary-Processing/defold-sdk/archive/master.zip`
-* [Defold Websocket](https://github.com/defold/extension-websocket), which we depend on: `https://github.com/defold/extension-websocket/archive/master.zip`
-* [Defold Protobuf](https://github.com/Melsoft-Games/defold-protobuf), which we depend on: `https://github.com/Melsoft-Games/defold-protobuf/archive/master.zip`
+*   [The Planetary Processing SDK](https://github.com/Planetary-Processing/defold-sdk):&#x20;
 
-![Defold dependencies](https://planetaryprocessing.io/static/img/defold_dependencies.png)
+    ```
+    https://github.com/Planetary-Processing/defold-sdk/archive/master.zip
+    ```
+*   [Defold Websocket](https://github.com/defold/extension-websocket), which we depend on:&#x20;
+
+    ```
+    https://github.com/defold/extension-websocket/archive/master.zip
+    ```
+*   [Defold Protobuf](https://github.com/Melsoft-Games/defold-protobuf), which we depend on:&#x20;
+
+    ```
+    https://github.com/Melsoft-Games/defold-protobuf/archive/master.zip
+    ```
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>List of Defold Dependencies</p></figcaption></figure>
 
 You need then to fetch dependencies, this is done with the 'Fetch Libraries' button under 'Project' in the topbar.
 
-![Defold fetch libraries](https://planetaryprocessing.io/static/img/defold_fetch.png)
+![Defold Fetch Libraries](https://planetaryprocessing.io/static/img/defold_fetch.png)
 
 The Defold Websocket library has additional [configuration settings](https://github.com/defold/extension-websocket/blob/master/docs/index.md#configuration). Check there is a 'Websocket' tab in your game.project file, with the 'Debug' and 'Socket Timeout' settings.
 
@@ -31,6 +43,8 @@ If these settings are missing, edit your `game.project` file in a text editor an
 debug = 1
 socket_timeout = 10000000
 ```
+
+
 
 ### Example Project
 
@@ -48,7 +62,7 @@ The Master Component represents the main connection point to PP's servers and pe
 
 Factories to produce [Entities](defold.md#entity-component) and [Chunks](defold.md#chunk-component) must be attached to the same GameObject as the Master Component. Entity factories should be named after the[ Entity Type](../server/entities.md#types-and-behaviour-scripting) in the format `typenamefactory`  as in the example below for the types `cat`, `player` and `tree`.
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt="" width="235"><figcaption><p>Defold Master</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt="" width="235"><figcaption><p>Defold Master</p></figcaption></figure>
 
 Within the Master Component you will need to set the URL of the local player GameObject, the [Chunk Size](https://panel.planetaryprocessing.io/games), and the Planetary Processing [Game ID](https://panel.planetaryprocessing.io/games).
 
@@ -79,7 +93,7 @@ Like the entity component, if you wish to represent chunk data in the Defold cli
 
 Chunks are static and invisible. A chunk object will spawn at the origin of each loaded chunk. Chunk objects are optional and you can create a game without them if you wish.
 
-<figure><img src="../.gitbook/assets/image (2).png" alt="" width="250"><figcaption><p>Defold Chunk Component</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt="" width="250"><figcaption><p>Defold Chunk Component</p></figcaption></figure>
 
 
 
