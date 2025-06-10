@@ -43,7 +43,7 @@ You'll need then to extract this and move the contents of the `lib` directory in
 
 In the UE5 editor, go to Edit and select Plugins. Search for and enable Planetary Processing. If it does not appear at first, try restarting the UE5 editor.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 With the plugin enabled, you should be able to see the Planetary Processing plugin content in the Content Browser. Make sure you have 'Show plugin Content' ticked in the Content Browser Settings.
 

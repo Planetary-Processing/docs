@@ -54,25 +54,36 @@ Essential Variables:
 
 Optional Variables:
 
-* <mark style="color:yellow;">**(WIP)**</mark>**&#x20;Use Scene Player -** Checkbox for whether to use a GameObject or Scene. GameObject by default
-* <mark style="color:yellow;">**(WIP)**</mark>**&#x20;Scene Player Name -** The string name of the scene containing your playe GameObject and PPEntity. Only required if Use Scene Player is enabled. &#x20;
+* **Use Scene Player -** By default, the GameObject in the '**Player'** field will be used as the local player. If ticked, the Scene in '**Scene Player Name'** will be used instead.
+* **Scene Player Name -** Only required if '**Use Scene Player**' is enabled. The string name of the scene to act as your player. The scene must contain a GameObject with the [Entity Component](unity.md#entity-component).&#x20;
 * **Chunk Prefab** - A Prefab with the [Chunk Component](unity.md#chunk-component) to manage Chunks.
-* <mark style="color:yellow;">**(WIP)**</mark>**&#x20;Scenes -** If you would rather arrange your entities as scenes, each Scene created with the the [Entity Component ](unity.md#entity-component)must be added to the Entity 'Scenes' list in the inspector.
+* **Scenes -** Like '**Prefabs**', each Entity Scene should be added to the Entity 'Scenes' list in the inspector.  The Scenes must be created containing a top-level GameObject with the [Entity Component](unity.md#entity-component).&#x20;
 * **Chunk Size** - The size of chunks in your game, defined in the [web panel](https://panel.planetaryprocessing.io/games) game settings.
 * **Two Dimensions** - Automatically adjusts entity positions to use Unity's 2D orientation.
 * **Server To Client Object** - A GameObject which receives manual messages from the game [server to the client](unity.md#server-to-client-messaging).
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Entity Component
 
-[PPEntity ](unity.md#ppentity)represents a server-side entity in the game world. You are required to, for every [type ](../server/entities.md#types-and-behaviour-scripting)of entity you wish to display in the Unity client, create a Prefab containing the [PPEntity ](unity.md#ppentity)component.
+[PPEntity ](unity.md#ppentity)represents a server-side entity in the game world. You are required to, for every [type ](../server/entities.md#types-and-behaviour-scripting)of entity you wish to display in the Unity client, create a Prefab or Scene containing the [PPEntity ](unity.md#ppentity)component.
 
 By default, entities' GameObjects will be moved to their server-side position, you can disable this per entity type by un-ticking 'Use Server Position' in the entity component's inspector window. Here you also need to set the entity's [type](../server/entities.md#types-and-behaviour-scripting), which must match the server-side type that this Prefab represents.
 
-Please note that the `player` [type](../server/entities.md#types-and-behaviour-scripting) is needed only for other players, not the one connecting with this client. For the local player, you need to create a separate GameObject (not in a prefab). The local player also requires a PPEntity component, but not a specific [type](../server/entities.md#types-and-behaviour-scripting) definition in the inspector.
+Please note that the `player` [type](../server/entities.md#types-and-behaviour-scripting) is needed only for _other_ players, not the one connecting with this client. For the local player, you need to create a separate GameObject (not in a prefab). The local player also requires a PPEntity component, but not a specific [type](../server/entities.md#types-and-behaviour-scripting) definition in the inspector.
 
-<figure><img src="../.gitbook/assets/unity_sdk_ppentity.png" alt=""><figcaption><p>Unity Entity Component</p></figcaption></figure>
+
+
+Essential Variables:
+
+* **Type** - The type of entity this Prefab/Scene should represent in the game world, matching the appropriate entity\_name.lua file in the serverside code. It should be empty for the local player character.
+
+Optional Variables:
+
+* **Use Server Position** - Enabled by default. If ticked, this type of entity will automatically be moved to its server-side position.
+* **UUID Override** - <mark style="color:yellow;">(Under Development)</mark>
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Unity Entity Component</p></figcaption></figure>
 
 ### Chunk Component
 
@@ -96,15 +107,15 @@ Alternatively, messages can be manually sent to a specific client using [`api.cl
 
 
 
-## <mark style="color:yellow;">**(WIP)**</mark> Using Scenes
+## Using Scenes
 
-By default we recommend representing your player with a GameObject in the main scene and Entities with Prefabs spawned in the main scene. However, you may wish to represent your player and entities as Unity Scenes.&#x20;
+By default, we recommend representing your player with a GameObject in the main scene and Entities with Prefabs. However, you may wish to represent your player and entities as Unity Scenes, for structuring larger games on the Unity client.
 
-To do so for the player, you must enable '[**Use Scene Player**](unity.md#master-component)**'** and specify the scene name in '[**Scene Player Name**](unity.md#master-component)**'.** The default '[Player](unity.md#master-component)' field can be left blank, if '[**Use Scene Player**](unity.md#master-component)**'** is enabled.&#x20;
+To create a player scene, you must enable '[**Use Scene Player**](unity.md#master-component)**'** and specify the scene's name in '[**Scene Player Name**](unity.md#master-component)**'.** The default '[**Player**](unity.md#master-component)' field should be left blank.
 
-Non-player entities can also be scenes. You can add the scene name for each in the '[**Scenes**](unity.md#master-component)**'** list. The scene name does not have to match the [Entity Type](../server/entities.md#types-and-behaviour-scripting), though we recommend you do for project consistency. An Entity Scene should contain a GameObject with a [PPEntity](unity.md#entity-component) component at the top level of the hierarchy, just as with an Entity Prefab.&#x20;
+Regular entities can also be scenes. You can add each Entity Scene's name to the '[**Scenes**](unity.md#master-component)' list. An Entity Scene should contain a GameObject with a [PPEntity](unity.md#entity-component) component at the top level of the hierarchy.&#x20;
 
-On the serverside, an Entity Scene functions in the same way as an Entity Prefab. Entity Scenes can be useful for structuring larger games on the Unity client.
+On the serverside, an Entity Scene functions in the same way as an Entity Prefab. Entities of different types may be a Prefab or a Scene, within the same game. So you may have a Cat Entity Prefab and a Tree Entity Scene, so long as they are each referenced in the appropriate list of the [PPMaster](unity.md#master-component) inspector.
 
 
 
