@@ -54,10 +54,10 @@ Essential Variables:
 
 Optional Variables:
 
-* **Use Scene Player -** Checkbox for whether to use a GameObject or Scene. GameObject by default
-* **Scene Player Name -** The string name of the scene containing your playe GameObject and PPEntity. Only required if Use Scene Player is enabled. &#x20;
+* <mark style="color:yellow;">**(WIP)**</mark>**&#x20;Use Scene Player -** Checkbox for whether to use a GameObject or Scene. GameObject by default
+* <mark style="color:yellow;">**(WIP)**</mark>**&#x20;Scene Player Name -** The string name of the scene containing your playe GameObject and PPEntity. Only required if Use Scene Player is enabled. &#x20;
 * **Chunk Prefab** - A Prefab with the [Chunk Component](unity.md#chunk-component) to manage Chunks.
-* **Scenes -** If you would rather arrange your entities as scenes, each Scene created with the the [Entity Component ](unity.md#entity-component)must be added to the Entity 'Scenes' list in the inspector.
+* <mark style="color:yellow;">**(WIP)**</mark>**&#x20;Scenes -** If you would rather arrange your entities as scenes, each Scene created with the the [Entity Component ](unity.md#entity-component)must be added to the Entity 'Scenes' list in the inspector.
 * **Chunk Size** - The size of chunks in your game, defined in the [web panel](https://panel.planetaryprocessing.io/games) game settings.
 * **Two Dimensions** - Automatically adjusts entity positions to use Unity's 2D orientation.
 * **Server To Client Object** - A GameObject which receives manual messages from the game [server to the client](unity.md#server-to-client-messaging).
@@ -96,7 +96,7 @@ Alternatively, messages can be manually sent to a specific client using [`api.cl
 
 
 
-## Using Scenes
+## <mark style="color:yellow;">**(WIP)**</mark> Using Scenes
 
 By default we recommend representing your player with a GameObject in the main scene and Entities with Prefabs spawned in the main scene. However, you may wish to represent your player and entities as Unity Scenes.&#x20;
 
