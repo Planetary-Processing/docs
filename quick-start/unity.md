@@ -201,6 +201,10 @@ git push
 ## Troubleshooting
 
 If you have encountered any issues, we have a premade demo of this guide:\
-[https://drive.google.com/drive/folders/1iymsRT1FBboxf1qK1QIYkVhkY8cZVk5H?usp=drive\_link](https://drive.google.com/drive/folders/1iymsRT1FBboxf1qK1QIYkVhkY8cZVk5H?usp=drive_link)\
-\
+[https://drive.google.com/drive/folders/1iymsRT1FBboxf1qK1QIYkVhkY8cZVk5H?usp=drive\_link](https://drive.google.com/drive/folders/1iymsRT1FBboxf1qK1QIYkVhkY8cZVk5H?usp=drive_link)
+
+* If the package fails to install, try installing the latest version of git. Then restart Unity and your computer.\
+  \
+  Alternatively manually download the .zip file from our Github repository ([https://github.com/Planetary-Processing/unity-sdk](https://github.com/Planetary-Processing/unity-sdk)) and extract it to the 'Packages' folder of your Unity project. You will have to manually download future plugin updates, rather than receive them automatically.
+
 If you have further questions, please get in touch on our [Discord](https://pp.vg/discord).
