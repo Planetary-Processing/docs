@@ -189,6 +189,46 @@ If you wish to send a message to the server, it must be sent to the [Master Comp
 msg.post("go_with_master_component", hash("pp_message"), {test=123})
 ```
 
+Your corresponding `player.lua` file would receive it like so:
+
+```lua
+-- player.lua
+local function message(self, msg)
+  if msg.Client then
+      print(msg.Data.test)
+  end
+end
+-- Prints:
+-- 123
+```
+
+
+
+### [pp\_direct\_message](defold.md#pp-master) - (Send messages to server entities)
+
+If you wish to send a message directly to a specific instance of an entity, you can send a message with the ID `hash("pp_direct_message")` to the [Master Component](defold.md#pp-master). You must specify the [ID](../server/entities.md#entity) of the serverside entity instance, which will match the [`uuid`](defold.md#pp-entity) in `pp_update`. Rather than being received by player.lua, it is handled by the specified entity's `message()` function.
+
+```lua
+msg.post("go_with_master_component", hash("pp_direct_message"), 
+    { 
+        TargetUUID = "4c5d077c-24ae-4eec-b3b5-0019974f9132", 
+        Data = {test=123}
+    })
+```
+
+Your corresponding `entity_type.lua` file would receive it like so:
+
+```lua
+-- entity_type.lua
+local function message(self, msg)
+  if msg.Client then
+      print(msg.Data.test)
+  end
+end
+-- Prints:
+-- 123
+```
+
 
 
 ### [pp\_server\_to\_client](defold.md#server-to-client) - (Receive manual server messages)
@@ -233,12 +273,13 @@ end
 
 #### Send to component:
 
-| Message Hash    | Parameters                                                                                                                | Description                                                                                               |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `pp_init`       | <p><code>table({</code></p><p><code>username: string</code></p><p><code>password: string</code></p><p><code>)}</code></p> | Connect to and authenticate with the Planetary Processing servers. Use an empty table for Anonymous Auth. |
-| `pp_join`       | None.                                                                                                                     | Spawn your player into the world.                                                                         |
-| `pp_message`    | `table`                                                                                                                   | Send a message to your server-side player script.                                                         |
-| `pp_disconnect` | None.                                                                                                                     | Disconnect from PP's servers.                                                                             |
+| Message Hash        | Parameters                                                                                                                | Description                                                                                               |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `pp_init`           | <p><code>table({</code></p><p><code>username: string</code></p><p><code>password: string</code></p><p><code>)}</code></p> | Connect to and authenticate with the Planetary Processing servers. Use an empty table for Anonymous Auth. |
+| `pp_join`           | None.                                                                                                                     | Spawn your player into the world.                                                                         |
+| `pp_message`        | `table`                                                                                                                   | Send a message to your server-side player script.                                                         |
+| `pp_direct_message` | `table` containing TargetUUID and Data                                                                                    | Send a message to a specified server-side entity instance.                                                |
+| `pp_disconnect`     | None.                                                                                                                     | Disconnect from PP's servers.                                                                             |
 
 ***
 

@@ -93,6 +93,8 @@ With the [PPChunkNode ](godot.md#ppchunknode-1)selected, you will be able to edi
 
 Messages can be sent to your game server along a connection established by the [PPRootNode](godot.md#pprootnode-1). Signals from the server are sent to each of the [PP nodes](godot.md#api) on the clientside. The Planetary Processing Plugin uses these signals to manage you game and entities, but you can also connect to these signals in your scripts.
 
+
+
 ### [authenticate\_player](godot.md#pprootnode-1)
 
 * Message to establish a connection
@@ -111,7 +113,9 @@ assert(pp_root_node, "PPRootNode not found")
 pp_root_node.authenticate_player("", "")
 </code></pre>
 
-### [new\_player\_entity ](godot.md#pprootnode-1)
+
+
+### [new\_player\_entity](godot.md#pprootnode-1)
 
 * Signal when player has joined
 
@@ -122,7 +126,9 @@ func _on_new_player_entity(entity_id, state):
     # your code
 ```
 
-### [new\_entity ](godot.md#pprootnode-1)
+
+
+### [new\_entity](godot.md#pprootnode-1)
 
 * Signal when entities spawn
 
@@ -133,7 +139,9 @@ func _on_new_entity(entity_id, state):
     # your code
 ```
 
-### [remove\_entity ](godot.md#pprootnode-1)
+
+
+### [remove\_entity](godot.md#pprootnode-1)
 
 * Signal when entities despawn
 
@@ -145,7 +153,9 @@ func _on_remove_entity(entity_id):
   # your code
 ```
 
-### [**state\_changed** ](godot.md#ppentitynode-1)
+
+
+### [**state\_changed**](godot.md#ppentitynode-1)
 
 * Signal when entities update
 
@@ -166,11 +176,13 @@ func _on_state_changed(state):
     global_transform.origin = Vector3(state.x, state.z, state.y) 
 ```
 
-### [message ](godot.md#pprootnode-1)
+
+
+### [message](godot.md#pprootnode-1)
 
 * Message to send data to the server
 
-You can send regular updates from the player to the game server using the [`message()`](godot.md#pprootnode-1) function on the [PPRootNode](godot.md#pprootnode-1). These messages allow the player to interact with the game simulation. It is up to you what data you want to send and how to process it in your server side code. Note that currently all messages from the Godot client are received by the `player.lua` file on the server.
+You can send regular updates from the player to the game server using the [`message()`](godot.md#pprootnode-1) function on the [PPRootNode](godot.md#pprootnode-1). These messages allow the player to interact with the game simulation. It is up to you what data you want to send and how to process it in your server side code. All messages from the Godot client are received by the `player.lua` file on the server by default, unless you use [direct messaging](godot.md#direct_message).
 
 Depending on your game, you might choose to send updates every frame, on keyboard press inputs, or on a fixed time delta, for example every 33ms.
 
@@ -208,6 +220,22 @@ local function message(self, msg)
       print("The player's health is".. msg.Data.health)
   end
 end
+```
+
+
+
+### [direct\_message](godot.md#pprootnode-1)
+
+* Message to send data to a specific entity on the server
+
+You can send a message to a specific entity instance on the game server using the [`direct_message()`](godot.md#pprootnode-1) function on the [PPRootNode](godot.md#pprootnode-1). A direct message works much like a regular message. Except rather than being received by `player.lua`, it is handled in the `message()` function of the relevant entity. The [entity's ID](../server/entities.md#entity) on the server will match the PPEntityNode's [`entity_id`](godot.md#ppentitynode-1) variable.
+
+```gdscript
+var pp_entity_node = get_node_or_null("PPEntityNode")
+var id = pp_entity_node.entity_id
+# eg. pp_entity_node.entity_id == "e77c661b-1604-4e05-8e34-4a4cd6ac2178"
+
+pp_root_node.direct_message( id , {"health": 6 })
 ```
 
 
@@ -256,10 +284,11 @@ pp_root_node.authenticate_player("", "")
 
 #### **Methods**
 
-| Method                | Parameters                                                                | Return                                                                               | Description                                                                                                                            |
-| --------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `authenticate_player` | <p><code>username: string</code> </p><p><code>password: string</code></p> | boolean: true if authenticated, will throw assertion error with error message if not | Authenticates a player with Planetary Processing. If the game is using anonymous auth, can be called with empty strings for arguments. |
-| `message`             | `msg: Dictionary(String, Variant)`                                        | null                                                                                 | Sends a message to the player entity on the server, which can then be processed by your `player.lua` code                              |
+| Method                | Parameters                                                                           | Return                                                                               | Description                                                                                                                            |
+| --------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `authenticate_player` | <p><code>username: string</code> </p><p><code>password: string</code></p>            | boolean: true if authenticated, will throw assertion error with error message if not | Authenticates a player with Planetary Processing. If the game is using anonymous auth, can be called with empty strings for arguments. |
+| `message`             | `msg: Dictionary(String, Variant)`                                                   | null                                                                                 | Sends a message to the player entity on the server, which can then be processed by your `player.lua` code.                             |
+| `direct_message`      | <p><code>uuid: string</code></p><p><code>msg: Dictionary(String, Variant)</code></p> | null                                                                                 | Sends a message directly to the entity with the specified UUID on the server, which can then be handled in its `message()` function.   |
 
 #### **Signals**
 
