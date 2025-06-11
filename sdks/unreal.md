@@ -6,14 +6,14 @@ Planetary Processing provides a plugin for Unreal Engine 5. The plugin consists 
 
 ### Pre-requisites
 
-* Unreal Engine 5.4+ <mark style="color:yellow;">(5.6 is in development)</mark>
+* Unreal Engine 5.4+&#x20;
 * macOS or Windows, the PP Unreal plugin does not currently support Linux.
 
 ### Installation
 
 To install the Planetary Processing plugin, you must first download the plugin files from our website, you will need to be logged into your Planetary Processing account to do so, the link is: [https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar](https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar)
 
-Or use a legacy version: [5.4](https://drive.google.com/drive/folders/1qgiDb0X0n63Lh0JDH5kIcvHy93v7AH-E?usp=drive_link).
+Or use a legacy version: [5.4](https://drive.google.com/drive/folders/1qgiDb0X0n63Lh0JDH5kIcvHy93v7AH-E?usp=drive_link), [5.5](https://drive.google.com/drive/folders/1aYEYCZKas--dv3CkHZe2YN25d7Z2K8EJ?usp=drive_link).
 
 You'll need then to extract this and move the contents of the `lib` directory into a directory called `PlanetaryProcessing` in the `Plugins` directory at the root level of your project. You'll need to create the Plugins directory if it does not already exist.
 

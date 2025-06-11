@@ -37,7 +37,7 @@ Open UE5 and start a new project. For this quickstart we will use the Third Pers
 
 You must first download the Planetary Processing plugin files from our website, you will need to be logged into your Planetary Processing account to do so, the link is: [https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar](https://files.planetaryprocessing.io/builds/downloads/artefactid/107/version/latest/dist/dist.tar)
 
-Or use a legacy version: [5.4](https://drive.google.com/drive/folders/1qgiDb0X0n63Lh0JDH5kIcvHy93v7AH-E?usp=drive_link).
+Or use a legacy version: [5.4](https://drive.google.com/drive/folders/1qgiDb0X0n63Lh0JDH5kIcvHy93v7AH-E?usp=drive_link), [5.5](https://drive.google.com/drive/folders/1aYEYCZKas--dv3CkHZe2YN25d7Z2K8EJ?usp=drive_link).
 
 You'll need then to extract this and move the contents of the `lib` directory into a directory called `PlanetaryProcessing` in the `Plugins` directory at the root level of your project. You'll need to create the Plugins directory if it does not already exist.
 
@@ -75,9 +75,9 @@ Lets make a blueprint for our tree entity. Go to /All/Game/ThirdPerson/Blueprint
 
 <figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
-Open this blueprint and make some edits of your choice. In this example we only have the starter content, so we will switch the static mesh to a Shape\_Cone and the material to M\_Bush. We will also increase the scale to 3 in all directions.
+Open this blueprint and make some edits of your choice. In this example we only have the starter content, so we will switch the static mesh to a SM\_Ramp and the material to MI\_ThirdPersonColWay. We will also increase z axis scaling to 4.
 
-<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
 
 Register this new entity by going to PP\_ExamplePlayerController in the Plugins folder and selecting EntityMap in the Variables section. Add an element called 'tree' and set the blueprint to our new Tree blueprint. Note that the element name must be the same as a lua Entity Type in the backend ('tree' to match 'tree.lua').
 
@@ -85,7 +85,7 @@ Register this new entity by going to PP\_ExamplePlayerController in the Plugins 
 
 We can follow the same process to make a blueprint for the cat entity if we so wished. Likewise, we can also make new entities in the backend and set them up in Unreal Engine in the same manner.
 
-<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (53).png" alt=""><figcaption></figcaption></figure>
 
 Any props, actors, terrain and other similar entities that you want to be shared between players must be setup as an entity, like we did with the tree.&#x20;
 
@@ -109,19 +109,21 @@ Chunks are the segments your game world is divided into. They do not need a phys
 
 Like for our entity, we can make a blueprint for our chunk. Go to /All/Game/ThirdPerson/Blueprints and create a new blueprint class. Search for and select PP\_ExampleChunkActor. Name this blueprint 'Chunk'.
 
-<figure><img src="../.gitbook/assets/CreateChunkBlueprint.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
 
 Open this blueprint and make some edits of your choice. Most of the time chunks will not need a mesh, since they act primarily as a data store.&#x20;
 
-Initially however, to better visualise the world scale, set the static mesh to a Pillar\_50x500 and the material to M\_Statue. We will also increase the scale to 20 in the Z direction.&#x20;
+Initially however, to better visualise the world scale, set the static mesh to a SM\_Cylinder and the material to M\_SimpleGlow. We will also increase the scale to 10 in the Z direction.&#x20;
 
-<figure><img src="../.gitbook/assets/ChunkBlueprintMesh (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
 
 Register the chunk blueprint by going to PP\_ExamplePlayerController in the Plugins folder and selecting ChunkMap in the Variables section. Add an element called 'chunk' and set the blueprint to our new 'Chunk' blueprint.&#x20;
 
 Also select ChunkSize from the Variables section and set its value. It should be the same as the Chunk Size of your [Planetary Processing game](unreal.md#create-a-planetary-processing-game) (eg. 6400).
 
-<figure><img src="../.gitbook/assets/ChunkMapAndSize (1).png" alt=""><figcaption></figcaption></figure>
+
+
+<figure><img src="../.gitbook/assets/image (56).png" alt=""><figcaption></figcaption></figure>
 
 
 
