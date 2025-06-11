@@ -6,7 +6,7 @@ Planetary Processing provides a plugin for Unreal Engine 5. The plugin consists 
 
 ### Pre-requisites
 
-* Unreal Engine 5.4+&#x20;
+* Unreal Engine 5.4+ <mark style="color:yellow;">(5.6 is in development)</mark>
 * macOS or Windows, the PP Unreal plugin does not currently support Linux.
 
 ### Installation
@@ -48,6 +48,8 @@ This class extends the Unreal Engine Actor class, spawning an Actor in your game
 The [EntityActor](unreal.md#entity-actor-spawning) class is intended to have an [Entity](unreal.md#entity-class-1) associated with it once created, via [SetEntity](unreal.md#entity-actor-spawning). With this set, the [EntityActor](unreal.md#entity-actor-spawning) class will automatically broadcast [OnUpdated](unreal.md#pp_exampleentityactor) and [OnRemoved](unreal.md#pp_exampleentityactor) events accordingly, as its associated [Entity](unreal.md#entity-class-1) is either updated or removed.
 
 <figure><img src="../.gitbook/assets/unreal_sdk_SetEntityActor.png" alt=""><figcaption></figcaption></figure>
+
+
 
 ### ChunkActor Class
 
@@ -145,6 +147,8 @@ If you wish, you can extend the script to remove spawning for the client player 
 
 <figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
 
+
+
 #### Chunk Actor Spawning
 
 <figure><img src="../.gitbook/assets/ChunkActorSpawning.png" alt=""><figcaption></figcaption></figure>
@@ -232,6 +236,8 @@ For the actor to follow the server-side location, without issue, it must have ph
 If you wish to retrieve the location vector of an entity before it is set automatically, you can use the following example. Replace the Print String function with functions of your choice.
 
 <figure><img src="../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+
+
 
 ### PP\_ExampleChunkActor
 
