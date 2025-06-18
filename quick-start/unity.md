@@ -1,6 +1,6 @@
 # Unity
 
-Follow these steps to quickly set up and start using Planetary Processing with your Unity game. For more detailed information on both the SDK and the server-side API, please visit our [documentation](https://docs.planetaryprocessing.io/).
+Follow these steps to quickly set up and start using Planetary Processing with your Unity game. For more detailed information on both the [SDK](../sdks/unity.md) and the [server-side API](../server/entities.md), please visit our [documentation](https://docs.planetaryprocessing.io/).
 
 ## Unity Version
 

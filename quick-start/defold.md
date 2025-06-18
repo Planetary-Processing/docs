@@ -1,6 +1,6 @@
 # Defold
 
-Follow these steps to quickly set up and start using Planetary Processing with your Defold game. For more detailed information on both the SDK and the server-side API, please visit our [documentation](https://docs.planetaryprocessing.io/).
+Follow these steps to quickly set up and start using Planetary Processing with your Defold game. For more detailed information on both the [SDK](../sdks/defold.md) and the [server-side API](../server/entities.md), please visit our [documentation](https://docs.planetaryprocessing.io/).
 
 ## Defold Version
 

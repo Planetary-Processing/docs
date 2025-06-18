@@ -1,6 +1,6 @@
 # LÖVE
 
-Follow these steps to quickly set up and start using Planetary Processing with your LÖVE game. For more detailed information on both the SDK and the server-side API, please visit our [documentation](https://docs.planetaryprocessing.io/).
+Follow these steps to quickly set up and start using Planetary Processing with your LÖVE game. For more detailed information on both the [SDK](../sdks/love.md) and the [server-side API](../server/entities.md), please visit our [documentation](https://docs.planetaryprocessing.io/).
 
 ## LÖVE Version
 

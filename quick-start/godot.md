@@ -1,6 +1,6 @@
 # Godot
 
-Follow these steps to quickly set up and start using Planetary Processing with your Godot game. For more detailed information on both the Godot SDK and the server-side API, please visit our [documentation](https://docs.planetaryprocessing.io/).
+Follow these steps to quickly set up and start using Planetary Processing with your Godot game. For more detailed information on both the [Godot SDK](../sdks/godot.md) and the [server-side API](../server/entities.md), please visit our [documentation](https://docs.planetaryprocessing.io/).
 
 ## Godot Version
 
