@@ -127,12 +127,13 @@ While connected, the sdk will receive updated data about any entities visible to
 
 6. Create a `love.draw()` function, to display each entity.
 
-<pre class="language-lua"><code class="lang-lua">-- display the entities, using their serverside positions
-<strong>function love.draw()
-</strong><strong>    -- draw each entity
-</strong><strong>    for id,entity in pairs(sdk.entities) do
-</strong><strong>        -- display each entity as a letter, using the position from the server
-</strong>		if entity.Type == "tree" then
+```lua
+-- display the entities, using their serverside positions
+function love.draw()
+    -- draw each entity
+    for id,entity in pairs(sdk.entities) do
+        -- display each entity as a letter, using the position from the server
+		if entity.Type == "tree" then
 		    love.graphics.print("T", entity.X, entity.Y)
 		elseif entity.Type == "cat" then
 		    love.graphics.print("C", entity.X, entity.Y)
@@ -141,7 +142,7 @@ While connected, the sdk will receive updated data about any entities visible to
 		end
      end
 end
-</code></pre>
+```
 
 <details>
 

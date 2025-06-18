@@ -24,10 +24,9 @@ Example:
 
 When the player leaves, message a nearby entity.&#x20;
 
-```lua
--- events.lua
-local function on_player_leave(player)
-	local nearbyEntities = player:GetNearbyEntities(64)
+<pre class="language-lua"><code class="lang-lua">-- events.lua
+<strong>local function on_player_leave(player)
+</strong>	local nearbyEntities = player:GetNearbyEntities(64)
 	local msg_data = {
 		player_id = player.ID, 
 		from = {X=chunk.X, Y=chunk.Y}
@@ -35,14 +34,15 @@ local function on_player_leave(player)
 	
 	api.entity.Message(nearbyEntities["1"].ID, msg_data)
 end
-```
+</code></pre>
 
-<pre class="language-lua"><code class="lang-lua">-- entity_type_name.lua
+```lua
+-- entity_type_name.lua
 local function message(self, msg)
 	print("Player "..msg.Data.player_id.." has left. "..
 		"They were at chunk: ("..msg.Data.from.X..","..msg.Data.from.Y..")")
 end
 
 -- Prints:
-<strong>-- Player e2e838b4-a250-4a89-9f1d-acae063201b8 has left. They were at chunk (2,3)
-</strong></code></pre>
+-- Player e2e838b4-a250-4a89-9f1d-acae063201b8 has left. They were at chunk (2,3)
+```

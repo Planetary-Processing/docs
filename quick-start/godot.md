@@ -124,14 +124,15 @@ The PPRootNode emits a signal when entities change position or state on the serv
 
 1. Attach a new script called 'entity\_movement.gd' to the root node parameter (not PPEnityNode) of each of your entity scenes (except the player character scene), with the following code.
 
-<pre class="language-gdscript"><code class="lang-gdscript"># entity_movement.gd script
+```gdscript
+# entity_movement.gd script
 
 # extend the functionality of your root node (here Node3D)
 extends Node3D
 
 # when the scene is loaded
-<strong>func _ready():
-</strong>    # connect to the state_changed signal from pp_entity_node
+func _ready():
+    # connect to the state_changed signal from pp_entity_node
     var pp_entity_node= get_node_or_null("PPEntityNode")
     if pp_entity_node:
         pp_entity_node.state_changed.connect(_on_state_changed)
@@ -143,7 +144,7 @@ func _on_state_changed(state):
     # NOTE: Planetary Processing uses 'y' for depth in 3D games, and 'z' for height. The depth axis is also inverted.
     # To convert, set Godot's 'y' to negative, then swap 'y' and 'z'.
     global_transform.origin = Vector3(state.x, state.z, -state.y) 
-</code></pre>
+```
 
 <details>
 
@@ -205,10 +206,11 @@ Chunk scenes are optional and you can create a game without them if you wish.
 2. Add the PPChunkNode as a direct child of the root node of your scene.
 3. Attach a new script called 'chunk\_update.gd' to the root node parameter (not PPChunkNode) with the following code:
 
-<pre class="language-gdscript"><code class="lang-gdscript"><strong># chunk_update.gd script
-</strong><strong>
-</strong><strong># extend the functionality of your root node (here Node3D)
-</strong>extends Node3D
+```gdscript
+# chunk_update.gd script
+
+# extend the functionality of your root node (here Node3D)
+extends Node3D
 
 var pp_root_node
 # when the scene is loaded
@@ -225,7 +227,7 @@ func _on_state_changed(state):
 	pass
 	# Add code to act if chunk data changes, if necessary
 
-</code></pre>
+```
 
 <details>
 

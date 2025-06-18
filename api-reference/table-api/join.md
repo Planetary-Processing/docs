@@ -32,11 +32,11 @@ local function init(self)
     local attributes = {"strong", "fast", "smart"}
     local has_armour = math.random() > 0.5
     local armoured = {"armoured", "durable"}
-<strong>    local description = "This cat is "
-</strong>
+    local description = "This cat is "
+
     if has_armour then
-        attributes = api.table.Join(attributes, armoured) 
-    end
+<strong>        attributes = api.table.Join(attributes, armoured) 
+</strong>    end
     
     for index, value in ipairs(attributes) do
 	description = description..value

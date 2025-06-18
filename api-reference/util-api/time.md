@@ -20,16 +20,15 @@ Example:
 
 Compare the difference in Unix timestamps to make a timer.
 
-```lua
--- entity_type_name.lua
+<pre class="language-lua"><code class="lang-lua">-- entity_type_name.lua
 local function init(self)
     self.Data.timer = 0
 end
 
 local function update(self, dt)
 	if self.Data.timer ~= 0 then
-		local current_time = api.util.Time()
-        	if current_time - self.Data.timer_start > self.Data.timer-1 then 
+<strong>		local current_time = api.util.Time()
+</strong>        	if current_time - self.Data.timer_start > self.Data.timer-1 then 
         		print("A "..self.Data.timer.." second timer has finished. "..
             	              "At Unix timestamp "..current_time..".")
             		self.Data.timer = 0
@@ -53,5 +52,5 @@ return {init=init, update=update, message=message}
 -- Prints:
 -- A 5 second timer has started. At Unix timestamp 1741190612.
 -- A 5 second timer has finished. At Unix timestamp 1741190617.
-```
+</code></pre>
 

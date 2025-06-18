@@ -28,14 +28,13 @@ Example:
 
 Send a GET request to an endpoint, requesting data.
 
-```lua
--- init.lua
+<pre class="language-lua"><code class="lang-lua">-- init.lua
 function init()
     if not chunk.Generated then
-        local code, body = api.http.Get("https://eg.mydatabase.com/chunks", 
-                            {["Content-Type"]="text/plain",
-                            ["Authorisation"]="Basic YWxhZGRpbjp"})
-        
+<strong>        local code, body = api.http.Get("https://eg.mydatabase.com/chunks", 
+</strong><strong>                            {["Content-Type"]="text/plain",
+</strong><strong>                            ["Authorisation"]="Basic YWxhZGRpbjp"})
+</strong>        
         if code == 200 then
           print("Response returned successfully: "..body)
         else
@@ -53,5 +52,5 @@ end
 
 -- Or Prints (exact code number varies):
 -- Response returned HTTP code: 404
-```
+</code></pre>
 

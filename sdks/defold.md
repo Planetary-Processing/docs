@@ -134,20 +134,21 @@ msg.post("/go_with_master_component", hash("pp_join"))
 
 The [`pp_join`](defold.md#pp-master) message will fail if it is called too soon after the [`pp_init`](defold.md#pp-master) and before the connection is fully established. To avoid this , either trigger the [`pp_join`](defold.md#pp-master) once a [`pp_connected`](defold.md#listener) message has been received, or on input from the person playing.
 
-<pre class="language-lua"><code class="lang-lua">-- Join immediately once connection has been established by pp_init
+```lua
+-- Join immediately once connection has been established by pp_init
 function on_message(self, message_id, message, sender)
 	if message_id == hash("pp_connected") then
 		msg.post("/go_with_master_component", hash("pp_join"))
-<strong>	end
-</strong><strong>end
-</strong><strong>
-</strong><strong>-- Or join on input, using an input key defined in game.input_binding
-</strong>function on_input(self, action_id, action)
+	end
+end
+
+-- Or join on input, using an input key defined in game.input_binding
+function on_input(self, action_id, action)
 	if action_id == hash("key_space") and action.pressed then
 		msg.post("/go_with_master_component", hash("pp_join"))
 	end
 end
-</code></pre>
+```
 
 
 

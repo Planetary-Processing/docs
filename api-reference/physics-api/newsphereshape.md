@@ -26,14 +26,13 @@ Example:
 
 Create a physics body with collision boundaries in the shape of a sphere, and assigns it to this entity.
 
-```lua
--- entity_type_name.lua
+<pre class="language-lua"><code class="lang-lua">-- entity_type_name.lua
 local function init(self)
     self.Physics = true
     
-    local sphere = api.physics.NewSphereShape(1) 
-    self.Body = api.physics.NewBody(sphere, 10)
+<strong>    local sphere = api.physics.NewSphereShape(1) 
+</strong>    self.Body = api.physics.NewBody(sphere, 10)
 end
 
 -- This entity will occupy a spherical area, for physics calculations.
-```
+</code></pre>

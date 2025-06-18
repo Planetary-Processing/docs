@@ -101,17 +101,18 @@ Messages can be sent to your game server along a connection established by the [
 
 You may log a player in using the [`authenticate_player`](godot.md#pprootnode-1) method on the [PPRootNode](godot.md#pprootnode-1). After logging a player in, the custom nodes will begin emitting signals.
 
-<pre class="language-gdscript"><code class="lang-gdscript"># scene_root_node_script.gd
-<strong>var pp_root_node
-</strong><strong>
-</strong><strong># access the PPRootNode from the scene's node tree
-</strong>pp_root_node = get_tree().current_scene.get_node_or_null('PPRootNode')
+```gdscript
+# scene_root_node_script.gd
+var pp_root_node
+
+# access the PPRootNode from the scene's node tree
+pp_root_node = get_tree().current_scene.get_node_or_null('PPRootNode')
 assert(pp_root_node, "PPRootNode not found") 
 
 # authorise your connection to the game server 
 #(Anonymous Auth uses empty strings as parameters)
 pp_root_node.authenticate_player("", "")
-</code></pre>
+```
 
 
 

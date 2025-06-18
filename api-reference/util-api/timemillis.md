@@ -26,8 +26,8 @@ local function init(self)
 end
 
 local function update(self, dt)
-	current_time = api.util.TimeMillis()
-	
+<strong>	current_time = api.util.TimeMillis()
+</strong>	
 	if self.Data.previous_time == 0 then
 		self.Data.previous_time = current_time 
 	end
@@ -44,7 +44,7 @@ end
 -- The time between each update function is dependent on a game's tick rate.
 
 -- Prints (each update, at target tick rate 60):
-<strong>-- The time since the last update is 16 milliseconds. 
-</strong><strong>-- The standard delta time is 16.719955 milliseconds.
-</strong></code></pre>
+-- The time since the last update is 16 milliseconds. 
+-- The standard delta time is 16.719955 milliseconds.
+</code></pre>
 

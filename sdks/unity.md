@@ -99,11 +99,12 @@ The [PPEntity](unity.md#ppentity) component automatically receives and syncs all
 
 Alternatively, messages can be manually sent to a specific client using [`api.client.Message()`](../api-reference/client-api/message.md). These message can be received by a designated [Server To Client Object](unity.md#master-component). This GameObject needs a custom script component, with a function named [`ServerToClient`](unity.md#custom-scripts), which receives the server message as a parameter.
 
-<pre class="language-csharp"><code class="lang-csharp"><strong>void ServerToClient(Dictionary&#x3C;string, object> message)
-</strong>    {
+```csharp
+void ServerToClient(Dictionary<string, object> message)
+    {
         message.TryGetValue("key", out object value);
     }
-</code></pre>
+```
 
 
 

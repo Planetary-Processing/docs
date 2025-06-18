@@ -27,14 +27,13 @@ Example:
 
 Create a new box-shaped body, assign it to this entity, and apply a force to it each update.
 
-```lua
--- entity_type_name.lua
+<pre class="language-lua"><code class="lang-lua">-- entity_type_name.lua
 local function init(self)
     self.Physics = true
     
     local box = api.physics.NewBoxShape(1, 1, 1) 
-    self.Body = api.physics.NewBody(box, 10)
-end
+<strong>    self.Body = api.physics.NewBody(box, 10)
+</strong>end
 
 local function update(self, dt)
     local vector = api.physics.NewVector(0.2, 0, 0)
@@ -42,5 +41,5 @@ local function update(self, dt)
 end
 
 -- Pushes the entity with a force of 0.2 in the X direction each frame.
-```
+</code></pre>
 

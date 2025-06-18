@@ -94,13 +94,14 @@ Every HTTP API endpoint returns the status code and the body of the response, as
 
 An example of an HTTP Get request is below:
 
-<pre class="language-lua"><code class="lang-lua">local code, body = api.http.Get("https://www.ismycomputeronfire.com/", {})
-<strong>if code == 200 then
-</strong><strong>  print(body)
-</strong><strong>else
-</strong><strong>  print("something wrong, http code:", code)
-</strong><strong>end
-</strong></code></pre>
+```lua
+local code, body = api.http.Get("https://www.ismycomputeronfire.com/", {})
+if code == 200 then
+  print(body)
+else
+  print("something wrong, http code:", code)
+end
+```
 
 
 

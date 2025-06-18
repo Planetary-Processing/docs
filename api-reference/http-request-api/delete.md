@@ -28,15 +28,14 @@ Example:
 
 Send a DELETE request to an endpoint, removing some data.
 
-```lua
--- init.lua
+<pre class="language-lua"><code class="lang-lua">-- init.lua
 function init()
     if not chunk.Generated then
-        local code, body = api.http.DELETE("https://eg.mydatabase.com/chunks", 
-                            {
-                                ["Content-Type"]="text/plain",
-                                ["Authorisation"]="Basic YWxhZGRpbjp"})
-        
+<strong>        local code, body = api.http.DELETE("https://eg.mydatabase.com/chunks", 
+</strong><strong>                            {
+</strong><strong>                                ["Content-Type"]="text/plain",
+</strong><strong>                                ["Authorisation"]="Basic YWxhZGRpbjp"})
+</strong>        
         if code == 200 then
           print("Response returned successfully: "..body)
           print("Chunk data has been deleted.")
@@ -57,5 +56,5 @@ end
 
 -- Or Prints (exact code number varies):
 -- Response returned HTTP code: 404
-```
+</code></pre>
 

@@ -130,11 +130,12 @@ end
 
 Data about [chunks](love.md#chunk-object-1) is passed to the LÖVE  client using [`sdk.update`](love.md#sdk-object-1). You can access all the chunk data within `sdk.chunks` (which can be iterated over).&#x20;
 
-<pre class="language-lua"><code class="lang-lua">-- draw chunk borders when the chunk  size is 64
+```lua
+-- draw chunk borders when the chunk  size is 64
 local chunk_size = 64
 
-<strong>function love.draw()
-</strong>    local world_x 
+function love.draw()
+    local world_x 
     local world_y 
     
     for id,chunk in pairs(sdk.chunks) do
@@ -143,9 +144,9 @@ local chunk_size = 64
     
         love.graphics.line(world_x, world_y, world_x, world_y + chunk_size)
         love.graphics.line(world_x, world_y, world_x + chunk_size, world_y)
-<strong>    end	
-</strong>end
-</code></pre>
+    end	
+end
+```
 
 
 

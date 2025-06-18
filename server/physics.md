@@ -26,12 +26,13 @@ self.Body = api.physics.NewBody(box, 10) --shape=box, mass=10
 
 3. #### Set [Velocity ](physics.md#body-1)or apply [Forces](physics.md#force):
 
-<pre class="language-lua"><code class="lang-lua"><strong>--1: Set velocity
-</strong><strong>self.Body.Velocity = api.physics.NewVector(0, -20, 0)
-</strong>--2: Apply a one-time force 
+```lua
+--1: Set velocity
+self.Body.Velocity = api.physics.NewVector(0, -20, 0)
+--2: Apply a one-time force 
 local vector = api.physics.NewVector(0, .2, 0)
 self.Body:ApplyForce(vector)
-</code></pre>
+```
 
 #### Force
 

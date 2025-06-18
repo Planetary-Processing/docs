@@ -27,21 +27,20 @@ Example:
 
 Remove a string from an array-style table of descriptive attributes, with a 50% chance of not removing it.
 
-```lua
--- cat.lua
+<pre class="language-lua"><code class="lang-lua">-- cat.lua
 local function init(self)
     local attributes = {"strong", "fast", "smart", "armoured"}
     local remove_armour = math.random() > 0.5
     local description = "This cat is "
     
     if remove_armour then
-        attributes = api.table.Remove(attributes, #attributes) 
-    end
+<strong>        attributes = api.table.Remove(attributes, #attributes) 
+</strong>    end
     
     for index, value in ipairs(attributes) do
 	description = description..value
 
-        if index < #attributes - 1 then
+        if index &#x3C; #attributes - 1 then
             description = description..", " 
         elseif index == #attributes - 1 then
             description = description..", and " 
@@ -62,4 +61,4 @@ end
 
 -- Or Prints
 -- This cat is strong, fast, and smart.
-```
+</code></pre>

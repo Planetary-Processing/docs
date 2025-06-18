@@ -38,8 +38,8 @@ Example:
 When the player joins, print whether it is their first time.
 
 <pre class="language-lua"><code class="lang-lua">-- events.lua
-local function on_player_join(player, first)
-	if first == true then 
+<strong>local function on_player_join(player, first)
+</strong>	if first == true then 
 		print("Player "..player.ID.." has joined for the first time! "..
 			"They are in chunk: ("..chunk.X..","..chunk.Y..")")
 	else
@@ -49,8 +49,8 @@ local function on_player_join(player, first)
 end
 
 -- Prints:
-<strong>-- Player e2e838b4-a250-4a89-9f1d-acae063201b8 has joined for the first time! They are in chunk: (0,0)
-</strong><strong>
-</strong><strong>-- Or prints:
-</strong>-- Player e2e838b4-a250-4a89-9f1d-acae063201b8 has joined this game before. They are in chunk: (0,0)
+-- Player e2e838b4-a250-4a89-9f1d-acae063201b8 has joined for the first time! They are in chunk: (0,0)
+
+-- Or prints:
+-- Player e2e838b4-a250-4a89-9f1d-acae063201b8 has joined this game before. They are in chunk: (0,0)
 </code></pre>
