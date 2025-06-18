@@ -24,9 +24,9 @@ Parameters:
 
 Returns:
 
-| Type     | Description                                                     |
-| -------- | --------------------------------------------------------------- |
-| `Entity` | The entity which has been created, according to the parameters. |
+| Type     | Description                                                                       |
+| -------- | --------------------------------------------------------------------------------- |
+| `Entity` | A shallow copy of the entity which has been created, according to the parameters. |
 
 
 
@@ -50,8 +50,8 @@ function init()
         health = math.random(10)
     }
     
-    local cat = api.entity.Create("cat", cat_x , cat_y, 1, cat_data)
-       
+<strong>    local cat = api.entity.Create("cat", cat_x , cat_y, 1, cat_data)
+</strong>       
     if cat.Data.health > 8 then
         print("My name is "..cat.Data.name.." and I am a strong cat!")
     end
@@ -64,8 +64,8 @@ end
 
 -- Prints (subject to randomness):
 -- My name is Snowball and I am a strong cat!
-<strong>-- My name is Fluffy and I am a strong cat!
-</strong>-- My name is Fuzzball and I am a strong cat!
+-- My name is Fluffy and I am a strong cat!
+-- My name is Fuzzball and I am a strong cat!
 -- My name is Fuzzy and I am a strong cat!
 -- My name is Fluffikins and I am a strong cat!
 </code></pre>

@@ -22,8 +22,7 @@ Example:
 
 List five dimensions which have been created and delete them according to their name.
 
-```lua
--- init.lua
+<pre class="language-lua"><code class="lang-lua">-- init.lua
 function init()
     if not chunk.Generated then
         if chunk.X == 0 and chunk.Y == 0 then
@@ -43,8 +42,8 @@ function init()
                 end    
             else
                 first_letter = string.sub(chunk.Dimension,1,1)
-                dimension_list = api.dimension.List()
-                remove_list = {}
+<strong>                dimension_list = api.dimension.List()
+</strong>                remove_list = {}
                 
                 for index, dimension_id in pairs(dimension_list) do
                     first_letter_compare = string.sub(dimension_id, 1, 1)                	
@@ -73,5 +72,5 @@ end
 -- The remaining dimensions are [Fun Catland Sleepy Catland Fluffy Catland]
 -- The remaining dimensions are [Sleepy Catland]
 -- The remaining dimensions are []
-```
+</code></pre>
 

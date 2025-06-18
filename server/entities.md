@@ -59,10 +59,10 @@ end
 
 The `msg` argument supplied to this function is defined as follows:
 
-| Field  | Type  | Description                                                                                       |
-| ------ | ----- | ------------------------------------------------------------------------------------------------- |
-| Data   | table | Contains the content of the message.                                                              |
-| Client | bool  | Indicates if the message is from a game client (true) or from another entity on a server (false). |
+| Field  | Type  | Description                                                                                                             |
+| ------ | ----- | ----------------------------------------------------------------------------------------------------------------------- |
+| Data   | table | Contains the content of the message.                                                                                    |
+| Client | bool  | <p>True, if the message was sent from a game client.</p><p></p><p>False, if sent from another entity on the server.</p> |
 
 
 
@@ -182,26 +182,13 @@ A number of API calls are available for certain entity-related actions such as s
 
 #### Fields
 
-| Field                                | Type   | Description                                                                                   |
-| ------------------------------------ | ------ | --------------------------------------------------------------------------------------------- |
-| ID                                   | string | UUID of the entity. Read-only.                                                                |
-| Type                                 | string | Type of the entity. Read-only.                                                                |
-| Data                                 | table  | Custom lua table which can be used to store arbitrary data about the entity.                  |
-| <p>Chunkloader<br>(Premium Only)</p> | bool   | If true, the chunk containing this entity will remain loaded even if no players are present.  |
-| Transient                            | bool   | If true, when the chunk containing this entity is unloaded, it will not be persisted.         |
+{% include "../.gitbook/includes/entity-object-fields-table.md" %}
 
 #### Methods
 
 Each of these methods takes the entity object `self` as its first parameter. Hence you may use `self:Move(dx, dy, dz)` instead of `self.Move(self, dx, dy, dz)`.
 
-| Method                       | Parameters                                                                                                       | Returns                                                                                                   | Description                                                                                                                                                                                                                                                                |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Move(dx, dy, dz)`           | <p><code>dx: float</code><br><code>dy: float</code><br><code>dz: float</code></p>                                | None                                                                                                      | Move the entity relative to its current position.                                                                                                                                                                                                                          |
-| `MoveTo(x, y, z)`            | <p><code>x: float</code><br><code>y: float</code><br><code>z: float</code></p>                                   | None                                                                                                      | Move the entity relative to the origin (teleport).                                                                                                                                                                                                                         |
-| `GetPosition()`              | None                                                                                                             | <p><code>x: float</code><br><code>y: float</code><br><code>z: float</code> coordinates of the entity.</p> | Get the current position of the entity.                                                                                                                                                                                                                                    |
-| `Remove()`                   | None                                                                                                             | None                                                                                                      | Delete this entity.                                                                                                                                                                                                                                                        |
-| `GetNearbyEntities(dist)`    | `dist: float`                                                                                                    | Entity\[]                                                                                                 | Get entities within the specified distance. Please note that the maximum distance that can be reliably fetched is the game's chunk size, this is because GetNearbyEntities only searches 9 chunks centred on the entity's current chunk.                                   |
-| `Warp(dimension, [x, y, z])` | <p><code>dimension: string</code><br><code>x: float</code><br><code>y: float</code><br><code>z: float</code></p> | None                                                                                                      | Transport this entity to (x,y,z) in the dimension specified. The coordinate fields are optional and default to (0,0,0) if not specified. Specifying just two coordinates will also work, for example, if your game is 2D or otherwise where 0 is the desired z-axis value. |
+{% include "../.gitbook/includes/entity-object-methods-table.md" %}
 
 
 
@@ -209,9 +196,7 @@ Each of these methods takes the entity object `self` as its first parameter. Hen
 
 ### Init
 
-| Method | Parameters     | Return Value | Description                                                          |
-| ------ | -------------- | ------------ | -------------------------------------------------------------------- |
-| Init   | `self: Entity` | None         | A necessary function, to initialise an entity in its default state.  |
+{% include "../.gitbook/includes/entity-object-init-table.md" %}
 
 
 
@@ -219,9 +204,7 @@ Each of these methods takes the entity object `self` as its first parameter. Hen
 
 ### Update
 
-| Method | Parameters                                                  | Return Value | Description                                                        |
-| ------ | ----------------------------------------------------------- | ------------ | ------------------------------------------------------------------ |
-| Update | <p><code>self: Entity</code><br> <code>dt: float</code></p> | None         | A necessary function, to process an entity's behaviour each tick.  |
+{% include "../.gitbook/includes/entity-object-update-table.md" %}
 
 
 
@@ -229,7 +212,5 @@ Each of these methods takes the entity object `self` as its first parameter. Hen
 
 ### Message
 
-| Method  | Parameters                                                                                                                                       | Return Value | Description                                             |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ | ------------------------------------------------------- |
-| Message | <p><code>self: Entity</code></p><p><code>msg: table({</code><br>  <code>Data: table</code><br>  <code>Client: bool</code><br><code>)}</code></p> | None         | A necessary function, to receive messages to an entity. |
+{% include "../.gitbook/includes/entity-object-message-table.md" %}
 

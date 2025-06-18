@@ -23,8 +23,7 @@ Example:
 
 Send messages to nearby cat and tree entities.
 
-```lua
--- entity_type_name.lua
+<pre class="language-lua"><code class="lang-lua">-- entity_type_name.lua
 local function update(self, dt)    
     local entity_list = self:GetNearbyEntities(5)
     
@@ -34,8 +33,8 @@ local function update(self, dt)
             action = "pet",
             from = self.Type
         }
-        api.entity.Message(entity.ID, message)
-    end
+<strong>        api.entity.Message(entity.ID, message)
+</strong>    end
 end
     
 -- cat.lua
@@ -65,5 +64,5 @@ end
 -- Or Prints:
 -- Hello tree!
 -- The tree has been pet. It does not respond.
-```
+</code></pre>
 

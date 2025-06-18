@@ -6,7 +6,7 @@
 
 Creates a new dimension. When a dimension is first loaded, a small number of chunks around the origin will be loaded.&#x20;
 
-The function will fail if there is already a dimension with the given ID. The default dimension already holds the ID of an empty string (`""`).
+The function will do nothing if there is already a dimension with the given ID. The default dimension already holds the ID of an empty string (`""`).
 
 
 
@@ -22,15 +22,14 @@ Example:
 
 Create a new dimension from the origin chunk of the default dimension.
 
-```lua
--- init.lua
+<pre class="language-lua"><code class="lang-lua">-- init.lua
 function init()
     if not chunk.Generated then
         if chunk.X == 0 and chunk.Y == 0 then
         
             if chunk.Dimension == "" then
-                api.dimension.Create("Catland")
-            else
+<strong>                api.dimension.Create("Catland")
+</strong>            else
                 api.entity.Create("cat",0,0,0,{})
                 print("This chunk is in "..chunk.Dimension.." and there is a cat!")
             end
@@ -46,5 +45,5 @@ end
 
 -- Prints:
 -- This chunk is in Catland and there is a cat!
-```
+</code></pre>
 

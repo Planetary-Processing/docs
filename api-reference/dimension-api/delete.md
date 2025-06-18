@@ -22,16 +22,15 @@ Example:
 
 Delete a dimension, from the origin chunk of that dimension.
 
-```lua
--- init.lua
+<pre class="language-lua"><code class="lang-lua">-- init.lua
 function init()
     if not chunk.Generated then
         if chunk.X == 0 and chunk.Y == 0 then
         
             if chunk.Dimension == "Catland" then
                 print("This chunk is in "..chunk.Dimension.." which will be deleted.")
-                api.dimension.Delete("Catland")
-            else
+<strong>                api.dimension.Delete("Catland")
+</strong>            else
                 api.dimension.Create("Catland")
             end
             
@@ -46,5 +45,5 @@ end
 
 -- Prints:
 -- This chunk is in Catland which will be deleted.
-```
+</code></pre>
 
