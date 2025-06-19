@@ -123,7 +123,7 @@ end
 
 ## Creating Entities
 
-While connected, the sdk will receive updated data about any entities visible to the player, and store it in `sdk.entities`. Entities are stored as tables which follow the format in the [LÖVE SDK documentation](../sdks/love.md#entity).
+While connected, the sdk will receive updated data about any entities visible to the player, and store it in `sdk.entities`. Entities are stored as tables which follow the format in the [LÖVE SDK documentation](../sdks/love.md#entity-object-1).
 
 6. Create a `love.draw()` function, to display each entity.
 
@@ -361,10 +361,14 @@ end
 
 LÖVE 's top left origin means that the game client's Y axis runs in the opposite direction to the game server's.  Inverting any Y position values from the server will correct this.
 
+<figure><img src="../.gitbook/assets/qs_love_world_coordinates.png" alt=""><figcaption></figcaption></figure>
+
 1. Create a class variable in `main.lua` for inverting the Y axis.
 
 ```lua
--- NOTE the Planetary Processing 'y' axis uses screen direction up, Love2d uses screen direction down
+-- The Planetary Processing 'y' axis uses screen up, as the positive direction
+-- Love2d uses screen down, as the positive direction
+
 -- for inverting 'y' coordinate positions to and from the server
 local invertYaxis = -1
 ```
@@ -399,7 +403,9 @@ end
 -- use the Planetary Processing SDK
 local sdk = require("sdk.sdk")
 
--- NOTE the Planetary Processing 'y' axis uses screen direction up, Love2d uses screen direction down
+-- The Planetary Processing 'y' axis uses screen up, as the positive direction
+-- Love2d uses screen down, as the positive direction
+
 -- for inverting 'y' coordinate positions to and from the server
 local invertYaxis = -1
 
@@ -490,7 +496,7 @@ end
 
 </details>
 
-<figure><img src="../.gitbook/assets/qs_love_world_coordinates.png" alt=""><figcaption></figcaption></figure>
+
 
 ## Syncing the World Map and Window Scale
 
@@ -539,7 +545,9 @@ end
 -- use the Planetary Processing SDK
 local sdk = require("sdk.sdk")
 
--- NOTE the Planetary Processing 'y' axis uses screen direction up, Love2d uses screen direction down
+-- The Planetary Processing 'y' axis uses screen up, as the positive direction
+-- Love2d uses screen down, as the positive direction
+
 -- for inverting 'y' coordinate positions to and from the server
 local invertYaxis = -1
 
@@ -706,7 +714,9 @@ When this message is sent each frame, the player should now move both visibly in
 -- use the Planetary Processing SDK
 local sdk = require("sdk.sdk")
 
--- NOTE the Planetary Processing 'y' axis uses screen direction up, Love2d uses screen direction down
+-- The Planetary Processing 'y' axis uses screen up, as the positive direction
+-- Love2d uses screen down, as the positive direction
+
 -- for inverting 'y' coordinate positions to and from the server
 local invertYaxis = -1
 
@@ -918,7 +928,9 @@ function love.draw()
 -- use the Planetary Processing SDK
 local sdk = require("sdk.sdk")
 
--- NOTE the Planetary Processing 'y' axis uses screen direction up, Love2d uses screen direction down
+-- The Planetary Processing 'y' axis uses screen up, as the positive direction
+-- Love2d uses screen down, as the positive direction
+
 -- for inverting 'y' coordinate positions to and from the server
 local invertYaxis = -1
 
@@ -1151,7 +1163,9 @@ end
 -- use the Planetary Processing SDK
 local sdk = require("sdk.sdk")
 
--- NOTE the Planetary Processing 'y' axis uses screen direction up, Love2d uses screen direction down
+-- The Planetary Processing 'y' axis uses screen up, as the positive direction
+-- Love2d uses screen down, as the positive direction
+
 -- for inverting 'y' coordinate positions to and from the server
 local invertYaxis = -1
 
