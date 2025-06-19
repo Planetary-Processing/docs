@@ -262,6 +262,8 @@ function love.draw()
 
 Your viewport will now be centred on your game world's origin (0,0), where you can see the 'P' icon representing the player.
 
+<figure><img src="../.gitbook/assets/qs_love_map_origin_centre.png" alt=""><figcaption></figcaption></figure>
+
 <details>
 
 <summary>main.lua (centred origin)</summary>
@@ -355,7 +357,7 @@ end
 
 </details>
 
-<figure><img src="../.gitbook/assets/qs_love_map_origin_centre.png" alt=""><figcaption></figcaption></figure>
+
 
 ## Syncing the World Map and Window Axis
 
@@ -537,6 +539,8 @@ function love.draw()
 end
 ```
 
+<figure><img src="../.gitbook/assets/qs_love_map_sync_zoom.png" alt=""><figcaption></figcaption></figure>
+
 <details>
 
 <summary>main.lua (zoomed)</summary>
@@ -655,7 +659,7 @@ end
 
 </details>
 
-<figure><img src="../.gitbook/assets/qs_love_map_sync_zoom.png" alt=""><figcaption></figcaption></figure>
+
 
 ## Player Movement
 
@@ -705,6 +709,8 @@ end
 ```
 
 When this message is sent each frame, the player should now move both visibly in LÖVE and on the game dashboard map.
+
+<figure><img src="../.gitbook/assets/qs_love_player_move.gif" alt=""><figcaption></figcaption></figure>
 
 <details>
 
@@ -883,7 +889,7 @@ end
 
 </details>
 
-<figure><img src="../.gitbook/assets/qs_love_player_move.gif" alt=""><figcaption></figcaption></figure>
+
 
 ## Follow Player Movement
 
@@ -919,6 +925,8 @@ function love.draw()
 	love.graphics.translate(screenOffsetX - playerOffsetX, 
 	                        screenOffsetY - playerOffsetY)
 ```
+
+<figure><img src="../.gitbook/assets/qs_love_player_follow.gif" alt=""><figcaption></figcaption></figure>
 
 <details>
 
@@ -1123,7 +1131,7 @@ end
 
 </details>
 
-<figure><img src="../.gitbook/assets/qs_love_player_follow.gif" alt=""><figcaption></figcaption></figure>
+
 
 ## Resizing Your Window (Optional)&#x20;
 
@@ -1152,8 +1160,6 @@ function love.resize()
 	screenOffsetY = window_height/2
 end
 ```
-
-
 
 <details>
 
@@ -1381,6 +1387,8 @@ end
 
 </details>
 
+
+
 ## Editing Your Backend Code
 
 Using the [repo](love.md#clone-your-game-repository) we cloned earlier you can edit the behaviour of entities by changing their Lua file within the `entity` directory.
@@ -1401,14 +1409,20 @@ git commit -m "Configure game entities and logic for Planetary Processing"
 git push
 ```
 
+
+
 ## Deploy Latest Version in the Web UI
 
 1. Go back to your game dashboard in our [web panel](https://panel.planetaryprocessing.io/games).
 2. From the actions menu in the top right, select "Deploy Latest Version" - this will roll out your updated server-side code.
 
+
+
 ## Start Game in the Web UI
 
 1. Click "Start Game" to begin your server-side simulation.
+
+
 
 ## Play Your Multiplayer Game!
 
