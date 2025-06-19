@@ -921,7 +921,8 @@ end
 ```lua
 -- display the entities, using their serverside positions
 function love.draw()
-	--apply the offset, to centre the world to the window, then centre the viewport on the player
+	-- apply the offset, to centre the world to the window, 
+	-- and centre the viewport to be always on the player
 	love.graphics.translate(screenOffsetX - playerOffsetX, 
 	                        screenOffsetY - playerOffsetY)
 ```
@@ -1017,7 +1018,8 @@ end
 
 -- display the entities, using their serverside positions
 function love.draw()
-	--apply the offset, to centre the world to the window, then centre the viewport on the player
+	-- apply the offset, to centre the world to the window, 
+	-- and centre the viewport to be always on the player
 	love.graphics.translate(screenOffsetX - playerOffsetX, 
 	                        screenOffsetY - playerOffsetY)
 	
@@ -1255,7 +1257,8 @@ end
 
 -- display the entities, using their serverside positions
 function love.draw()
-	--apply the offset, to centre the world to the window, then centre the viewport on the player
+	-- apply the offset, to centre the world to the window, 
+	-- and centre the viewport to be always on the player
 	love.graphics.translate(screenOffsetX - playerOffsetX, 
 	                        screenOffsetY - playerOffsetY)
 	
