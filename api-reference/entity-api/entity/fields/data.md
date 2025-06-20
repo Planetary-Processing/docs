@@ -2,7 +2,7 @@
 
 `entity.Data`
 
-A custom table which can be used to store additional data about a specific entity. The Data table is the primary method of customising an entity, by adding key-value pairs to the table.&#x20;
+A custom table which can be used to store additional data about a specific entity. The Data table is the primary method of customising an entity, by adding key-value pairs to the table. The keys must be strings.
 
 For instance, an entity might be assigned a 'health' key, with a value of 10.
 
