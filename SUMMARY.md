@@ -84,3 +84,9 @@
   * [NewBody](api-reference/physics-api/newbody.md)
   * [NewBoxShape](api-reference/physics-api/newboxshape.md)
   * [NewSphereShape](api-reference/physics-api/newsphereshape.md)
+
+## Template Projects
+
+* [Rust Realm (MMO by BiteMe Games)](template-projects/rust-realm-mmo-by-biteme-games.md)
+* [Cat & Trees (Fundamentals Template)](template-projects/cat-and-trees-fundamentals-template.md)
+* [Team Tag (Entity communication)](template-projects/team-tag-entity-communication.md)
