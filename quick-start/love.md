@@ -1145,7 +1145,7 @@ At this point you can start customising your LÖVE game client however you like.
 -- create a custom game window and connect to the server
 function love.load()
 	-- set the window options
-	love.window.setMode(0, 0, {resizable=true, vsync=0, minwidth=400, minheight=300})
+	love.window.setMode(0, 0, {resizable=true, vsync=1, minwidth=400, minheight=300})
 	-- maximise the window
 	love.window.maximize()
 ```
@@ -1191,7 +1191,7 @@ local zoom = 10
 -- create a custom game window and connect to the server
 function love.load()
 	-- set the window options
-	love.window.setMode(0, 0, {resizable=true, vsync=0, minwidth=400, minheight=300})
+	love.window.setMode(0, 0, {resizable=true, vsync=1, minwidth=400, minheight=300})
 	-- maximise the window
 	love.window.maximize()
 	
@@ -1311,7 +1311,7 @@ local playerOffsetY = 0
 local zoom = 10
 
 function love.load()
-	love.window.setMode(0, 0, {resizable=true, vsync=0, minwidth=400, minheight=300})
+	love.window.setMode(0, 0, {resizable=true, vsync=1, minwidth=400, minheight=300})
 	love.window.maximize()
 	
 	window_width, window_height = love.graphics.getDimensions()
