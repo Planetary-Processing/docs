@@ -457,3 +457,11 @@ This is a simple login widget which calls the [Connect](unreal.md#planetaryproce
 | Password         | UEditableTextBox | A text box widget for entering a password.                                         |
 | Login\_Button    | UButton          | A button widget for triggering the OnClicked event, to connect to the game server. |
 | ErrorMessageText | UTextBlock       | Error text displayed, when a connection fails                                      |
+
+
+
+## Troubleshooting <a href="#troubleshooting" id="troubleshooting"></a>
+
+* If an exported package builds successfully but fails to run, open and run the UE project folder in Visual Studio to ensure the plugin has compiled correctly. Then rebuild the export.
+
+If you have further questions, please get in touch on our [Discord](https://pp.vg/discord).
