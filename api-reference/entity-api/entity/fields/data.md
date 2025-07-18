@@ -2,13 +2,15 @@
 
 `entity.Data`
 
-A custom table which can be used to store additional data about a specific entity. The Data table is the primary method of customising an entity, by adding key-value pairs to the table. The keys must be strings.
+A custom table which can be used to store additional data about a specific entity. The Data table is the primary method of customising an entity, by adding key-value pairs to the table.&#x20;
 
 For instance, an entity might be assigned a 'health' key, with a value of 10.
 
 `entity.Data.health = 10`
 
-The Data table cannot hold more than 4MB of data. It is empty by default, unless Username + Password Authentication is enabled. Player entities with a username will automatically have that value assigned to a 'username' key in the table. A Data table with a username will persist and be available whenever the player next reconnects.
+The keys must be strings, but the values can be of any type. The Data table cannot hold more than 4MB of data. It is empty by default, unless Username + Password Authentication is enabled.&#x20;
+
+Player entities with a username will automatically have a 'username' key with that value. A Data table with a username will persist and be available whenever the player next reconnects (unless the game simulation is reset).
 
 | Type    | Initialised Value             | Description                                                                                                                                                                   |
 | ------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -22,13 +24,13 @@ Example:
 <pre class="language-lua"><code class="lang-lua">-- entity.lua
 local function init(self)
 <strong>    self.Data.health = 10
-</strong>    self.Data.inventory = {
-        wood = 5,
-        leaves = 8,
-        cat_claws = 0,
-        rocks = 11
-    }
-end
+</strong><strong>    self.Data.inventory = {
+</strong><strong>        wood = 5,
+</strong><strong>        leaves = 8,
+</strong><strong>        cat_claws = 0,
+</strong><strong>        rocks = 11
+</strong><strong>    }
+</strong>end
 
 
 local function message(self, msg)
