@@ -54,7 +54,9 @@ Any individual messages greater than 512B in length will have their message trun
 
 Errors and their stack traces are displayed in the [logs](https://panel.planetaryprocessing.io/logs) section of the web panel, in the same way as other entries.&#x20;
 
-Many errors will also be visible directly from the panel map. Chunks which are failing or contain erroring entities will be coloured red on the map. Clicking on these [chunks](chunks.md) will show an information icon 🛈 with the error causing the failure.
+The `error()` function can be used to log custom error messages, with a stack trace. However, most API functions will send an error message automatically, if there is a problem.&#x20;
+
+Significant errors will also be visible directly from the panel map. Chunks which are failing or contain erroring entities will be coloured red on the map. Clicking on these [chunks](chunks.md) will show an information icon 🛈 with the error causing the failure.
 
 
 
