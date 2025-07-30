@@ -116,7 +116,7 @@ Other players are created in the same way as most entities, however they share t
 4. Add a MeshInstance to the root node of your scene.&#x20;
 5. In the Inspector assign the Mesh parameter a 'New CapsuleMesh', to make it visible.
 
-<figure><img src="../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/godot_qs_other_player.png" alt=""><figcaption></figcaption></figure>
 
 ## Moving entities
 

@@ -1,17 +1,3 @@
----
-layout:
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
----
-
 # Unity
 
 The Unity SDK integrates our multiplayer platform with Unity. The plugin provides components and methods to use within your game client code - these communicate changes in state from your server side simulation to the game client itself.
