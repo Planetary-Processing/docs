@@ -91,19 +91,42 @@ end
 
 ## Client Messaging
 
-Messages can be sent manually from the game engine [Client](entities.md#message) to the game server, using a message function in the [SDK](broken-reference). By default the player entity on the server will receive all client messages. The [`message`](entities.md#message-1) function of the `player.lua` file handles these messages.
+Unlike serverside entity messaging, the exact code for messaging between the client and the server can vary depending on the game engine. However the base systems for messaging are the same.&#x20;
 
-Messages can be sent from a game engine to a specific entity on the server using the direct message  function in the [SDK](broken-reference). <mark style="color:yellow;">(Direct Messaging is in Beta and not available for</mark> [<mark style="color:yellow;">all SDKs</mark>](../sdks/feature-comparison.md)<mark style="color:yellow;">)</mark>.
+There are four types of messaging:&#x20;
 
-<figure><img src="../.gitbook/assets/ClientToServer.png" alt=""><figcaption><p>Client to Server Messaging</p></figcaption></figure>
+* [Server-To-Client Updates](entities.md#server-to-client-updates)
+* [Server-To-Client Messages](entities.md#server-to-client-messages)
+* [Client-To-Server Messages](entities.md#client-to-server-messages)
+* [Direct Entity Messaging](entities.md#direct-entity-messaging)
 
-Messages are sent to every client automatically every tick, syncing the clientside entities' Data fields with those of the serverside [Entity](entities.md#fields). These updates are typically accessible from the clientside entity itself or the script maintaining the connection to the server.
+### Server-To-Client Updates
+
+Update messages are sent to the client automatically. They send entity [Data](entities.md#entity) to all connected clients, every tick. This is the main way entities in your game engine know how to move and act.
+
+These updates are sent to the entity itself and, depending on the engine, to whichever script is maintaining the connection to the server.
 
 <figure><img src="../.gitbook/assets/AutoServerToClient2.png" alt=""><figcaption><p>Automatic Server to Client Updates</p></figcaption></figure>
 
-Messages can be manually sent to a specific player's game engine client using [`api.client.Message()`](../api-reference/client-api/message.md). These messages are received by the [SDK's](broken-reference) server-to-client messaging function.
+### Server-To-Client Messages
+
+Messages can be sent from the server to the client manually too. Unlike updates, these are sent to the game client of a specific player, using [`api.client.Message()`](../api-reference/client-api/message.md). Server-to-client messages are received by the [SDK's](broken-reference) designated server-to-client messaging function.
 
 <figure><img src="../.gitbook/assets/ServerToClient.png" alt=""><figcaption><p>Manual Server to Client Messages</p></figcaption></figure>
+
+### Client-To-Server Messages
+
+Messages from the game client to the game server must be sent manually, using a message function in the relevant [SDK](broken-reference). This is the main way of sending the gamer's movement inputs and actions to the server.&#x20;
+
+By default the player entity on the server will receive all client messages. The [`message`](entities.md#message-1) function of the `player.lua` file handles these messages.
+
+<figure><img src="../.gitbook/assets/ClientToServer.png" alt=""><figcaption><p>Client to Server Messaging</p></figcaption></figure>
+
+### Direct Entity Messaging
+
+Messages can be sent the game client to a specific entity on the server using the direct message  function in the [SDK](broken-reference). <mark style="color:yellow;">(Direct Messaging is in Beta and not available for</mark> [<mark style="color:yellow;">all SDKs</mark>](../sdks/feature-comparison.md)<mark style="color:yellow;">)</mark>.
+
+<figure><img src="../.gitbook/assets/DirectEntityMessaging.png" alt=""><figcaption><p>Direct Entity Messaging</p></figcaption></figure>
 
 
 
