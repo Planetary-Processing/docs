@@ -327,14 +327,15 @@ func _process(delta: float) -> void:
     # move the player
     var movement = input_direction * speed * delta
 
-    # message the server to update the player's x and y positions
+    # on input, message the server to update the player's x and y positions
     # NOTE: Planetary Processing uses 'y' for depth in 3D games, and 'z' for height. The depth axis is also inverted.
     # To convert, set Godot's 'y' to negative, then swap 'y' and 'z'.
-    pp_root_node.message({
-        "x": movement[0],
-        "y": -movement[2], 
-        "z": 0,
-    })
+    if movement:
+        pp_root_node.message({
+            "x": movement[0],
+            "y": -movement[2], 
+            "z": 0,
+        })
 ```
 
 <details>
@@ -370,11 +371,12 @@ func _process(delta: float) -> void:
 
     var movement = input_direction * speed * delta
 
-    pp_root_node.message({
-        "x": movement[0],
-        "y": -movement[2], 
-        "z": 0,
-    })
+    if movement:
+        pp_root_node.message({
+            "x": movement[0],
+            "y": -movement[2], 
+            "z": 0,
+        })
 ```
 
 </details>
@@ -409,15 +411,14 @@ func _process(delta: float) -> void:
     )
     input_direction = input_direction.normalized()
 
-    # move the player
     var movement = input_direction * speed * delta
-
-    pp_root_node.message({
-        "x": movement[0],
-        "y": -movement[1], 
-        "z": 0,
-    })
-
+    
+    if movement:
+        pp_root_node.message({
+            "x": movement[0],
+            "y": -movement[1], 
+            "z": 0,
+        })
 ```
 
 </details>

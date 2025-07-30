@@ -157,11 +157,13 @@ public class Move : MonoBehaviour
         x *= Time.deltaTime * speed;
         y *= Time.deltaTime * speed;
 
-        // message the server to update the x and y positions
-        PPMasterComponent.Message(new Dictionary<string, object>(){
-            {"x", x},
-            {"y", y}
-        });
+        // on input, message the server to update the x and y positions
+        if (x != 0 || y != 0){
+            PPMasterComponent.Message(new Dictionary<string, object>(){
+                {"x", x},
+                {"y", y}
+            });
+        }
     }
 }
 ```
