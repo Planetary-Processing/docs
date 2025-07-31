@@ -90,7 +90,7 @@ Your backend code will now be stored in your online repo, but will not be runnin
 
 ## Collaborating on your Game Repository
 
-Premium Only
+[Premium Only](../sdks/feature-comparison.md)
 
 Make sure your local backend code stays up to date with your remote game repository, by regularly checking for changes by your team.
 

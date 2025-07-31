@@ -13,10 +13,10 @@ If false, the chunk may become unloaded and the entity's processing will cease u
 
 Chunkloaders only maintain the processing of chunks. They will not load new chunks around them, unless they are a player entity.
 
-| Type   | Initialised Value | Description                     |
-| ------ | ----------------- | ------------------------------- |
-| `bool` | `false`           | Default: False.                 |
-|        | `true`            | Player Entity: True. Read-only. |
+| Type   | Initialised Value | Description                                                                                           |
+| ------ | ----------------- | ----------------------------------------------------------------------------------------------------- |
+| `bool` | `false`           | <p>Default: False. <br><a href="../../../../sdks/feature-comparison.md">Free-tier</a>: Read-only.</p> |
+|        | `true`            | <p>Player Entity Default: </p><p>True and read-only.</p>                                              |
 
 
 
