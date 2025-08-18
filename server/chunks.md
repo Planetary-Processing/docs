@@ -25,9 +25,11 @@ Every chunk has an [X](chunks.md#chunk) and [Y](chunks.md#chunk) value, based on
 
 <figure><img src="../.gitbook/assets/ChunkCoordinates.png" alt="" width="563"><figcaption></figcaption></figure>
 
+
+
 ## World Generation
 
-The [`init`](chunks.md#init-1) function triggers every time a chunk loads or reloads. This will happen whenever a player or [Chunkloader](entities.md#entity) entity comes near it. This means the [`init`](chunks.md#init-1) code will often be triggered multiple times, over the course of a game world's lifetime.
+The [`init`](chunks.md#init-1) function triggers every time a chunk loads or reloads. This will happen when the game starts or whenever a player comes near it. This means the [`init`](chunks.md#init-1) code will often be triggered multiple times, over the course of a game world's lifetime.
 
 The [Generated](chunks.md#chunk) field of a chunk allows you to distinguish whether it is loading for the first time, or has been generated before and is reloading. This is useful if you want to spawn or setup your world in a specific way when it is first generated.
 
@@ -71,8 +73,6 @@ Information about the current chunk can be accessed from the global variable [`c
 ***
 
 ### Init
-
-
 
 {% include "../.gitbook/includes/chunk-object-init-table.md" %}
 
