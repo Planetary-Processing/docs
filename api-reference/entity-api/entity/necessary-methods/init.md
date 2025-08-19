@@ -6,7 +6,7 @@
 
 Performs the initial processing to set up an entity instance, when it is created.&#x20;
 
-As a necessary entity method, this function should be returned by the entity.lua file. It must be in a table under the key `init`.
+As a necessary entity method, this function should be returned at the end of the entity.lua file. It must be in a table under the key `init`.
 
 
 

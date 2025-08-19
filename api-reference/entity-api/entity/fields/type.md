@@ -8,9 +8,9 @@ On the serverside, it is used as a parameter for entity [creation](../../create.
 
 It is referenced heavily in clientside SDKs for the spawning, despawning, and management of entities.
 
-| Type     | Initialised Value (default) | Description                                   |
-| -------- | --------------------------- | --------------------------------------------- |
-| `string` | eg. `cat`                   | String name of an entity.lua file. Read-only. |
+| Type     | Initialised Value | Description                                   |
+| -------- | ----------------- | --------------------------------------------- |
+| `string` | eg. `cat`         | String name of an entity.lua file. Read-only. |
 
 
 

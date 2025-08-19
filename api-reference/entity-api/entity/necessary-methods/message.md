@@ -6,7 +6,7 @@
 
 Performs a process, whenever this entity instance receives a message. These messages can come from serverside entities or a game client.
 
-As a necessary entity method, this function should be returned by the entity.lua file. It must be in a table under the key `message`.
+As a necessary entity method, this function should be returned at the end of the entity.lua file. It must be in a table under the key `message`.
 
 
 

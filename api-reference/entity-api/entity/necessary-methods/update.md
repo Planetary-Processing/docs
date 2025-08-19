@@ -8,7 +8,7 @@ Performs the continuous processing of this entity instance, each tick.&#x20;
 
 The `dt` parameter is the interval between each tick, (approximately 1 / Target Tick Rate). Repeating incremental processes, like movement, can be standardised by being multiplied by `dt`. This reduces the variation caused by differing hardware processing speeds.
 
-As a necessary entity method, this function should be returned by the entity.lua file. It must be in a table under the key `update`.
+As a necessary entity method, this function should be returned at the end of the entity.lua file. It must be in a table under the key `update`.
 
 
 

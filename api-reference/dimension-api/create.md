@@ -26,7 +26,7 @@ Create a new dimension from the origin chunk of the default dimension.
 function init()
     if not chunk.Generated then
         if chunk.X == 0 and chunk.Y == 0 then
-        
+       
             if chunk.Dimension == "" then
 <strong>                api.dimension.Create("Catland")
 </strong>            else

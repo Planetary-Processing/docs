@@ -50,7 +50,7 @@ function init()
         health = math.random(10)
     }
     
-<strong>    local cat = api.entity.Create("cat", cat_x , cat_y, 1, cat_data)
+<strong>    local cat = api.entity.Create("cat", cat_x, cat_y, 0, cat_data)
 </strong>       
     if cat.Data.health > 8 then
         print("My name is "..cat.Data.name.." and I am a strong cat!")
