@@ -152,7 +152,7 @@ master.Join();
 
 ### Custom Scripts
 
-| Method             | Parameters                            | Return Type | Description                                                                                           |
-| ------------------ | ------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------- |
-| `ServerToClient()` | `message: Dictionary<string, object>` | None        | Receives manual messages from the server. Must be assigned to a GameObject in the PPMaster inspector. |
+| Method             | Parameters                            | Return Type | Description                                                                                                                                     |
+| ------------------ | ------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ServerToClient()` | `message: Dictionary<string, object>` | None        | Receives manual [messages](../api-reference/client-api/message.md) from the server. Must be assigned to a GameObject in the PPMaster inspector. |
 

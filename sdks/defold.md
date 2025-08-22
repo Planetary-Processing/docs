@@ -331,7 +331,7 @@ Received by script, which called `pp_init`:
 
 Received by script, assigned in Master Component Properties Panel:
 
-| Message Hash          | Parameters | Description                                                                                                                                   |
-| --------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pp_server_to_client` | `table`    | A message manually sent from the server, to this specific player client. Must have its URL assigned in the Master Component Properties Panel. |
+| Message Hash          | Parameters | Description                                                                                                                                                                             |
+| --------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pp_server_to_client` | `table`    | A [message](../api-reference/client-api/message.md) manually sent from the server, to this specific player client. Must have its URL assigned in the Master Component Properties Panel. |
 

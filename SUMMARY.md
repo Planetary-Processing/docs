@@ -24,6 +24,7 @@
 
 * [Entities](server/entities.md)
 * [Chunks](server/chunks.md)
+* [Players](server/players.md)
 * [Dimensions](server/dimensions.md)
 * [Events](server/events.md)
 * [Logging](server/logs.md)

@@ -171,12 +171,12 @@ sdk.join()
 
 #### **Variables**
 
-| Variable           | Type                                                                                                                 | Description                                                                                     |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `entities`         | <p><code>entities: table({</code></p><p><code>id: string</code><br><code>entity: table</code><br><code>)}</code></p> | List of entities the client can see.                                                            |
-| `chunks`           | <p><code>table: table({</code></p><p><code>id: string</code><br><code>chunk: table</code><br><code>)}</code></p>     | List of chunks the client can see.                                                              |
-| `uuid`             | `string`                                                                                                             | UUID of the player associated with this client.                                                 |
-| `server_to_client` | `function(table)`                                                                                                    | Function which triggers, when a message is manually sent from the server to this player client. |
+| Variable           | Type                                                                                                                 | Description                                                                                                                               |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `entities`         | <p><code>entities: table({</code></p><p><code>id: string</code><br><code>entity: table</code><br><code>)}</code></p> | List of entities the client can see.                                                                                                      |
+| `chunks`           | <p><code>table: table({</code></p><p><code>id: string</code><br><code>chunk: table</code><br><code>)}</code></p>     | List of chunks the client can see.                                                                                                        |
+| `uuid`             | `string`                                                                                                             | UUID of the player associated with this client.                                                                                           |
+| `server_to_client` | `function(table)`                                                                                                    | Function which triggers, when a [message](../api-reference/client-api/message.md) is manually sent from the server to this player client. |
 
 #### **Methods**
 

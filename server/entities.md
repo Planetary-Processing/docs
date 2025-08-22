@@ -120,7 +120,7 @@ Messages from the game client to the game server must be sent manually, using a 
 
 By default the player entity on the server will receive all client messages. The [`message`](entities.md#message-1) function of the `player.lua` file handles these messages.
 
-<figure><img src="../.gitbook/assets/ClientToServer.png" alt=""><figcaption><p>Client to Server Messaging</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/ClientToServer (1).png" alt=""><figcaption><p>Client to Server Messaging</p></figcaption></figure>
 
 ### Direct Entity Messaging
 

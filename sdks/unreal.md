@@ -422,9 +422,9 @@ This is a simple login widget which calls the [Connect](unreal.md#planetaryproce
 
 ### Event Class
 
-| Name       | Type                            | Description                                 |
-| ---------- | ------------------------------- | ------------------------------------------- |
-| Event Data | TMap\<FString, UMessageData\*>  | A manual message received from the server.  |
+| Name       | Type                            | Description                                                                           |
+| ---------- | ------------------------------- | ------------------------------------------------------------------------------------- |
+| Event Data | TMap\<FString, UMessageData\*>  | A manual [message](../api-reference/client-api/message.md) received from the server.  |
 
 
 

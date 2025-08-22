@@ -335,4 +335,4 @@ pp_root_node.authenticate_player("", "")
 
 #### **Methods**
 
-<table><thead><tr><th>Name</th><th valign="middle">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>server_to_client</code></td><td valign="middle"><code>Dictionary(String, Variant)</code></td><td>Receives manual messages from the server. Must be assigned to a Node in the PPRootNode inspector.</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th valign="middle">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>server_to_client</code></td><td valign="middle"><code>Dictionary(String, Variant)</code></td><td>Receives manual <a href="../api-reference/client-api/message.md">messages</a> from the server. Must be assigned to a Node in the PPRootNode inspector.</td></tr></tbody></table>
