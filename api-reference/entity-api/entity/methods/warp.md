@@ -49,7 +49,6 @@ local function init()
 </strong>	print("This cat is now in "..api.dimension.List()[1]..".")
 end
 
-
 -- Create a second dimension when your world first loads.
 -- Create a cat and a tree in your default dimension.
 -- Transfer the cat to the second dimension, when it is initially created.
@@ -58,3 +57,10 @@ end
 -- Prints:
 -- This cat is now in Dimension Two.
 </code></pre>
+
+
+
+Known Bugs:
+
+* Entities which are not actively moving during an update will delay the transfer to another dimension until an arbitrary Move() or MoveTo() command is executed. \
+  Applying a Move(0,0,0) will initiate the warp without offsetting the entity's final position.
