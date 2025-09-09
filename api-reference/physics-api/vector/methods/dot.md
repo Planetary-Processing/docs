@@ -20,9 +20,9 @@ Parameters:
 
 Returns:
 
-| Type    | Description                                                                                                                                                                                                                                                          |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `float` | <p>The dot product of two other vectors.<br><br>Eg. The vector which called the function (a) multiplied with the vector in its parameter (b), then summed together:<br> <code>a.X*b.X</code> </p><p><br><code>+ a.Y*b.Y</code> </p><p><br><code>+ a.Z*b.Z</code></p> |
+| Type    | Description                                                                                                                                                                                                                                            |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `float` | <p>The dot product of two other vectors.<br><br>Eg. The vector which called the function (a) multiplied with the vector in its parameter (b), then summed together:<br> <code>a.X*b.X</code> <br><code>+ a.Y*b.Y</code> <br><code>+ a.Z*b.Z</code></p> |
 
 
 

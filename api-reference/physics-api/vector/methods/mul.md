@@ -14,9 +14,9 @@ Parameters:
 
 Returns:
 
-| Type            | Description                                                                                                                                                                                                                     |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`Vector`](../) | <p>A vector scaled by a single numerical value.<br><br>Eg. The vector which called the function (a) multiplied with the float (b):<br> <code>a.X * b</code> </p><p><br><code>a.Y * b</code> </p><p><br><code>a.Z * b</code></p> |
+| Type            | Description                                                                                                                                                                                                    |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`Vector`](../) | <p>A vector scaled by a single numerical value.<br><br>Eg. The vector which called the function (a) multiplied with the float (b):<br><code>a.X * b</code><br><code>a.Y * b</code><br><code>a.Z * b</code></p> |
 
 
 

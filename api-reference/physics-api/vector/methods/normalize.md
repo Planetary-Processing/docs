@@ -10,9 +10,9 @@ The normalized vector is the vector's direction reduced by its [Magnitude](magni
 
 Returns:
 
-| Type            | Description                                                                                                                                                                                                                                                                                                                                                                     |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`Vector`](../) | <p>A vector normalized to be no greater than the unit length.<br><br>Eg. The vector which called the function (a) uses its magnitude to normalize itself:</p><p><br><code>magnitude =</code></p><p><code>math.sqrt(a.X^2 ​</code> </p><p><br>  <code>+ a.Y^2 ​</code></p><p><br><code>+ a.Z^2)</code><br><br><code>normalized =</code><br><code>a:Mul(1/magnitude)</code></p> |
+| Type            | Description                                                                                                                                                                                                                                                                                                                                                 |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`Vector`](../) | <p>A vector normalized to be no greater than the unit length.<br><br>Eg. The vector which called the function (a) uses its magnitude to normalize itself:</p><p><br><code>magnitude =</code> <br><code>math.sqrt(a.X^2 ​</code> <br><code>+ a.Y^2 ​</code><br><code>+ a.Z^2)</code><br><br><code>normalized =</code><br><code>a:Mul(1/magnitude)</code></p> |
 
 
 

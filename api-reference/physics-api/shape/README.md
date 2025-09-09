@@ -2,10 +2,7 @@
 
 `Shape box`
 
-`Shape sphere`\
-\
-\
-
+`Shape sphere`
 
 ## Objects
 

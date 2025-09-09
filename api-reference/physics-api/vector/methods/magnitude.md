@@ -10,9 +10,9 @@ The magnitude is the length of the vector, if measured as a distance in 3D space
 
 Returns:
 
-| Type    | Description                                                                                                                                                                                                                                             |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `float` | <p>The scalar magnitude of a vector.<br><br>Eg. The vector which called the function (a) finding the root of its squared values summed :</p><p><code>math.sqrt(a.X^2 ​</code> </p><p><br>  <code>+ a.Y^2 ​</code></p><p><br><code>+ a.Z^2)</code></p> |
+| Type    | Description                                                                                                                                                                                                                                           |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `float` | <p>The scalar magnitude of a vector.<br><br>Eg. The vector which called the function (a) finding the root of its squared values summed :</p><p><code>math.sqrt(</code><br><code>a.X^2 ​</code> <br><code>+ a.Y^2</code> <br><code>+ a.Z^2)</code></p> |
 
 
 

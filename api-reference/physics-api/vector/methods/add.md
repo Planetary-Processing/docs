@@ -14,9 +14,9 @@ Parameters:
 
 Returns:
 
-| Type            | Description                                                                                                                                                                                                                             |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`Vector`](../) | <p>A vector summed from two other vectors. <br><br>Eg. The vector which called the function (a) added to the vector in its parameter (b):<br><code>a.X + b.X</code><br><code>a.Y + b.Y</code><br> <br>  <br> <code>a.Z + b.Z</code></p> |
+| Type            | Description                                                                                                                                                                                                                 |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`Vector`](../) | <p>A vector summed from two other vectors. <br><br>Eg. The vector which called the function (a) added to the vector in its parameter (b):<br><code>a.X + b.X</code><br><code>a.Y + b.Y</code><br><code>a.Z + b.Z</code></p> |
 
 
 
