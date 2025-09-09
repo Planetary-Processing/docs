@@ -10,16 +10,16 @@ Creates a new body object for simulating physics.
 
 Parameters:
 
-| Name  | Type    | Description                                                              |
-| ----- | ------- | ------------------------------------------------------------------------ |
-| shape | `Shape` | The shape of the body's collision boundaries.                            |
-| mass  | `float` | Dictates the effectiveness of forces applied by the body and against it. |
+| Name  | Type                            | Description                                                              |
+| ----- | ------------------------------- | ------------------------------------------------------------------------ |
+| shape | [`Shape`](body/fields/shape.md) | The shape of the body's collision boundaries.                            |
+| mass  | `float`                         | Dictates the effectiveness of forces applied by the body and against it. |
 
 Returns:
 
-| Type   | Description                                 |
-| ------ | ------------------------------------------- |
-| `Body` | A collidable body for physics calculations. |
+| Type            | Description                                 |
+| --------------- | ------------------------------------------- |
+| [`Body`](body/) | A collidable body for physics calculations. |
 
 
 
@@ -27,7 +27,7 @@ Example:
 
 Create a new box-shaped body, assign it to this entity, and apply a force to it each update.
 
-<pre class="language-lua"><code class="lang-lua">-- entity_type_name.lua
+<pre class="language-lua"><code class="lang-lua">-- entity.lua
 local function init(self)
     self.Physics = true
     
@@ -40,6 +40,6 @@ local function update(self, dt)
     self.Body:ApplyForce(vector)
 end
 
--- Pushes the entity with a force of 0.2 in the X direction each frame.
+-- Pushes the entity with a force of 0.2 in the X direction each tick.
 </code></pre>
 

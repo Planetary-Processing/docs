@@ -122,10 +122,7 @@ api.physics.NewBoxShape(1, 1, 1)
 api.physics.NewSphereShape(1)
 ```
 
-| Shape   | Parameters                                                                                  | Description                   |
-| ------- | ------------------------------------------------------------------------------------------- | ----------------------------- |
-| Box     | <p><code>width: float</code><br><code>length: float</code><br><code>depth: float</code></p> | An axis-aligned bounding box. |
-| Sphere  | `radius: float`                                                                             | It's just a sphere.           |
+{% include "../.gitbook/includes/shape-interface-objects-table.md" %}
 
 
 
@@ -139,18 +136,13 @@ api.physics.NewBody(shape, mass)
 
 #### Fields
 
-| Field    | Type     | Description                                                                              |
-| -------- | -------- | ---------------------------------------------------------------------------------------- |
-| Shape    | `Shape`  | The size and shape of the Body's collision boundaries.                                   |
-| Mass     | `float`  | The mass of the physics body, which dictates how effective forces are upon it.           |
-| Force    | `Vector` | The XYZ vector of force being applied to the physics body on the current update.         |
-| Velocity | `Vector` | The current velocity of the physics body, for how fast it is moving in an XYZ direction. |
+{% include "../.gitbook/includes/body-object-fields-table.md" %}
 
 #### Methods
 
 Each of these methods takes the Body object `self.Body` as its first parameter. Hence you may use `self.Body:ApplyForce(force)` instead of `self.Body.ApplyForce(self.Body, force)`.
 
-<table><thead><tr><th width="230">Method</th><th width="196">Parameters</th><th>Returns</th><th>Description</th></tr></thead><tbody><tr><td>ApplyForce</td><td><code>force: vector</code><br></td><td>None</td><td>Apply a one time XYZ force to a physics body. <br>It is applied on the next update.</td></tr><tr><td>GetBoxDimensions</td><td>None</td><td><code>width: float</code><br><code>length: float</code><br><code>depth: float</code></td><td>Get the dimensions of a box shaped Body. Errors if the Body is not a Box.</td></tr><tr><td>GetRadius</td><td>None</td><td><code>radius: float</code></td><td>Get the radius of a Body. Errors if the Body is not a Sphere.</td></tr></tbody></table>
+{% include "../.gitbook/includes/body-object-methods-table.md" %}
 
 
 
@@ -164,11 +156,7 @@ api.physics.NewVector(1,1,0)
 
 #### Fields
 
-| Field | Type  |
-| ----- | ----- |
-| X     | float |
-| Y     | float |
-| Z     | float |
+{% include "../.gitbook/includes/vector-object-fields-table.md" %}
 
 #### Methods
 
@@ -182,7 +170,7 @@ sum_v1_v2 = v1:Add(v2)
 -- sum_v1_2 is now &{1 3 2}
 ```
 
-<table><thead><tr><th width="230">Method</th><th width="196">Parameters</th><th>Returns</th><th>Description</th></tr></thead><tbody><tr><td>Add</td><td><code>b: Vector</code></td><td><code>Vector</code></td><td>Add the corresponding vector value:<br><code>a.X + b.X</code> <br> <code>a.Y + b.Y</code> <br> <code>a.Z + b.Z</code></td></tr><tr><td>Sub</td><td><code>b: Vector</code></td><td><code>Vector</code></td><td>Subtract the corresponding vector value:<br><code>a.X - b.X</code> <br> <code>a.Y - b.Y</code> <br> <code>a.Z - b.Z</code></td></tr><tr><td>Dot</td><td><code>b: Vector</code></td><td><code>float</code></td><td>Measure the degree of directional similarity between the parameters:<br> <code>a.X*b.X</code> <br><code>+ a.Y*b.Y</code> <br><code>+ a.Z*b.Z</code></td></tr><tr><td>Mul</td><td><code>b: float</code></td><td><code>Vector</code></td><td><p>Multiply each vector value by a number:</p><p><code>a.X * b</code> <br> <code>a.Y * b</code> <br> <code>a.Z * b</code> </p></td></tr><tr><td>Cross</td><td><code>b: Vector</code></td><td><code>Vector</code></td><td><p>Create a third vector, perpendicular  to the parameters:</p><p><code>a.Y*b.Z - a.Z*b.Y</code> <br> <code>a.Z*b.X - a.X*b.Z</code> <br> <code>a.X*b.Y - a.Y*b.X</code></p></td></tr><tr><td>Normalize</td><td>None</td><td><code>Vector</code></td><td><p>Make a vector unit length:</p><p></p><p><code>mag =</code> <br> <code>Sqrt(v.X^2  ​</code><br>     <code>+v.Y^2  ​</code><br>     <code>+v.Z^2)</code> <br></p><p><code>norm =</code> <br> <code>Mul(v, 1/mag)</code> </p></td></tr><tr><td>Magnitude</td><td>None</td><td>Vector</td><td>Calculate the scale of the vector.<br><code>mag =</code> <br> <code>Sqrt(v.X^2  ​</code><br>     <code>+v.Y^2  ​</code><br>     <code>+v.Z^2)</code> </td></tr></tbody></table>
+{% include "../.gitbook/includes/vector-object-methods-table.md" %}
 
 
 

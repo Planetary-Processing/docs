@@ -18,17 +18,17 @@ Parameters:
 
 Returns:
 
-| Type    | Description                      |
-| ------- | -------------------------------- |
-| `Shape` | A box-shaped collision boundary. |
+| Type              | Description                      |
+| ----------------- | -------------------------------- |
+| [`Shape`](shape/) | A box-shaped collision boundary. |
 
 
 
 Example:
 
-Create a physics body with collision boundaries in the shape of a box, and assigns it to this entity.
+Create a physics body with collision boundaries in the shape of a box, and assign it to this entity.
 
-<pre class="language-lua"><code class="lang-lua">-- entity_type_name.lua
+<pre class="language-lua"><code class="lang-lua">-- entity.lua
 local function init(self)
     self.Physics = true
     

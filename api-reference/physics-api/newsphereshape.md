@@ -16,17 +16,17 @@ Parameters:
 
 Returns:
 
-| Type    | Description                     |
-| ------- | ------------------------------- |
-| `Shape` | A spherical collision boundary. |
+| Type              | Description                     |
+| ----------------- | ------------------------------- |
+| [`Shape`](shape/) | A spherical collision boundary. |
 
 
 
 Example:
 
-Create a physics body with collision boundaries in the shape of a sphere, and assigns it to this entity.
+Create a physics body with collision boundaries in the shape of a sphere, and assign it to this entity.
 
-<pre class="language-lua"><code class="lang-lua">-- entity_type_name.lua
+<pre class="language-lua"><code class="lang-lua">-- entity.lua
 local function init(self)
     self.Physics = true
     
