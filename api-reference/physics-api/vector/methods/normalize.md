@@ -57,7 +57,7 @@ local function update(self, dt)
 </strong>    local difference = normalized_velocity:Sub(normalized_vector)
     
     if difference:Magnitude() == 0 then
-	print("The direction of the velocity is the same as the original vector, "..
+        print("The direction of the velocity is the same as the original vector, "..
                 "even after scaling.")
     end
 end

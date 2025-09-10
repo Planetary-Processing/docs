@@ -17,10 +17,10 @@ Increase the physical length of two cats every time they collide.
 <pre class="language-lua"><code class="lang-lua">--init.lua
 function init()
     if chunk.Dimension == "" and not chunk.Generated then
-	if chunk.X == 0 and chunk.Y == 0 then
-	    api.entity.Create("cat", 32, -32, 0, {side = "bottom"})
-	    api.entity.Create("cat", 32, 96, 0, {side = "top"})
-	end
+        if chunk.X == 0 and chunk.Y == 0 then
+            api.entity.Create("cat", 32, -32, 0, {side = "bottom"})
+            api.entity.Create("cat", 32, 96, 0, {side = "top"})
+        end
     end
 end
 
@@ -40,7 +40,7 @@ local function update(self, dt)
     if y &#x3C; 10 and self.Data.side == "bottom" then
     	self.Body:ApplyForce(api.physics.NewVector(0, 0.1, 0))
     elseif y > 54 and self.Data.side == "top" then
-	self.Body:ApplyForce(api.physics.NewVector(0, -0.1, 0))
+        self.Body:ApplyForce(api.physics.NewVector(0, -0.1, 0))
     end
 		
     if self.Data.last_velocity then
@@ -49,15 +49,15 @@ local function update(self, dt)
             self.Data.last_velocity.Y, 
        	    self.Data.last_velocity.Z
         )
-	local current_velocity = self.Body.Velocity
-	
-	local current_direction = current_velocity:Normalize()
-	local last_direction = last_velocity:Normalize()
-	local is_rebounded = last_direction:Dot(current_direction) &#x3C; 0
-		
-	if is_rebounded then
-<strong>	    self.Body.Shape.L = self.Body.Shape.L + 5
-</strong>	    print("The "..self.Data.side.." cat just rebounded. ".. 
+        local current_velocity = self.Body.Velocity
+        
+        local current_direction = current_velocity:Normalize()
+        local last_direction = last_velocity:Normalize()
+        local is_rebounded = last_direction:Dot(current_direction) &#x3C; 0
+        
+        if is_rebounded then
+<strong>            self.Body.Shape.L = self.Body.Shape.L + 5
+</strong>            print("The "..self.Data.side.." cat just rebounded. ".. 
             	    "Its physical width is now "..self.Body.Shape.L..".")
         end
     end

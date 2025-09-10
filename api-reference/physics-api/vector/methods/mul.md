@@ -24,8 +24,7 @@ Example:
 
 Multiply or divide the force moving an entity, either increasing or decreasing its velocity the longer that it exists.
 
-```lua
--- entity.lua
+<pre class="language-lua"><code class="lang-lua">-- entity.lua
 local function init(self)
     self.Physics = true
 
@@ -47,10 +46,10 @@ local function update(self, dt)
     local vector_multiplied
  
     if self.Data.velocity_change == "increasing" then
-        vector_multiplied = vector:Mul(self.Data.timer)
-    elseif self.Data.velocity_change == "decreasing" then
-        vector_multiplied = vector:Mul(1/self.Data.timer)
-    end
+<strong>        vector_multiplied = vector:Mul(self.Data.timer)
+</strong>    elseif self.Data.velocity_change == "decreasing" then
+<strong>        vector_multiplied = vector:Mul(1/self.Data.timer)
+</strong>    end
     
     print("Moving entity at a velocity which is "..self.Data.velocity_change,
 	    "by a factor of "..self.Data.timer..".")
@@ -80,4 +79,4 @@ end
 -- Moving entity at a velocity which is increasing by a factor of 2.
 -- Moving entity at a velocity which is increasing by a factor of 3.
 -- ...
-```
+</code></pre>

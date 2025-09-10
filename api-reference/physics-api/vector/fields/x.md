@@ -16,8 +16,7 @@ Example:
 
 Create a vector to act as an initial force on an entity object. Then use vector maths to make the entity move along a square path anticlockwise.
 
-```lua
--- entity.lua
+<pre class="language-lua"><code class="lang-lua">-- entity.lua
 local function init(self)
     self.Physics = true
     
@@ -40,10 +39,10 @@ local function update(self, dt)
         local cos_value = math.cos(radians)
         local current_velocity = self.Body.Velocity
         
-        local rotated_x = current_velocity.X * cos_value - 
-                            current_velocity.Y * sin_value 
-        local rotated_y = current_velocity.X * sin_value +
-                            current_velocity.Y * cos_value
+<strong>        local rotated_x = current_velocity.X * cos_value - 
+</strong>                            current_velocity.Y * sin_value 
+<strong>        local rotated_y = current_velocity.X * sin_value +
+</strong>                            current_velocity.Y * cos_value
                             
         rotated_x = math.floor(rotated_x * 1000 + 0.5) / 1000
         rotated_y = math.floor(rotated_y * 1000 + 0.5) / 1000
@@ -72,4 +71,4 @@ end
 -- This entity rotated by 90 degrees anticlockwise. It now moves in a {-1 0 0} direction.
 -- This entity rotated by 90 degrees anticlockwise. It now moves in a {0 -1 0} direction.
 -- This entity rotated by 90 degrees anticlockwise. It now moves in a {1 0 0} direction.
-```
+</code></pre>

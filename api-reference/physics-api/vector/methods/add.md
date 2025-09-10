@@ -43,7 +43,7 @@ local function init(self)
     
 <strong>    local total_force = vector_a:Add(vector_b):Add(vector_c)
 </strong>    print ("The entity body's Force", self.Body.Force, "is equal to",
-	    "the sum of all applied forces", total_force, "in a tick.")
+            "the sum of all applied forces", total_force, "in a tick.")
 
     self.Data.forces = {vector_a, vector_b, vector_c}
 end
@@ -51,20 +51,20 @@ end
 local function update(self, dt)
     if self.Body.Velocity:Magnitude() ~= 0 then
         local vector = api.physics.NewVector(-0.01, -0.01, -0.01)
-
-	self.Body:ApplyForce(vector)
-
-	local total_force = api.physics.NewVector(0,0,0)
-	for index, force in ipairs(self.Data.forces) do
-	    force_vector = api.physics.NewVector(force.X, force.Y, force.Z)
-<strong>	    total_force = total_force:Add(force_vector)
-</strong>	end
-	
-	if self.Data.mass == 1 then
-	    print ("The entity body's Velocity", self.Body.Velocity, "is equal to",
-		    "the sum of all applied forces", total_force, "over time.")
-	end
-	self.Data.forces = api.table.Append(self.Data.forces, vector)
+        
+        self.Body:ApplyForce(vector)
+        
+        local total_force = api.physics.NewVector(0,0,0)
+        for index, force in ipairs(self.Data.forces) do
+            force_vector = api.physics.NewVector(force.X, force.Y, force.Z)
+<strong>            total_force = total_force:Add(force_vector)
+</strong>        end
+        
+        if self.Data.mass == 1 then
+            print ("The entity body's Velocity", self.Body.Velocity, "is equal to",
+                    "the sum of all applied forces", total_force, "over time.")
+        end
+        self.Data.forces = api.table.Append(self.Data.forces, vector)
     end
 end 
 

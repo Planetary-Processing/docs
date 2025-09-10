@@ -8,9 +8,9 @@ Non-physical movement, using the [Move](../../../entity-api/entity/methods/move.
 
 Direct changes to a body's velocity value will only take effect, while physical forces are already being processed. To alter the velocity of a stationary entity, the [ApplyForce](../methods/applyforce.md) function should be used.&#x20;
 
-| Type                      | Initialised Value                                                                         | Description                                                                  |
-| ------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`Vector`](../../vector/) | <p><code>{X = 0,</code> </p><p>    <code>Y = 0,</code> </p><p>    <code>Z = 0}</code></p> | The speed the entity body is currently travelling in the X, Y, Z directions. |
+| Type                      | Initialised Value                                                         | Description                                                                  |
+| ------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`Vector`](../../vector/) | <p><code>{X = 0,</code><br><code>Y = 0,</code><br><code>Z = 0}</code></p> | The speed the entity body is currently travelling in the X, Y, Z directions. |
 
 
 
@@ -35,16 +35,16 @@ local function update(self, dt)
             self.Data.last_velocity.Y, 
        	    self.Data.last_velocity.Z
         )
-<strong>	local current_velocity = self.Body.Velocity
-</strong>	
-	local current_direction = current_velocity:Normalize()
-	local last_direction = last_velocity:Normalize()
-	local is_rebounded = last_direction:Dot(current_direction) &#x3C; 0
-		
-	if is_rebounded then
-            self.Body.Velocity = last_velocity 
+<strong>        local current_velocity = self.Body.Velocity
+</strong>        
+        local current_direction = current_velocity:Normalize()
+        local last_direction = last_velocity:Normalize()
+        local is_rebounded = last_direction:Dot(current_direction) &#x3C; 0
+        
+        if is_rebounded then
+            self.Body.Velocity = last_velocity
             print("An inelastic collision has occurred.")
-	end
+        end
     end
     self.Data.last_velocity = self.Body.Velocity
 end 

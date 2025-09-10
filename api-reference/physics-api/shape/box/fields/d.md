@@ -26,7 +26,7 @@ end
 local function update(self, dt)
     local shape = self.Body.Shape
     if shape.D &#x3C; 50 then
-<strong>	shape.D = shape.D + 0.001
+<strong>        shape.D = shape.D + 0.001
 </strong>    end
    
     self.Data.measurements= {

@@ -38,8 +38,8 @@ local function update(self, dt)
      if self.Data.update_timer == 0 then 
         local vector = api.physics.NewVector(1,1,1)
 <strong>        local magnitude = vector:Magnitude()
-</strong>		
-	self.Body:ApplyForce(self.Body.Velocity:Mul(-1))
+</strong>        
+        self.Body:ApplyForce(self.Body.Velocity:Mul(-1))
         self.Body:ApplyForce(vector)
         self.Data.magnitudes = api.table.Append(self.Data.magnitudes, magnitude)
      end   
@@ -47,21 +47,21 @@ local function update(self, dt)
      if self.Data.update_timer >= self.Data.target_tickrate then
          self.Data.update_timer = 0
      else
-	self.Data.update_timer = self.Data.update_timer + 1
+         self.Data.update_timer = self.Data.update_timer + 1
      end
 	
 	
      if self.Data.distance_timer >= self.Data.target_tickrate * 5 then
-	local total_distance = 0
-	for index, magnitude in ipairs(self.Data.magnitudes) do
+         local total_distance = 0
+         for index, magnitude in ipairs(self.Data.magnitudes) do
              total_distance = total_distance + magnitude
-        end
-        print("The total distance this entity has travelled is approximately "..
-               total_distance.." from its starting position.")  
-        self.Data.distance_timer = 0
-    else
-        self.Data.distance_timer = self.Data.distance_timer + 1
-    end
+         end
+         print("The total distance this entity has travelled is approximately "..
+                 total_distance.." from its starting position.")
+         self.Data.distance_timer = 0
+     else
+         self.Data.distance_timer = self.Data.distance_timer + 1
+     end
 end
 
 -- Turn on physics calculations for this entity.

@@ -63,22 +63,22 @@ local function update(self, dt)
     
 <strong>    local is_reflex_angle = east:Dot(vector) &#x3C;= west:Dot(vector)
 </strong>    if is_reflex_angle then
-	degrees = 360 - degrees  
+        degrees = 360 - degrees  
     end
 
     local cardinal = ""
     for index, direction in ipairs(self.Data.direction) do 
-	if direction.cardinal == "North" then
-	    if direction.minimum &#x3C;= degrees or direction.maximum > degrees then
-	        cardinal = direction.cardinal
-		break
-	    end
-	else
-	    if direction.minimum &#x3C;= degrees and direction.maximum > degrees then
-		cardinal = direction.cardinal
-		break	
-	    end
-	end
+        if direction.cardinal == "North" then
+            if direction.minimum &#x3C;= degrees or direction.maximum > degrees then
+                cardinal = direction.cardinal
+                break
+            end
+        else
+            if direction.minimum &#x3C;= degrees and direction.maximum > degrees then
+                cardinal = direction.cardinal
+                break
+            end
+        end
     end
 	
     local degrees_rounded = math.floor(degrees)

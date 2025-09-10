@@ -43,7 +43,7 @@ local function update(self, dt)
     
     for buff, active in pairs(self.Data.speed_buffs) do
         if active == true then
-	    self.Body:ApplyForce(buff_force)	
+            self.Body:ApplyForce(buff_force)	
             buff_string = buff_string..buff..", "
         end
     end
@@ -60,7 +60,7 @@ local function update(self, dt)
     )  
 
     if is_above_force_cap then
-	self.Body:ApplyForce(force_cap:Sub(applied_force))
+        self.Body:ApplyForce(force_cap:Sub(applied_force))
     end    
 end 
 

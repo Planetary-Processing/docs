@@ -38,16 +38,16 @@ local function update(self, dt)
     local not_force_update = self.Body.Force:Dot(self.Body.Force) == 0
     if not_force_update then 
         if self.Data.mass_change == "decrease" then 
-<strong>	    self.Body.Mass = 1
+<strong>            self.Body.Mass = 1
 </strong>        end
-	if self.Data.mass_change == "not be changed" then
-<strong>	    self.Body.Mass = self.Body.Mass
-</strong>	end
-	if self.Data.mass_change == "increase" then 
-<strong>	    self.Body.Mass = 100
-</strong>	end
+        if self.Data.mass_change == "not be changed" then
+<strong>            self.Body.Mass = self.Body.Mass
+</strong>        end
+        if self.Data.mass_change == "increase" then 
+<strong>            self.Body.Mass = 100
+</strong>        end
     end
-
+    
     local wind_force = api.physics.NewVector(-0.1, -0.1 ,0)
     self.Body:ApplyForce(wind_force)	
 end 

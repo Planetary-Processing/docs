@@ -36,40 +36,40 @@ local function update(self, dt)
             self.Data.last_velocity.Y, 
        	    self.Data.last_velocity.Z
         )
-	local current_velocity = self.Body.Velocity
-	
-	local current_direction = current_velocity:Normalize()
-	local last_direction = last_velocity:Normalize()
-	local is_rebounded = last_direction:Dot(current_direction) &#x3C; 0
-		
-	if is_rebounded then
-	    if self.Data.shape == "Box" then
-		local new_shape_type = "Sphere"
-	        local sphere_shape = api.physics.NewSphereShape(4)
-		local sphere  = api.physics.NewBody(sphere_shape, 1) 
-		print("A collision has occurred. ".. 
-<strong>			"This entity was a "..self.Data.shape, self.Body.Shape, ". "..
-</strong><strong>			"It is now a "..new_shape_type, sphere.Shape,".")
-</strong>			
-		self.Body = sphere
-		self.Data.shape = "Sphere"	
-		self.Body:ApplyForce(current_velocity)
-		
-	    elseif self.Data.shape == "Sphere" then
-		local new_shape_type = "Box"
-		local box_shape = api.physics.NewBoxShape(8, 8, 8) 
-		local box = api.physics.NewBody(box_shape, 1) 
-		print("A collision has occurred. ".. 
-<strong>			"This entity was a "..self.Data.shape, self.Body.Shape, ". "..
-</strong><strong>			"It is now a "..new_shape_type, box.Shape,".")
-</strong>			
-		self.Body = box	
-		self.Data.shape = new_shape_type 	
-		self.Body:ApplyForce(current_velocity)
-	    end 
-	end
+        local current_velocity = self.Body.Velocity
+        
+        local current_direction = current_velocity:Normalize()
+        local last_direction = last_velocity:Normalize()
+        local is_rebounded = last_direction:Dot(current_direction) &#x3C; 0
+        
+        if is_rebounded then
+            if self.Data.shape == "Box" then
+            	local new_shape_type = "Sphere"
+            	local sphere_shape = api.physics.NewSphereShape(4)
+            	local sphere  = api.physics.NewBody(sphere_shape, 1) 
+<strong>                print("A collision has occurred. ".. 
+</strong><strong>                        "This entity was a "..self.Data.shape, self.Body.Shape, ". "..
+</strong><strong>                        "It is now a "..new_shape_type, sphere.Shape,".")
+</strong>                
+                self.Body = sphere
+                self.Data.shape = "Sphere"
+                self.Body:ApplyForce(current_velocity)
+            
+            elseif self.Data.shape == "Sphere" then
+                local new_shape_type = "Box"
+                local box_shape = api.physics.NewBoxShape(8, 8, 8) 
+                local box = api.physics.NewBody(box_shape, 1)
+<strong>                print("A collision has occurred. ".. 
+</strong><strong>                        "This entity was a "..self.Data.shape, self.Body.Shape, ". "..
+</strong><strong>                        "It is now a "..new_shape_type, box.Shape,".")
+</strong>                
+                self.Body = box	
+                self.Data.shape = new_shape_type 
+                self.Body:ApplyForce(current_velocity)
+            end
+        end
     else
- 	self.Body:ApplyForce(api.physics.NewVector(1,1,0))
+        self.Body:ApplyForce(api.physics.NewVector(1,1,0))
     end
     self.Data.last_velocity = self.Body.Velocity
 end 
