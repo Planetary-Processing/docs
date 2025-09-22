@@ -18,6 +18,12 @@ Logs will also be automatically created for any uncaught [errors](logs.md#errors
 
 
 
+## Deleting Logs
+
+Logs can be accessed for 1 week before being automatically deleted.
+
+
+
 ## Monitoring Logs
 
 The full list of logs is the located in the [logs](https://panel.planetaryprocessing.io/logs) section of the web panel. Log [entries](logs.md#entries) are contained in batches called [log groups](logs.md#groups). Entries and groups can be filtered by [game](https://panel.planetaryprocessing.io/games), [dimension](dimensions.md), time period, and [chunk](chunks.md). You can also use a keyword, to search for specific [entries](logs.md#entries).
@@ -32,7 +38,7 @@ Log groups are used to batch display logs from the same source together. The mos
 
 ### Entries
 
-Logs will display information about: the time they occurred; the [dimension](dimensions.md) and [chunk](chunks.md) they occurred in; and the printed [message](logs.md#messages) or [error](logs.md#errors) itself.&#x20;
+Each entry will record the time it occurred; the [dimension](dimensions.md) and [chunk](chunks.md) it occurred in; and the printed [message](logs.md#messages) or [error](logs.md#errors) itself.&#x20;
 
 The most recent log entry will appear at the bottom of the table. While a log group is still active, the entries can be refreshed by clicking the word 'refresh' below the table.
 
@@ -42,11 +48,25 @@ The most recent log entry will appear at the bottom of the table. While a log gr
 
 Messages contain any information sent to logs using `print()` function. Because the logging process is asynchronous, messages will not always arrive in the logs in the exact order they are sent.\
 \
-Where possible variables will be printed in a pretty format, for example printed entities will display their individual field values, space-separated, starting with their ID; X, Y, Z positions; Type; and Data table.
+Where possible variables will be printed in a pretty format:
 
-Most tables nested within other tables will only show their memory address rather than being prettified. Very large numbers will be displayed using scientific 'e' notation.&#x20;
+* Printed entities will display their individual field values, space-separated, including their ID; X, Y, Z positions; Type; and Data table.
+* Some tables nested within other tables will only show their memory address rather than being prettified.&#x20;
+* Tables and certain type-sensitive fields can be concatenated using a comma (`,`) instead of a double full stop/period (`..`). Messages combined with a comma are automatically space-separated.
+* Very large numbers will be displayed using scientific 'e' notation.&#x20;
+* Any individual messages greater than 512B in length will be truncated.
 
-Any individual messages greater than 512B in length will have their message truncated.
+<figure><img src="../.gitbook/assets/image (59).png" alt="" width="563"><figcaption></figcaption></figure>
+
+
+
+### Live Logs
+
+A live stream of log messages can be found in the Editor section of the web panel. This stream only shows the message from the most recent log group.
+
+Because the logging process is asynchronous, even for the live logs, messages will not always arrive in the exact order they are sent.
+
+<figure><img src="../.gitbook/assets/image (60).png" alt="" width="287"><figcaption></figcaption></figure>
 
 
 
