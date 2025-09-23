@@ -25,14 +25,14 @@ There is no login required to join, and there is **no player cap**—any number 
 * **Gameplay Demo:** [Watch on YouTube](https://youtu.be/jFi9lrMgQbM?si=ddbUCG7fN2-UHzGu)
 * **Template:** [Source Code & Playable Build](https://drive.google.com/drive/folders/1-Z0qODkEr2sE0C8KsHsh9dGRfLN-92Dp?usp=drive_link)
 * **Server Code:** [Github](https://github.com/PlanProcCommMan/rust-realm-template)
-* **Game ID:** 7931
+* **Game ID:** 8076
 
 ### Key Files and Concepts
 
 To explore the project structure and understand how different systems are implemented, consider the following files and assets:
 
 * **`Assets/Scenes/Game.unity`** – Main game scene.
-* **`Server` GameObject** – The master object responsible for connecting to the Planetary Processing backend.
+* **`Server` (GameObject)** – The master object responsible for connecting to the Planetary Processing backend.
 * **`Assets/Resources/Vehicles/Firefly.prefab`** – A player vehicle prefab.
 * **`Assets/Prefabs/ItemBox.prefab`** – Example of a non-player entity (item spawner).
 * **`Assets/Scripts/CarController.cs`** – Handles sending player position and input data to the server.
